@@ -1,10 +1,14 @@
 import React from "react";
 import StarRating from "./StarRating.jsx";
+import CreatedAt from "./CreatedAt.jsx";
 
 const ReviewTile = ({review}) => {
-
+  console.log(review.date);
   return (
-    <StarRating rating={review.rating}/> // add all subcomponents here one by one
+    <>
+      <StarRating rating={review.rating}/>
+      <CreatedAt isoDate={review.date}/>
+    </>
   );
 
 };
