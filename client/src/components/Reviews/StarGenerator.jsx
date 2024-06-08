@@ -6,7 +6,7 @@ return (
 <>
 {(fillRating === 1) ?
 
-  <svg width="20px" height="15px" viewBox="0 -0.03 60.062 60.062" xmlns="http://www.w3.org/2000/svg" fill="">
+  <svg width="20px" height="15px" viewBox="0 -0.03 60.062 60.062" xmlns="http://www.w3.org/2000/svg" fill="" data-testid="full-filled-star">
 
     <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
 
@@ -22,9 +22,9 @@ return (
 : null
 }
 
-{(fillRating === 0) ?
+{(fillRating < 0.25) ?
 
-  <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-testid="nofill-outline-star">
 
     <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
 
@@ -36,8 +36,8 @@ return (
 : null
 }
 
-{(fillRating === 0.5) ?
-  <svg width="20px" height="20px" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="">
+{(fillRating >= 0.5 && fillRating < 0.75) ?
+  <svg width="20px" height="20px" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="" data-testid="half-fill-star">
 
     <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
 
@@ -49,9 +49,9 @@ return (
 :null
 }
 
-{(fillRating > 0 && fillRating < 0.5) ?
+{(fillRating >= 0.25 && fillRating < 0.5) ?
 
-  <svg width="20px" height="20px" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="20px" height="20px" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" data-testid="one-quarter-fill-star">
 
     <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
 
@@ -63,9 +63,9 @@ return (
 : null
 }
 
-{ (fillRating > 0.5 && fillRating < 1) ?
+{ (fillRating >= 0.75 && fillRating < 1) ?
 
-  <svg width="20px" height="20px" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="20px" height="20px" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" data-testid="three-quarter-fill-star">
 
     <g id="SVGRepo_bgCarrier" stroke-Width="0"/>
 
