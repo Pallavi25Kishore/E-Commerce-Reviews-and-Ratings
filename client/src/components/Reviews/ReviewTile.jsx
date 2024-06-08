@@ -3,7 +3,6 @@ import StarRating from "./StarRating.jsx";
 import CreatedAt from "./CreatedAt.jsx";
 
 const ReviewTile = ({review}) => {
-  console.log(review.date);
   return (
     <>
       <StarRating rating={review.rating}/>

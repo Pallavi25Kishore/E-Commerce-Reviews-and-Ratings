@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import {render} from '@testing-library/react';
 import React from 'react';
 import StarRating from '../components/Reviews/StarRating';
+import CreatedAt from '../components/Reviews/CreatedAt';
 
 describe(StarRating, () => { // to test StarComponent Suite
 
@@ -60,7 +61,16 @@ describe(StarRating, () => { // to test StarComponent Suite
     const star5 = queryAllByTestId("half-fill-star");
     expect(star5.length).toBe(0);
   });
-
 });
+
+  describe(CreatedAt, () => { // to test CreatedAt component
+
+    it('should display created at date for a review in Month DD, YYYY format', () => {
+        const {getByText} = render(<CreatedAt isoDate={"2023-11-27T00:00:00.000Z"}/>); // date in UTC
+        expect (getByText("November 26, 2023")).toBeVisible(); //date being displayed in locale time
+    });
+  });
+
+
 
 
