@@ -3,16 +3,13 @@ import {BASE_URL, API_KEY} from "../../env/config.js";
 import axios from 'axios';
 import Answer from './Answer.jsx'
 const QuestionList = function(props) {
-    const [questionLists, setQuestionLists] = useState([{
-        product_id: '',
-        results: []
-    }]);
+    const [questionLists, setQuestionLists] = useState([]);
     const URL = `${BASE_URL}qa/questions`;
     useEffect(() => {
         axios.get(URL, {
             headers:{"Authorization": API_KEY},
             params: {
-                product_id: 40347
+                product_id: 40346
             }
         })
         .then(function(response){
@@ -21,10 +18,23 @@ const QuestionList = function(props) {
         .catch(function(err) {
             console.log(err);
         })
-    },[]);
+    },[]);  
     console.log(questionLists)
+    
+    // const question = questionLists.map(questionList => <li>{questionList}</li>)
     return(
-        <h3>Q {questionLists[0].question_body}</h3>
+        <div>
+        <text>Q </text>
+        <div>
+        {questionLists.map((questionList) => (
+             <div>
+            {questionList.question_body} 
+            </div>
+        )
+        )}
+        {/* <text>{question}</text> */}
+        </div>
+        </div>
     )
 
 }

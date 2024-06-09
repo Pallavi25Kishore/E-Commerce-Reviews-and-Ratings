@@ -8,7 +8,7 @@ const App =() =>{
 
 
     <div className="QA">
-        <h3>QUESTION & ANSWERS</h3>
+        <h4>QUESTION & ANSWERS</h4>
         <QuestionList/>
     </div>
     </>
