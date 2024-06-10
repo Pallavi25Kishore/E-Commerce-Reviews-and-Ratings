@@ -31,7 +31,7 @@ const ReviewBody = ({body, photos}) => {
               <span onClick={handleShowLessClick}>...Show Less</span>
             </> :
             <>
-              <div>{body.slice(250)}</div>
+              <div>{body.slice(0, 250)}</div>
               <span onClick={handleShowMoreClick}>...Show More</span>
             </>
       }

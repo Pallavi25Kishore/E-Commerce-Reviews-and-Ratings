@@ -1,9 +1,12 @@
 import "@testing-library/jest-dom";
-import {render} from '@testing-library/react';
+import {render, fireEvent} from '@testing-library/react';
 import React from 'react';
 import StarRating from '../components/Reviews/StarRating.jsx';
 import CreatedAt from '../components/Reviews/CreatedAt.jsx';
 import ReviewSummary from '../components/Reviews/ReviewSummary.jsx';
+import ReviewBody from '../components/Reviews/ReviewBody.jsx';
+import Thumbnail from '../components/Reviews/Thumbnail.jsx';
+import Modal from '../components/Reviews/Modal.jsx';
 
 describe(StarRating, () => { // to test StarComponent Suite
 
@@ -82,6 +85,81 @@ describe(StarRating, () => { // to test StarComponent Suite
     });
   });
 
+  describe(ReviewBody, () => { //to test review body text
+
+    it('should display 250 characters in review body without show more link in case body has 250 or less characters', () => {
+      const {queryByText} = render(<ReviewBody body={"testing review body"} photos={[{id: 2459190, url: 'https://i.insider.com/602ee9ced3ad27001837f2ac?width=1000%26format=jpeg%26auto=webp'}]}/>);
+      expect(queryByText("testing review body")).toBeVisible();
+      expect(queryByText("...Show More")).not.toBeInTheDocument();
+    });
+
+    it('should display 250 characters in review body with show more link in case body has  more than 250 characters ', () => {
+      const text = "Queries are the methods that Testing Library gives you to find elements on the page. There are several types of queries; the difference between them is whether the query will throw an error if no element is found or if it will return a Promise and retry. Depending on what page content you are selecting, different queries may be more or less appropriate. See the priority guide for recommendations on how to make use of semantic queries to test your page in the most accessible way."
+      const {queryByText} = render(<ReviewBody body={text} photos={[{id: 2459190, url: 'https://i.insider.com/602ee9ced3ad27001837f2ac?width=1000%26format=jpeg%26auto=webp'}]}/>);
+      expect(queryByText("Queries are the methods that Testing Library gives you to find elements on the page. There are several types of queries; the difference between them is whether the query will throw an error if no element is found or if it will return a Promise and re")).toBeVisible();
+      expect(queryByText("...Show More")).toBeVisible();
+    });
+
+    it('should display all characters in review body when show more link is clicked', () => {
+      const text = "Queries are the methods that Testing Library gives you to find elements on the page. There are several types of queries; the difference between them is whether the query will throw an error if no element is found or if it will return a Promise and retry. Depending on what page content you are selecting, different queries may be more or less appropriate. See the priority guide for recommendations on how to make use of semantic queries to test your page in the most accessible way."
+      const {queryByText} = render(<ReviewBody body={text} photos={[{id: 2459190, url: 'https://i.insider.com/602ee9ced3ad27001837f2ac?width=1000%26format=jpeg%26auto=webp'}]}/>);
+
+      expect(queryByText("Queries are the methods that Testing Library gives you to find elements on the page. There are several types of queries; the difference between them is whether the query will throw an error if no element is found or if it will return a Promise and retry. Depending on what page content you are selecting, different queries may be more or less appropriate. See the priority guide for recommendations on how to make use of semantic queries to test your page in the most accessible way.")).not.toBeInTheDocument();
+
+      const ShowMore = queryByText("...Show More");
+
+      fireEvent.click(ShowMore);
+      expect(queryByText("Queries are the methods that Testing Library gives you to find elements on the page. There are several types of queries; the difference between them is whether the query will throw an error if no element is found or if it will return a Promise and retry. Depending on what page content you are selecting, different queries may be more or less appropriate. See the priority guide for recommendations on how to make use of semantic queries to test your page in the most accessible way.")).toBeVisible();
+
+    });
+
+  });
 
 
+  describe(Thumbnail, () => { // to test review body photos
 
+    it('should display thumbnails if review body has photos', () => {
+      const {getByTestId} = render(<ReviewBody body={"testing"} photos={[{id: 2459190, url: 'https://i.insider.com/602ee9ced3ad27001837f2ac?width=1000%26format=jpeg%26auto=webp'}]}/>);
+      expect(getByTestId("photo-thumbnail")).toBeVisible();
+
+    });
+
+    it('should not display thumbnails if review body does not have photos', () => {
+      const {queryByTestId} = render(<ReviewBody body={"testing"} photos={[]}/>);
+      expect(queryByTestId("photo-thumbnail")).not.toBeInTheDocument();
+
+    });
+
+    it('should display modal window when thumbnail is clicked', () => {
+      const {queryByTestId} = render(<ReviewBody body={"testing"} photos={[{id: 2459190, url: 'https://i.insider.com/602ee9ced3ad27001837f2ac?width=1000%26format=jpeg%26auto=webp'}]}/>);
+
+      expect(queryByTestId("modal-container")).not.toBeInTheDocument();
+
+      const Thumbnail = queryByTestId("photo-thumbnail");
+
+      fireEvent.click(Thumbnail);
+
+      expect(queryByTestId("modal-container")).toBeVisible();
+    });
+
+  });
+
+  describe(Modal, () => { // to test review body photo displayed in modular window
+
+    it('should close modal window when close/cross button is clicked', () => {
+      const {queryByTestId, getByRole} = render(<ReviewBody body={"testing"} photos={[{id: 2459190, url: 'https://i.insider.com/602ee9ced3ad27001837f2ac?width=1000%26format=jpeg%26auto=webp'}]}/>);
+
+      const Thumbnail = queryByTestId("photo-thumbnail");
+
+      fireEvent.click(Thumbnail);
+
+      expect(queryByTestId("modal-container")).toBeVisible();
+
+      const crossButton = getByRole("button", {name: "x"});
+
+      fireEvent.click(crossButton);
+
+      expect(queryByTestId("modal-container")).not.toBeInTheDocument();
+    });
+
+  });

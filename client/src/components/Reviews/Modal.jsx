@@ -4,9 +4,9 @@ const Modal = ({photo, handleCrossClick}) => {
 
   return (
     <div className="modalOverlay">
-      <div className="modalContainer">
+      <div className="modalContainer" data-testid="modal-container">
         <div className="crossButtonContainer">
-          <button onClick={handleCrossClick} className="crossToClose">&#10005;</button>
+          <button aria-label="x" onClick={handleCrossClick} className="crossToClose">&#10005;</button>
         </div>
         <div className="imageContainer">
           <img className="modalImage" src={photo.url}></img>
