@@ -4,6 +4,7 @@ import CreatedAt from "./CreatedAt.jsx";
 import ReviewSummary from "./ReviewSummary.jsx";
 import ReviewBody from "./ReviewBody.jsx";
 import Recommend from "./Recommend.jsx";
+import Response from "./Response.jsx";
 
 const ReviewTile = ({review}) => {
 
@@ -14,6 +15,7 @@ const ReviewTile = ({review}) => {
       <ReviewSummary summary={review.summary}/>
       <ReviewBody body={review.body} photos={review.photos}/>
       <Recommend recommend={review.recommend}/>
+      <Response response={review.response}/>
     </div>
   );
 

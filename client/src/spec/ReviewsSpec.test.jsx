@@ -8,6 +8,7 @@ import ReviewBody from '../components/Reviews/ReviewBody.jsx';
 import Thumbnail from '../components/Reviews/Thumbnail.jsx';
 import Modal from '../components/Reviews/Modal.jsx';
 import Recommend from '../components/Reviews/Recommend.jsx';
+import Response from '../components/Reviews/Response.jsx';
 
 describe(StarRating, () => { // to test StarComponent Suite
 
@@ -186,5 +187,21 @@ describe(StarRating, () => { // to test StarComponent Suite
       const {getByText} = render(<CreatedAt name={"kitty"} isoDate={"2023-11-27T00:00:00.000Z"}/>)
       var text = getByText("kitty", {exact:false});
       expect(text).toBeVisible();
+    });
+  });
+
+  describe(CreatedAt, () => { // to test response display
+
+    it('should display response to a review by the internal sales team', () => {
+      const {getByText} = render(<Response response={"Hello, thank you for your review"}/>)
+      var head = getByText("Response:", {exact:false});
+      var text = getByText("Hello, thank you for your review", {exact:false});
+      expect(head).toBeVisible();
+      expect(text).toBeVisible();
+    });
+
+    it('should not display response if no response has been provided by sales team', () => {
+      const {queryByText} = render(<Response response={null}/>)
+      expect(queryByText("Response", {exact: false})).not.toBeInTheDocument();
     });
   });
