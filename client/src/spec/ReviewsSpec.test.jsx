@@ -71,7 +71,7 @@ describe(StarRating, () => { // to test StarComponent Suite
   describe(CreatedAt, () => { // to test CreatedAt component
 
     it('should display created at date for a review in Month DD, YYYY format', () => {
-        const {getByText} = render(<CreatedAt isoDate={"2023-11-27T00:00:00.000Z"}/>); // date in UTC
+        const {getByText} = render(<CreatedAt name={"kitty"} isoDate={"2023-11-27T00:00:00.000Z"}/>); // date in UTC
         expect (getByText("November 26, 2023")).toBeVisible(); //date being displayed in locale time
     });
   });
@@ -177,5 +177,14 @@ describe(StarRating, () => { // to test StarComponent Suite
       const {queryByText} = render(<Recommend recommend={false}/>);
       var text = queryByText("✓ I recommend this product");
       expect(text).not.toBeInTheDocument();
+    });
+  });
+
+  describe(CreatedAt, () => { // to test username display
+
+    it('should display username of reviewer', () => {
+      const {getByText} = render(<CreatedAt name={"kitty"} isoDate={"2023-11-27T00:00:00.000Z"}/>)
+      var text = getByText("kitty", {exact:false});
+      expect(text).toBeVisible();
     });
   });

@@ -10,7 +10,7 @@ const ReviewTile = ({review}) => {
   return (
     <div>
       <StarRating rating={review.rating}/>
-      <CreatedAt isoDate={review.date}/>
+      <CreatedAt name={review.reviewer_name} isoDate={review.date}/>
       <ReviewSummary summary={review.summary}/>
       <ReviewBody body={review.body} photos={review.photos}/>
       <Recommend recommend={review.recommend}/>
