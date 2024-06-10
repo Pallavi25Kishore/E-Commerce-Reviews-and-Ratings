@@ -6,7 +6,7 @@ const Response = ({response}) => {
     <div>
     {
       (response) ?
-      <div>{`Response:\n ${response}`}</div>
+      <div>Response: <br></br> {response}</div>
       : null
     }
     </div>
