@@ -6,7 +6,7 @@ return (
 <>
 {(fillRating === 1) ?
 
-<svg width="20px" height="20px" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="##bf873e">
+<svg width="20px" height="20px" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="##bf873e" data-testid="full-filled-star">
 
 <g id="SVGRepo_bgCarrier" stroke-width="0"/>
 
