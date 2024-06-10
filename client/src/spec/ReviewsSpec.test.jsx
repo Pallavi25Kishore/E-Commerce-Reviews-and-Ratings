@@ -7,6 +7,7 @@ import ReviewSummary from '../components/Reviews/ReviewSummary.jsx';
 import ReviewBody from '../components/Reviews/ReviewBody.jsx';
 import Thumbnail from '../components/Reviews/Thumbnail.jsx';
 import Modal from '../components/Reviews/Modal.jsx';
+import Recommend from '../components/Reviews/Recommend.jsx';
 
 describe(StarRating, () => { // to test StarComponent Suite
 
@@ -162,4 +163,19 @@ describe(StarRating, () => { // to test StarComponent Suite
       expect(queryByTestId("modal-container")).not.toBeInTheDocument();
     });
 
+  });
+
+  describe(Recommend, () => { // to test Recommend component
+
+    it('should display tick mark and the text - "i recommend this product" if the product is recommended', () => {
+      const {getByText} = render(<Recommend recommend={true}/>);
+      var text = getByText("✓ I recommend this product");
+      expect(text).toBeVisible();
+    });
+
+    it('should not display tick mark and the text - "i recommend this product" if the product is not recommended', () => {
+      const {queryByText} = render(<Recommend recommend={false}/>);
+      var text = queryByText("✓ I recommend this product");
+      expect(text).not.toBeInTheDocument();
+    });
   });
