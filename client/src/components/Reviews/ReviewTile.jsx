@@ -6,12 +6,12 @@ import ReviewBody from "./ReviewBody.jsx";
 
 const ReviewTile = ({review}) => {
   return (
-    <>
+    <div>
       <StarRating rating={review.rating}/>
       <CreatedAt isoDate={review.date}/>
       <ReviewSummary summary={review.summary}/>
       <ReviewBody body={review.body} photos={review.photos}/>
-    </>
+    </div>
   );
 
 };

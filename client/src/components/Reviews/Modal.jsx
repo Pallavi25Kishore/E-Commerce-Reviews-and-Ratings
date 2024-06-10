@@ -9,7 +9,7 @@ const Modal = ({photo, handleCrossClick}) => {
           <button aria-label="x" onClick={handleCrossClick} className="crossToClose">&#10005;</button>
         </div>
         <div className="imageContainer">
-          <img className="modalImage" src={photo.url}></img>
+          <img className="modalImage" src={photo.url} alt="review photo in modular window"></img>
           </div>
       </div>
     </div>
