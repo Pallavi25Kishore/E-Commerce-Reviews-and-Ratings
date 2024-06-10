@@ -11,7 +11,7 @@ const [currentProductReviews, setCurrentProductReviews] = useState([]); // LATER
 //Using hard coded example data for product id 3 for now - CHANGE LATER for initial mounting
 
 useEffect(() => {
-  axios.get(`${BASE_URL}reviews?page=1&count=10&sort="newest"&product_id=40344`, {headers: {Authorization : API_KEY}})
+  axios.get(`${BASE_URL}reviews?page=1&count=10&sort="newest"&product_id=40380`, {headers: {Authorization : API_KEY}})
   .then((response) => {
     setCurrentProductReviews(response.data.results);
   })
