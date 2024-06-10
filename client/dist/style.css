@@ -1,0 +1,61 @@
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1;
+  display:flex;
+  justify-content: center;
+  align-items: center
+}
+
+.modalContainer {
+  background-color: #fff;
+  padding: 20px;
+  position: relative;
+  width: 50%;
+  height: 50%;
+  max-height: 90%;
+  overflow: auto;
+  box-shadow: 0 0 20px 0px black;
+  border-radius: 15px;
+  display:flex;
+  align-items: center;
+  flex-wrap:wrap;
+
+}
+
+.crossButtonContainer {
+  width:100%;
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.crossToClose {
+  margin-top: 5px;
+  margin-left: 5px;
+  cursor: pointer
+}
+
+.imageContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center
+}
+
+.modalImage {
+ max-width: 100%;
+ max-height: calc(100% - 20px);
+ margin-top: 10px;
+}
+
+
+
+
+
+
+

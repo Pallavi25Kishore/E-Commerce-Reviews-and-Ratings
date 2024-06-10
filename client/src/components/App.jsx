@@ -1,9 +1,10 @@
 import React from "react";
+import ReviewsList from "./Reviews/ReviewsList.jsx";
 
 
 const App =() =>{
     return <>
-    <h1>Hi</h1>
+    <ReviewsList />
     </>
 }
 
