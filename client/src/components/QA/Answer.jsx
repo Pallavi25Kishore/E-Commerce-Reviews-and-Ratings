@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL, API_KEY } from "../../env/config.js";
-
+import Photo from "./Photo.jsx"
 
 export default function Answer(props) {
     const question_id = props.id;
@@ -24,15 +24,15 @@ export default function Answer(props) {
     return(
         <>
             <div>
-            {answerLists.map((answerList) => (
-                <div>
+            {answerLists.map((answerList, id) => (
+                <div key = {id}>
                     <ul>
                         
                         <li>
                             A: {answerList.body}
                             <p>by {answerList.answerer_name}, {answerList.date} </p>
                         </li>
-                            {answerList.photos ? answerList.photos : ''}
+                            <Photo photo = {answerList.photos}/>
                     </ul>
                 </div>
             ))}

@@ -24,9 +24,9 @@ const QuestionList = function (props) {
         <div>
             
             <div>
-                {questionLists.map((questionList) => (
+                {questionLists.map((questionList, id) => (
 
-                    <div>
+                    <div key = {id}>
                         <text>Q:  </text>
                         {questionList.question_body}
                         <Answer id = {questionList.question_id}/>
