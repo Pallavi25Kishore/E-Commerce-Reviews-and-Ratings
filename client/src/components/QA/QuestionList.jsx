@@ -1,39 +1,40 @@
-import React, {useEffect, useState} from 'react';
-import {BASE_URL, API_KEY} from "../../env/config.js";
+import React, { useEffect, useState } from 'react';
+import { BASE_URL, API_KEY } from "../../env/config.js";
 import axios from 'axios';
 import Answer from './Answer.jsx'
-const QuestionList = function(props) {
+const QuestionList = function (props) {
     const [questionLists, setQuestionLists] = useState([]);
     const URL = `${BASE_URL}qa/questions`;
     useEffect(() => {
         axios.get(URL, {
-            headers:{"Authorization": API_KEY},
+            headers: { "Authorization": API_KEY },
             params: {
                 product_id: 40346
             }
         })
-        .then(function(response){
-            setQuestionLists(response.data.results);
-        })
-        .catch(function(err) {
-            console.log(err);
-        })
-    },[]);  
+            .then(function (response) {
+                setQuestionLists(response.data.results);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+    }, []);
     console.log(questionLists)
-    
-    // const question = questionLists.map(questionList => <li>{questionList}</li>)
-    return(
+    return (
         <div>
-        <text>Q </text>
-        <div>
-        {questionLists.map((questionList) => (
-             <div>
-            {questionList.question_body} 
+            
+            <div>
+                {questionLists.map((questionList) => (
+
+                    <div>
+                        <text>Q:  </text>
+                        {questionList.question_body}
+                        <Answer id = {questionList.question_id}/>
+                    </div>
+
+                )
+                )}
             </div>
-        )
-        )}
-        {/* <text>{question}</text> */}
-        </div>
         </div>
     )
 
