@@ -1,10 +1,10 @@
 import React from "react";
-import ReviewsList from "./Reviews/ReviewsList.jsx";
+import Reviews from "./Reviews/Reviews.jsx";
 
 
 const App =() =>{
     return <>
-    <ReviewsList />
+    <Reviews />
     </>
 }
 
