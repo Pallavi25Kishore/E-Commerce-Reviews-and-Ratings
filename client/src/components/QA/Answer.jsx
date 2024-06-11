@@ -18,8 +18,6 @@ export default function Answer(props) {
             console.log(err);
         })
     }, []);
-    console.log(answerLists);
-
 
     return(
         <>
@@ -31,8 +29,9 @@ export default function Answer(props) {
                         <li>
                             A: {answerList.body}
                             <p>by {answerList.answerer_name}, {answerList.date} </p>
-                        </li>
                             <Photo photo = {answerList.photos}/>
+                        </li>
+                            
                     </ul>
                 </div>
             ))}
