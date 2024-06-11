@@ -1,11 +1,8 @@
-import React from "react";
+import React from 'react';
+import ProductView from './Overview/ProductView.jsx';
 
-
-const App =() =>{
-    return <>
-    <h1>Hi</h1>
-    </>
-}
-
-
+const App = () => (
+<ProductView/>
+);
+//hello
 export default App;
