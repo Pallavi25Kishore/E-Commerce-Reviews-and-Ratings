@@ -1,5 +1,6 @@
 import React from 'react';
 import StarRating from "./StarRating.jsx";
+import RatingBars from "./RatingBars.jsx";
 
 const RatingBreakdown = ({metaData}) => {
 
@@ -24,6 +25,8 @@ const RatingBreakdown = ({metaData}) => {
         <StarRating rating={roundedAvgRatingNumber}/>
       </div>
       <div>Total reviews: {totalNumberOfRatings}</div>
+      <div>Rating Breakdown</div>
+      <RatingBars ratings={metaData.ratings} totalNumberOfRatings={totalNumberOfRatings}/>
     </div>
 
   );

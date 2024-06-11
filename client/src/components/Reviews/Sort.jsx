@@ -15,6 +15,8 @@ const Sort = ({changeSort}) => {
         <option value="newest">Newness</option>
         <option value="helpful">Helpfulness</option>
     </select>
+    <br></br>
+    <br></br>
     </div>
   );
 };

@@ -33,6 +33,8 @@ const Helpfulness = ({reviewid, helpfulness, fetchReviewsList}) => {
       <span data-testid="count">{`(${helpfulness})`}</span>
       <span>  |  </span>
       <span onClick={handleReportClick} style={{textDecoration : 'underline'}}>Report</span>
+      <hr></hr>
+      <br></br>
     </div>
   )
 
