@@ -3,19 +3,24 @@ import React from 'react';
 const RatingBars = ({ratings, totalNumberOfRatings}) => {
 
   const numOfFiveStars = Number(ratings['5']);
-  const One = (numOfFiveStars / totalNumberOfRatings) * 100;
+  const Five = (numOfFiveStars / totalNumberOfRatings) * 100;
+  console.log(One);
 
   const numOfFourStars = Number(ratings['4']);
-  const Two = (numOfFourStars / totalNumberOfRatings) * 100;
+  const Four = (numOfFourStars / totalNumberOfRatings) * 100;
+  console.log(Two);
 
   const numOfThreeStars = Number(ratings['3']);
   const Three = (numOfThreeStars / totalNumberOfRatings) * 100;
+  console.log(Three);
 
   const numOfTwoStars = Number(ratings['2']);
-  const Four = (numOfTwoStars / totalNumberOfRatings) * 100;
+  const Two = (numOfTwoStars / totalNumberOfRatings) * 100;
+  console.log(Four);
 
     const numOfOneStars = Number(ratings['1']);
-    const Five = (numOfOneStars / totalNumberOfRatings) * 100;
+    const One = (numOfOneStars / totalNumberOfRatings) * 100;
+    console.log(Five);
 
   return (
     <div>
