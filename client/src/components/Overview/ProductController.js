@@ -1,5 +1,5 @@
 import axios from 'axios';
-import API_KEY from '../../env/config.js'
+import {API_KEY} from '../../env/config.js'
 
 const fetchProduct = async (productId) => {
   try {

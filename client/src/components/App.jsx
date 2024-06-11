@@ -5,7 +5,7 @@ import ProductView from './Overview/ProductView.jsx';
 const App =() =>{
     return <>
     <ProductView/>
-    <ReviewsList />
+    <ReviewsList/>
     </>
 }
 
