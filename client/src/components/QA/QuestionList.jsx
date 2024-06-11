@@ -5,7 +5,7 @@ import Answer from './Answer.jsx';
 import Search from './Search.jsx'
 
 
-const QuestionList = function (props) {
+const QuestionList = function () {
     const [questionLists, setQuestionLists] = useState([]);
     const [searchKey, setsearchKey] = useState('');
     const URL = `${BASE_URL}qa/questions`;
@@ -23,7 +23,8 @@ const QuestionList = function (props) {
                 console.log(err);
             })
     }, []);
-   
+
+    console.log
   
     const filterQuestion = searchKey ? questionLists.filter(question => question.question_body.toLowerCase().includes(searchKey.toLowerCase())) : questionLists
 
