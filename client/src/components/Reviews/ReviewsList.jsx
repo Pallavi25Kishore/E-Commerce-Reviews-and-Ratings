@@ -10,7 +10,7 @@ const [currentProductReviews, setCurrentProductReviews] = useState([]); // LATER
 
 //Using hard coded example data for product id 3 for now - CHANGE LATER for initial mounting
 
-useEffect(() => {
+const fetchReviewsList = () => {
   axios.get(`${BASE_URL}reviews?page=1&count=30&sort="newest"&product_id=40380`, {headers: {Authorization : API_KEY}})
   .then((response) => {
     setCurrentProductReviews(response.data.results);
@@ -18,6 +18,10 @@ useEffect(() => {
   .catch((err) => {
     console.log('error in fetching reviews list data', err);
   });
+};
+
+useEffect(() => {
+fetchReviewsList();
 }, []);
 
 
@@ -25,7 +29,7 @@ console.log(currentProductReviews);
 return (
 
 <div className="review-list">
-  {currentProductReviews.map((review) => {return <ReviewTile review={review} key={review.review_id}/>})}
+  {currentProductReviews.map((review) => {return <ReviewTile review={review} key={review.review_id} fetchReviewsList={fetchReviewsList}/>})}
 </div>
 );
 };

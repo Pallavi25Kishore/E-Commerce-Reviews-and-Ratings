@@ -9,6 +9,7 @@ import Thumbnail from '../components/Reviews/Thumbnail.jsx';
 import Modal from '../components/Reviews/Modal.jsx';
 import Recommend from '../components/Reviews/Recommend.jsx';
 import Response from '../components/Reviews/Response.jsx';
+import Helpfulness from '../components/Reviews/Helpfulness.jsx';
 
 describe(StarRating, () => { // to test StarComponent Suite
 
@@ -204,4 +205,17 @@ describe(StarRating, () => { // to test StarComponent Suite
       const {queryByText} = render(<Response response={null}/>)
       expect(queryByText("Response", {exact: false})).not.toBeInTheDocument();
     });
+  });
+
+  describe(Helpfulness, () => { // to test helpfulness component
+
+    it('should display response to a review by the internal sales team', () => {
+      const {getByTestId} = render(<Helpfulness responseid={644082}/>);
+      var initialCount = Number(getByTestId("count").textContent);
+      const Yes = getByTestId("yes");
+      fireEvent.click(Yes);
+      var updatedCount = Number(getByTestId("count").textContent);
+      expect(updatedCount).toBe(initialCount +1);
+    });
+
   });
