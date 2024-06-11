@@ -57,6 +57,10 @@
   display: flex;
 }
 
+.one, .two, .three, .four, .five {
+  display: flex;
+}
+
 
 
 

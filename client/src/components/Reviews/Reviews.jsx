@@ -11,7 +11,7 @@ const Reviews = () => { //pass product_id as prop from App - DO LATER
 
   const [currentProductReviews, setCurrentProductReviews] = useState([]);
   const [currentSort, setCurrentSort] = useState('relevant');
-  const [metaData, setMetaData] = useState([]);
+  const [metaData, setMetaData] = useState('');
 
 
    // LATER - Move to APP.JS - Combine with Michael's code
