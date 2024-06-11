@@ -9,11 +9,11 @@ const Sort = ({changeSort}) => {
 
   return (
     <div>
-      <label htmlFor="sortOptions">Sort on: </label>
+      <label htmlFor="sortOptions">Sorted by  </label>
     <select name="sortOptions" id="sortOptions" onChange={handleSortSelect} defaultValue="relevant">
-        <option value="relevant">MOST RELEVANT</option>
-        <option value="newest">MOST RECENT </option>
-        <option value="helpful">MOST HELPFUL</option>
+        <option value="relevant">Relevance</option>
+        <option value="newest">Newness</option>
+        <option value="helpful">Helpfulness</option>
     </select>
     </div>
   );

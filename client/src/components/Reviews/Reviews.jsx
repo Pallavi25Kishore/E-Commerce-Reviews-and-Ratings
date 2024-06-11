@@ -4,12 +4,14 @@ import axios from 'axios';
 import {BASE_URL, API_KEY} from "../../env/config.js";
 import ReviewsList from "./ReviewsList.jsx";
 import Sort from "./Sort.jsx";
+import RatingBreakdown from "./RatingBreakdown.jsx";
 
 
-const Reviews = () => {
+const Reviews = () => { //pass product_id as prop from App - DO LATER
 
   const [currentProductReviews, setCurrentProductReviews] = useState([]);
   const [currentSort, setCurrentSort] = useState('relevant');
+  const [metaData, setMetaData] = useState([]);
 
 
    // LATER - Move to APP.JS - Combine with Michael's code
@@ -28,6 +30,16 @@ const Reviews = () => {
   };
 
   useEffect(() => {
+    axios.get(`${BASE_URL}reviews/meta?product_id=40380`, {headers: {Authorization : API_KEY}})
+    .then((response) => {
+      setMetaData(response.data);
+    })
+    .catch((err) => {
+      console.log('error in fetching meta data', err);
+    });
+    }, []);
+
+  useEffect(() => {
     fetchReviewsList(currentSort);
     }, [currentSort]);
 
@@ -40,6 +52,7 @@ const Reviews = () => {
   console.log(currentProductReviews);
   return (
     <div>
+    <RatingBreakdown metaData={metaData}/>
     <Sort changeSort={changeSort}/>
     <ReviewsList currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList}/>
     </div>

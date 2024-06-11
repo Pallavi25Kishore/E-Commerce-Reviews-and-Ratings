@@ -53,6 +53,10 @@
  margin-top: 10px;
 }
 
+.avg-rating {
+  display: flex;
+}
+
 
 
 
