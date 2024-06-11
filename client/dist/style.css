@@ -59,6 +59,11 @@
 
 .one, .two, .three, .four, .five {
   display: flex;
+  width: 275px;
+}
+
+.five:hover, .four:hover, .three:hover, .two:hover, .one:hover {
+  background-color: rgba(169,223,191,0.5)
 }
 
 
