@@ -1,4 +1,5 @@
 import React from 'react';
+import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import ProductView from '../components/Overview/ProductView.jsx';
 import Share from '../components/Overview/Share.jsx';
@@ -21,16 +22,16 @@ const mockProduct = {
 
 test('renders product overview correctly', () => {
   render(<ProductInfo currentProduct={mockProduct} />);
-  expect(screen.getByText('Clothes')).toBeTruthy();
-  expect(screen.getByText('Leather Jacket')).toBeTruthy();
-  expect(screen.getByText('Its Leather!')).toBeTruthy();
-  expect(screen.getByText('$80')).toBeTruthy();
-  expect(screen.getByText('$100')).toBeTruthy();
-  expect(screen.getByText('This is an Leather Jacket you should buy!')).toBeTruthy();
-  expect(screen.getByText('Leather:')).toBeTruthy();
-  expect(screen.getByText('Good')).toBeTruthy();
-  expect(screen.getByText('Weight:')).toBeTruthy();
-  expect(screen.getByText('3kg')).toBeTruthy();
+  expect(screen.getByText('Clothes')).toBeInTheDocument();
+  expect(screen.getByText('Leather Jacket')).toBeInTheDocument();
+  expect(screen.getByText('Its Leather!')).toBeInTheDocument();
+  expect(screen.getByText('$80')).toBeInTheDocument();
+  expect(screen.getByText('$100')).toBeInTheDocument();
+  expect(screen.getByText('This is an Leather Jacket you should buy!')).toBeInTheDocument();
+  expect(screen.getByText('Leather:')).toBeInTheDocument();
+  expect(screen.getByText('Good')).toBeInTheDocument();
+  expect(screen.getByText('Weight:')).toBeInTheDocument();
+  expect(screen.getByText('3kg')).toBeInTheDocument();
 });
 
 test('does not render price or features if not provided', () => {
@@ -43,15 +44,15 @@ test('does not render price or features if not provided', () => {
   };
 
   render(<ProductInfo currentProduct={mockProductWithoutFeatures} />);
-  expect(screen.getByText('Clothes')).toBeTruthy();
-  expect(screen.getByText('Leather Jacket')).toBeTruthy();
-  expect(screen.getByText('Its Leather!')).toBeTruthy();
-  expect(screen.getByText('$100')).toBeTruthy();
-  expect(screen.getByText('This is an Leather Jacket you should buy!')).toBeTruthy();
-  expect(screen.queryByText('Leather:')).not.toBeTruthy();
-  expect(screen.queryByText('Good')).not.toBeTruthy();
-  expect(screen.queryByText('Weight:')).not.toBeTruthy();
-  expect(screen.queryByText('3kg')).not.toBeTruthy();
+  expect(screen.getByText('Clothes')).toBeInTheDocument();
+  expect(screen.getByText('Leather Jacket')).toBeInTheDocument();
+  expect(screen.getByText('Its Leather!')).toBeInTheDocument();
+  expect(screen.getByText('$100')).toBeInTheDocument();
+  expect(screen.getByText('This is an Leather Jacket you should buy!')).toBeInTheDocument();
+  expect(screen.queryByText('Leather:')).not.toBeInTheDocument();
+  expect(screen.queryByText('Good')).not.toBeInTheDocument();
+  expect(screen.queryByText('Weight:')).not.toBeInTheDocument();
+  expect(screen.queryByText('3kg')).not.toBeInTheDocument();
 });
 
 describe('Share component', () => {
