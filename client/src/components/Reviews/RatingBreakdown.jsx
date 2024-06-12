@@ -2,7 +2,7 @@ import React from 'react';
 import StarRating from "./StarRating.jsx";
 import RatingBars from "./RatingBars.jsx";
 
-const RatingBreakdown = ({metaData, handleProgressBarClick}) => {
+const RatingBreakdown = ({metaData, handleProgressBarClick, starFilter, removeAllStarFilters}) => {
 
   var roundedAvgRatingNumber = 0;
   var roundedAvgRatingString = '';
@@ -32,6 +32,18 @@ const RatingBreakdown = ({metaData, handleProgressBarClick}) => {
       </div>
       <div>Total reviews: {totalNumberOfRatings}</div>
       <div>Rating Breakdown</div>
+          {
+            (Object.keys(starFilter).length !== 0) ?
+            <div>
+              <div className="currentfiltersheading">Currently applied filters:</div>
+              <div>
+               {(Object.keys(starFilter)).map((key) =>  {return <span key={key}>{key} stars </span> })}
+              </div>
+              <div className="removeallfilters" onClick={removeAllStarFilters}>Remove all filters</div>
+            </div>
+            :null
+          }
+
       <RatingBars ratings={metaData.ratings} totalNumberOfRatings={totalNumberOfRatings} handleProgressBarClick={handleProgressBarClick}/>
       </>
       : null

@@ -60,11 +60,16 @@ const Reviews = () => { //pass product_id as prop from App - DO LATER
       }
     };
 
+  const removeAllStarFilters = (e) => {
+    e.preventDefault();
+    setStarFilter({});
+  }
+
 
   console.log(currentProductReviews);
   return (
     <div>
-    <RatingBreakdown metaData={metaData} handleProgressBarClick={handleProgressBarClick}/>
+    <RatingBreakdown metaData={metaData} handleProgressBarClick={handleProgressBarClick} starFilter={starFilter} removeAllStarFilters={removeAllStarFilters}/>
     <Sort changeSort={changeSort}/>
     <ReviewsList currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList} starFilter={starFilter}/>
     </div>

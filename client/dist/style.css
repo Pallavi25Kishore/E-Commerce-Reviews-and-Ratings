@@ -66,6 +66,20 @@
   background-color: rgba(169,223,191,0.5)
 }
 
+.currentfiltersheading {
+  margin-top: 10px;
+  font-weight: bold
+}
+
+.removeallfilters {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.removeallfilters:hover {
+  color: green
+}
+
 
 
 
