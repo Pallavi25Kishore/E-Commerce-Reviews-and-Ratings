@@ -2,7 +2,7 @@ import React from 'react';
 import StarRating from "./StarRating.jsx";
 import RatingBars from "./RatingBars.jsx";
 
-const RatingBreakdown = ({metaData}) => {
+const RatingBreakdown = ({metaData, handleProgressBarClick}) => {
 
   var roundedAvgRatingNumber = 0;
   var roundedAvgRatingString = '';
@@ -32,7 +32,7 @@ const RatingBreakdown = ({metaData}) => {
       </div>
       <div>Total reviews: {totalNumberOfRatings}</div>
       <div>Rating Breakdown</div>
-      <RatingBars ratings={metaData.ratings} totalNumberOfRatings={totalNumberOfRatings}/>
+      <RatingBars ratings={metaData.ratings} totalNumberOfRatings={totalNumberOfRatings} handleProgressBarClick={handleProgressBarClick}/>
       </>
       : null
     }

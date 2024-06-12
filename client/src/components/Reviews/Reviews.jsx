@@ -12,6 +12,7 @@ const Reviews = () => { //pass product_id as prop from App - DO LATER
   const [currentProductReviews, setCurrentProductReviews] = useState([]);
   const [currentSort, setCurrentSort] = useState('relevant');
   const [metaData, setMetaData] = useState('');
+  const [starFilter, setStarFilter] = useState({});
 
 
    // LATER - Move to APP.JS - Combine with Michael's code
@@ -47,14 +48,25 @@ const Reviews = () => { //pass product_id as prop from App - DO LATER
       setCurrentSort(value);
     };
 
+    const handleProgressBarClick = (value) => {
+      if (starFilter[value] === undefined) {
+        var newObj = {...starFilter};
+        newObj[value] = true;
+        setStarFilter(newObj);
+      } else {
+        var newObj = {...starFilter};
+        delete newObj[value];
+        setStarFilter(newObj);
+      }
+    };
 
 
   console.log(currentProductReviews);
   return (
     <div>
-    <RatingBreakdown metaData={metaData}/>
+    <RatingBreakdown metaData={metaData} handleProgressBarClick={handleProgressBarClick}/>
     <Sort changeSort={changeSort}/>
-    <ReviewsList currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList}/>
+    <ReviewsList currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList} starFilter={starFilter}/>
     </div>
   )
 };
