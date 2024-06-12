@@ -1,30 +1,66 @@
-import {render, screen,fireEvent, cleanup} from '@testing-library/react';
+import { render, screen, fireEvent, cleanup, getByRole } from '@testing-library/react';
 import React from 'react';
 import QuestionList from "../components/QA/QuestionList.jsx";
 import Answer from "../components/QA/Answer.jsx";
 import Search from "../components/QA/Search.jsx";
+import Question from "../components/QA/Question.jsx"
+import Photo from "../components/QA/Photo.jsx"
 
-
-
-
-// test('render question list correct', ()=> {
-//     // const mockQuestionList = [
-//     //     {question_id: 1, question_body: "Hi, this is jest"},
-//     //     {question_id: 2, question_boyd: "this is js test file"}
-//     // ]
-//     render(<QuestionList/>)
-//     expect(screen.getByText('question_body')).toBeTruthy()
-
-// })
-
-
-test('render search component correct', ()=> {
-    render(<Search/>)
-    expect(screen.getByPlaceholderText('HAVE A QUESTION? SEARCH FOR ANSWERS'));
-    expect(screen.getByRole("button", {name: "Search"})).toBeDisabled;
+afterEach(() => {
+    cleanup(); // Resets the DOM after each test suite
 })
-// test('Check the text in the input file', () => {
-//     const {input} = render(<Search />)
-//     fireEvent.onChange(input, {target: {value: 'Hi'}});
-//     expect(input.value).toBe('Hi');
-// })
+
+describe('Question Component', () => {
+    const mockQuestion = {
+        question: "This is jest"
+    }
+
+    test('should redner in h4 format', () => {
+        render(<Question question={mockQuestion.question} />)
+        expect(screen.getByText('Q: This is jest')).toBeTruthy();
+    })
+})
+
+describe('Search Component', () => {
+    test('render search component correct', () => {
+        render(<Search />)
+        expect(screen.getByPlaceholderText('HAVE A QUESTION? SEARCH FOR ANSWERS'));
+        expect(screen.getByRole("button", { name: "Search" })).toBeDisabled;
+
+    })
+    test('should set value to state when input is changed', ()=> {
+
+        render(<Search />)
+        const input = screen.getByLabelText('search-input')
+        fireEvent.change(input, {target: {value:"Hi, i am jest"}});
+        expect(input.value).toBe("Hi, i am jest");
+    })
+})
+
+describe('Photo Component', () => {
+    const mockPhotos = [
+        {url: "11231dsa.jpg"},
+        { url:"12315613dsa.jpg"}
+    ]
+    test('Render Photo component correct', ()=> {
+        const {queryAllByTestId} = render(<Photo photo = {mockPhotos}/>)
+        expect(queryAllByTestId("photo")).toBeInTheDocument;
+    });
+    test('Render Photo component correct', ()=> {
+        const {queryByTestId} = render(<Photo photo = {[]}/>)
+        expect(queryByTestId("photo")).not.toBeInTheDocument;
+    })
+})
+
+describe('Answer Component',()=> {
+    const {queryAllByTestId} = render(<Answer/>)
+    expect(queryAllByTestId("test-list")).toBeInTheDocument
+    expect(queryAllByTestId("test-single-answer")).toBeInTheDocument
+    expect(queryAllByTestId("test-photo-list")).toBeInTheDocument
+})
+
+describe('Question Component', ()=> {
+    const {queryAllByTestId} = render(<QuestionList/>)
+    expect(queryAllByTestId("test-question")).toBeInTheDocument
+    expect(queryAllByTestId("test-answer")).toBeInTheDocument
+})

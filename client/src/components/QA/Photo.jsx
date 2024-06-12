@@ -9,7 +9,7 @@ export default function Phooto(props) {
                 {props.photo.map((photo ,id) => (
                     (
                         <div key = {id}>
-                            <img src={photo.url}></img>
+                            <img data-testid="photo" src={photo.url}></img>
                         </div>
                     )
                 ))}

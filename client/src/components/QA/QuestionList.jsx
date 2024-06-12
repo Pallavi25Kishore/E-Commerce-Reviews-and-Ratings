@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { BASE_URL, API_KEY } from "../../env/config.js";
 import axios from 'axios';
 import Answer from './Answer.jsx';
-import Search from './Search.jsx'
+import Search from './Search.jsx';
+import Question from './Question.jsx'
 
-
-const QuestionList = function () {
+const QuestionList = function (props) {
     const [questionLists, setQuestionLists] = useState([]);
     const [searchKey, setsearchKey] = useState('');
     const URL = `${BASE_URL}qa/questions`;
@@ -37,8 +37,8 @@ const QuestionList = function () {
                 {filterQuestion.map((questionList, id) => (
 
                     <div key = {id}>
-                        <p>Q:  {questionList.question_body}</p>
-                        <Answer id = {questionList.question_id}/>
+                        <Question  data-testid="test-question" question={questionList.question_body}/>
+                        <Answer data-testid = "test-answer" id = {questionList.question_id}/>
                     </div>
 
                 )

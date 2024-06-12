@@ -19,7 +19,7 @@ export default function Search(props) {
     return(
         <div>
             <form onSubmit = {handleSubmit} id = 'myForm'>
-                <input placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS" onChange={handleChange} value  = {key}></input>
+                <input placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS" onChange={handleChange} value={key} aria-label="search-input"></input>
                 <button type = "submit">Search</button>
             </form>
         </div>
