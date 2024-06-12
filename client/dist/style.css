@@ -59,7 +59,7 @@
 
 .one, .two, .three, .four, .five {
   display: flex;
-  width: 275px;
+  width: 290px;
 }
 
 .five:hover, .four:hover, .three:hover, .two:hover, .one:hover {

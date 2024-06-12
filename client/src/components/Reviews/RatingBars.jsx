@@ -2,23 +2,23 @@ import React from 'react';
 
 const RatingBars = ({ratings, totalNumberOfRatings, handleProgressBarClick}) => {
 
-  const numOfFiveStars = Number(ratings['5']);
+  const numOfFiveStars = Number(ratings['5']) || 0; // in case no rating has been given, it should be treated as zero
   const Five = (numOfFiveStars / totalNumberOfRatings) * 100;
 
 
-  const numOfFourStars = Number(ratings['4']);
+  const numOfFourStars = Number(ratings['4']) || 0;
   const Four = (numOfFourStars / totalNumberOfRatings) * 100;
 
 
-  const numOfThreeStars = Number(ratings['3']);
+  const numOfThreeStars = Number(ratings['3']) || 0;
   const Three = (numOfThreeStars / totalNumberOfRatings) * 100;
 
 
-  const numOfTwoStars = Number(ratings['2']);
+  const numOfTwoStars = Number(ratings['2']) || 0;
   const Two = (numOfTwoStars / totalNumberOfRatings) * 100;
 
 
-  const numOfOneStars = Number(ratings['1']);
+  const numOfOneStars = Number(ratings['1']) || 0;
   const One = (numOfOneStars / totalNumberOfRatings) * 100;
 
 

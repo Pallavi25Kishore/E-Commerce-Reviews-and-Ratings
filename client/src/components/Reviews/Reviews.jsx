@@ -7,7 +7,7 @@ import Sort from "./Sort.jsx";
 import RatingBreakdown from "./RatingBreakdown.jsx";
 
 
-const Reviews = () => { //pass product_id as prop from App - DO LATER
+const Reviews = () => { //pass product_id as prop from App - DO LATER - use for both get requests - reviews and metadata
 
   const [currentProductReviews, setCurrentProductReviews] = useState([]);
   const [currentSort, setCurrentSort] = useState('relevant');
@@ -67,6 +67,7 @@ const Reviews = () => { //pass product_id as prop from App - DO LATER
 
 
   console.log(currentProductReviews);
+  console.log(metaData);
   return (
     <div>
     <RatingBreakdown metaData={metaData} handleProgressBarClick={handleProgressBarClick} starFilter={starFilter} removeAllStarFilters={removeAllStarFilters}/>
