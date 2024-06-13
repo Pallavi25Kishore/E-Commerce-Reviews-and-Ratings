@@ -27,6 +27,7 @@ if (Object.keys(starFilter).length === 0) { // if no star rating filter are appl
     );
 }
 
+
 };
 
 export default ReviewsList;
