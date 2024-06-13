@@ -5,10 +5,10 @@ const Factor = ({factor, value}) => {
 
   const labels = {
     "Size" : ["Too small", "Perfect", "Too big"],
-    "Width" : ["Too narrow", "Perfect", "Too broad"],
-    "Length" : ["Too short", "Perfect", "Too long"],
+    "Width" : ["Too narrow", "Perfect", "Too wide"],
+    "Length" : ["Runs short", "Perfect", "Runs long"],
     "Quality" : ["Poor", null,  "Perfect"],
-    "Fit" : ["Poor", null, "Perfect"],
+    "Fit" : ["Runs tight", "Perfect", "Runs long"],
     "Comfort" : ["Poor", null, "Perfect"]
   };
 
@@ -25,7 +25,7 @@ const Factor = ({factor, value}) => {
         <div className="bar"></div>
         <div className="bar"></div>
       </div>
-      <div className="pointer" style={{width: '20px', height: '20px', zIndex: '2', position: 'absolute', left: `calc(${percentage}% - 10px`}}>
+      <div className="pointer" style={{width: '20px', height: '20px', zIndex: '2', position: 'absolute', left: `calc(${percentage}% - 10px`}} data-testid="pointer">
         <InvertedTriangle />
       </div>
       </div>

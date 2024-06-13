@@ -19,7 +19,7 @@ const RatingBreakdown = ({metaData, handleProgressBarClick, starFilter, removeAl
     roundedAvgRatingNumber = Math.round(avgRating * 10) / 10;
     roundedAvgRatingString = roundedAvgRatingNumber.toFixed(1); // to render uptil 1 decimal point eg. 3 is displayed as "3.0"
 
-    var percentageOfReviewsThatRecommend = (Math.round(((Number(metaData.recommended['true']) / totalNumberOfRatings) * 100) *10)/10).toFixed(1) || 0;
+    var percentageOfReviewsThatRecommend = (Math.round(((Number(metaData.recommended['true']) / totalNumberOfRatings) * 100) *10)/10).toFixed(1) || 0; //because of tofixed 30 will be displayed as 30.0
   }
 
   return (

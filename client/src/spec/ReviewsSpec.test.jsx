@@ -11,6 +11,9 @@ import Recommend from '../components/Reviews/Recommend.jsx';
 import Response from '../components/Reviews/Response.jsx';
 import Helpfulness from '../components/Reviews/Helpfulness.jsx';
 import Sort from '../components/Reviews/Sort.jsx';
+import RatingBreakdown from '../components/Reviews/RatingBreakdown.jsx';
+import RatingBars from '../components/Reviews/RatingBars.jsx';
+import Factor from '../components/Reviews/Factor.jsx';
 
 describe(StarRating, () => { // to test StarComponent Suite
 
@@ -229,7 +232,7 @@ describe(StarRating, () => { // to test StarComponent Suite
     });
 
     it('should display the option that has been selected in sort options selector', () => {
-      const {getByText, getByTestId} = render(<Sort changeSort={(value) => {}}/>);
+      const {getByText, getByTestId} = render(<Sort changeSort={() => {}}/>);
       fireEvent.change(getByTestId("select"), {target: {value: "helpful"}});
       expect(getByTestId("select")).toHaveDisplayValue("Helpfulness");
       expect(getByTestId("select")).not.toHaveDisplayValue("Newness");
@@ -237,4 +240,90 @@ describe(StarRating, () => { // to test StarComponent Suite
     });
 
   });
+
+  describe(RatingBreakdown, () => { // to test rating breakdown component
+
+    const mockMetaData = {
+      product_id: 1,
+      ratings: {
+       1: "1",
+       2: "2",
+       3: "4",
+       4: "3"
+      },
+      recommended: {
+        true: 3,
+        false: 7
+      },
+      characteristics: {}
+    };
+
+    it('should display average rating of the product rounded to nearest single decimal', () => {
+      const {getByText} = render(<RatingBreakdown metaData={mockMetaData} handleProgressBarClick={()=> {}} starFilter={{2: true, 3: true}} removeAllStarFilters={()=> {}}/>);
+      expect(getByText("2.9")).toBeVisible();
+    });
+
+   it('should display total number of reviews', () => {
+    const {getByText} = render(<RatingBreakdown metaData={mockMetaData} handleProgressBarClick={()=> {}} starFilter={{2: true, 3: true}} removeAllStarFilters={()=> {}}/>);
+      expect(getByText("This product has 10 reviews")).toBeVisible();
+   });
+
+   it('should display percentage of reviews that recommended the product', () => {
+    const {getByText} = render(<RatingBreakdown metaData={mockMetaData} handleProgressBarClick={()=> {}} starFilter={{2: true, 3: true}} removeAllStarFilters={()=> {}}/>);
+    expect(getByText("30.0% of reviews recommended this product")).toBeVisible();
+   });
+
+  });
+
+  describe(RatingBars, () => { // to test ratings bar component
+
+    const mockRating= {
+        1: "1",
+        2: "2",
+        3: "4",
+        4: "3"
+    };
+
+    it ('should color the star rating bar green, based on percentage of reviews that provided the relevant star rating', () => {
+      const {getByTestId} = render(<RatingBars ratings={mockRating} totalNumberOfRatings={10} handleProgressBarClick={()=> {}}factors={{}} />);
+
+      expect(getComputedStyle(getByTestId("fivestar")).backgroundColor).toBe("green");
+      expect(getComputedStyle(getByTestId("fivestar")).width).toBe("0%");
+      expect(getComputedStyle(getByTestId("fourstar")).backgroundColor).toBe("green");
+      expect(getComputedStyle(getByTestId("fourstar")).width).toBe("30%");
+      expect(getComputedStyle(getByTestId("threestar")).backgroundColor).toBe("green");
+      expect(getComputedStyle(getByTestId("threestar")).width).toBe("40%");
+      expect(getComputedStyle(getByTestId("twostar")).backgroundColor).toBe("green");
+      expect(getComputedStyle(getByTestId("twostar")).width).toBe("20%");
+      expect(getComputedStyle(getByTestId("onestar")).backgroundColor).toBe("green");
+      expect(getComputedStyle(getByTestId("onestar")).width).toBe("10%");
+    });
+  });
+
+  describe(Factor, () => {
+
+    it('should display the factor provided for the product along with corresponding feedback values', () => {
+      const {getByText} = render(<Factor factor={"Size"} value={"3.0"}/>);
+      expect(getByText("Size")).toBeVisible();
+      expect(getByText("Too small")).toBeVisible();
+      expect(getByText("Too big")).toBeVisible();
+      expect(getByText("Perfect")).toBeVisible();
+    });
+
+    it('should display the factor provided for the product along with corresponding feedback values', () => {
+      const {getByText} = render(<Factor factor={"Quality"} value={"2.0"}/>);
+      expect(getByText("Quality")).toBeVisible();
+      expect(getByText("Poor")).toBeVisible();
+      expect(getByText("Perfect")).toBeVisible();
+    });
+
+    it('should display the average value indicated by inverted triangle', () => {
+      const {getByTestId} = render(<Factor factor={"Quality"} value={"1.0"}/>);
+      expect(getByTestId("pointer")).toBeVisible();
+    });
+
+  });
+
+
+
 

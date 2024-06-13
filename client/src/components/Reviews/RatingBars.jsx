@@ -29,7 +29,7 @@ const RatingBars = ({ratings, totalNumberOfRatings, handleProgressBarClick, fact
       <div className="five"  onClick={(e) => {e.preventDefault(); handleProgressBarClick('5')}}>
         <span >5 stars</span>
         <div  className="five-grey">
-          <div style={{height: '100%', width: `${Five}%`, backgroundColor: 'green'}}></div>
+          <div data-testid="fivestar" style={{height: '100%', width: `${Five}%`, backgroundColor: 'green'}}></div>
         </div>
         <span >{numOfFiveStars}</span>
       </div>
@@ -37,7 +37,7 @@ const RatingBars = ({ratings, totalNumberOfRatings, handleProgressBarClick, fact
       <div className="four" onClick={(e) => {e.preventDefault(); handleProgressBarClick('4')}}>
         <span>4 stars</span>
         <div className="four-grey">
-          <div style={{height: '100%', width: `${Four}%`, backgroundColor: 'green'}}></div>
+          <div data-testid="fourstar" style={{height: '100%', width: `${Four}%`, backgroundColor: 'green'}}></div>
         </div>
         <span>{numOfFourStars}</span>
       </div>
@@ -45,7 +45,7 @@ const RatingBars = ({ratings, totalNumberOfRatings, handleProgressBarClick, fact
       <div className="three" onClick={(e) => {e.preventDefault(); handleProgressBarClick('3')}}>
         <span>3 stars</span>
         <div className="three-grey">
-          <div style={{height: '100%', width: `${Three}%`, backgroundColor: 'green'}}></div>
+          <div data-testid="threestar" style={{height: '100%', width: `${Three}%`, backgroundColor: 'green'}}></div>
         </div>
         <span>{numOfThreeStars}</span>
       </div>
@@ -53,7 +53,7 @@ const RatingBars = ({ratings, totalNumberOfRatings, handleProgressBarClick, fact
       <div className="two" onClick={(e) => {e.preventDefault(); handleProgressBarClick('2')}}>
         <span>2 stars</span>
         <div className="two-grey">
-          <div style={{height: '100%', width: `${Two}%`, backgroundColor: 'green'}}></div>
+          <div data-testid="twostar" style={{height: '100%', width: `${Two}%`, backgroundColor: 'green'}}></div>
         </div>
         <span>{numOfTwoStars}</span>
       </div>
@@ -62,7 +62,7 @@ const RatingBars = ({ratings, totalNumberOfRatings, handleProgressBarClick, fact
       <div className="one" onClick={(e) => {e.preventDefault(); handleProgressBarClick('1')}}>
         <span>1 stars</span>
         <div className="one-grey">
-          <div style={{height: '100%', width: `${One}%`, backgroundColor: 'green'}}></div>
+          <div data-testid="onestar" style={{height: '100%', width: `${One}%`, backgroundColor: 'green'}}></div>
         </div>
         <span>{numOfOneStars}</span>
       </div>
