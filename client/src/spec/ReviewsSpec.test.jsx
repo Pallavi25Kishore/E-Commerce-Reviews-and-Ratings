@@ -10,6 +10,7 @@ import Modal from '../components/Reviews/Modal.jsx';
 import Recommend from '../components/Reviews/Recommend.jsx';
 import Response from '../components/Reviews/Response.jsx';
 import Helpfulness from '../components/Reviews/Helpfulness.jsx';
+import Sort from '../components/Reviews/Sort.jsx';
 
 describe(StarRating, () => { // to test StarComponent Suite
 
@@ -209,7 +210,7 @@ describe(StarRating, () => { // to test StarComponent Suite
 
   describe(Helpfulness, () => { // to test helpfulness component
 
-    it('should display response to a review by the internal sales team', () => {
+    it('should increment helpfulness count when user clicks on yes', () => {
       const {getByTestId} = render(<Helpfulness responseid={644082}/>);
       var initialCount = Number(getByTestId("count").textContent);
       const Yes = getByTestId("yes");
@@ -219,3 +220,21 @@ describe(StarRating, () => { // to test StarComponent Suite
     });
 
   });
+
+  describe(Sort, () => { // to test sort options component
+
+    it('should display sort options component', () => {
+      const {getByTestId} = render(<Sort/>);
+      expect(getByTestId("sort-options-selector")).toBeVisible();
+    });
+
+    it('should display the option that has been selected in sort options selector', () => {
+      const {getByText, getByTestId} = render(<Sort changeSort={(value) => {}}/>);
+      fireEvent.change(getByTestId("select"), {target: {value: "helpful"}});
+      expect(getByTestId("select")).toHaveDisplayValue("Helpfulness");
+      expect(getByTestId("select")).not.toHaveDisplayValue("Newness");
+      expect(getByTestId("select")).not.toHaveDisplayValue("Relevance");
+    });
+
+  });
+

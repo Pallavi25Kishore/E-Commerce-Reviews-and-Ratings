@@ -66,8 +66,8 @@ const Reviews = () => { //pass product_id as prop from App - DO LATER - use for 
   }
 
 
-  console.log(currentProductReviews);
-  console.log(metaData);
+  console.log(currentProductReviews); //delete later
+  console.log(metaData); //delete later
   return (
     <div>
     <RatingBreakdown metaData={metaData} handleProgressBarClick={handleProgressBarClick} starFilter={starFilter} removeAllStarFilters={removeAllStarFilters}/>

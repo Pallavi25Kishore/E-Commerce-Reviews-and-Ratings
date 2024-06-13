@@ -3,8 +3,6 @@ import InvertedTriangle from './InvertedTriangle.jsx';
 
 const Factor = ({factor, value}) => {
 
-  console.log("test", factor, value);
-
   const labels = {
     "Size" : ["Too small", "Perfect", "Too big"],
     "Width" : ["Too narrow", "Perfect", "Too broad"],
