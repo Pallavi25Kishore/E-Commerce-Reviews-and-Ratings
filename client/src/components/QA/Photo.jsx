@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Phooto(props) {
+export default function Photo(props) {
     return (
         props.photo ? (
             <>

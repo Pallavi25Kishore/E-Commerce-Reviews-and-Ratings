@@ -3,6 +3,11 @@ import axios from 'axios';
 import { BASE_URL, API_KEY } from "../../env/config.js";
 import Photo from "./Photo.jsx"
 import CreateAt from "../Reviews/CreatedAt.jsx"
+import AnswerBody from './AnswerBody.jsx';
+import AnswerList from './AnswerList.jsx';
+import Helpful from './Helpful.jsx';
+
+
 export default function Answer(props) {
     const question_id = props.id;
     const URL = `${BASE_URL}qa/questions/${question_id}/answers`;
@@ -18,7 +23,7 @@ export default function Answer(props) {
             console.log(err);
         })
     }, []);
-
+    console.log(answerLists)
     return(
         <>
             <div>
@@ -27,8 +32,10 @@ export default function Answer(props) {
                     <ul>
                         
                         <li data-testid = "test-list">
-                            A: {answerList.body}
-                            <p data-testid = "test-single-answer">by {answerList.answerer_name}, <CreateAt isoDate={answerList.date} /></p>
+                            <AnswerBody body = {answerList.body}/>
+                            <p data-testid = "test-single-answer">by&nbsp;<AnswerList name = {answerList.answerer_name}/>,&nbsp;<CreateAt isoDate={answerList.date} /> 
+                            &nbsp;<Helpful count = {answerList.helpfulness} />
+                            </p>
                             <Photo data-testid = "test-photo-list" photo = {answerList.photos}/>
                         </li>
                             
