@@ -16,7 +16,7 @@ if (Object.keys(starFilter).length === 0) { // if no star rating filter are appl
       }
   });
   return (
-    <div>
+    <div className="reviews-list">
     {(filteredListOfReviews.length !== 0) ?
     <div className="review-list">
       {filteredListOfReviews.map((review) => {return <ReviewTile review={review} key={review.review_id} fetchReviewsList={fetchReviewsList}/>})}

@@ -10,7 +10,7 @@ import Helpfulness from "./Helpfulness.jsx";
 const ReviewTile = ({review, fetchReviewsList}) => {
 
   return (
-    <div>
+    <div className="review-tile">
       <StarRating rating={review.rating}/>
       <CreatedAt name={review.reviewer_name} isoDate={review.date}/>
       <ReviewSummary summary={review.summary}/>

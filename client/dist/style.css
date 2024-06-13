@@ -131,6 +131,32 @@
   margin-bottom: 10px
 }
 
+.ratings-and-reviews {
+display: flex;
+justify-content: space-between;
+}
+
+
+.left-panel {
+  width: 30%;
+}
+
+.center-panel {
+  width: 50%;
+}
+
+.right-panel {
+  width: 20%;
+}
+
+.rating-breakdown {
+  margin-left: 10%;
+}
+/* .rating-breakdown
+.reviews-list
+.review-tile */
+
+
 
 
 

@@ -69,10 +69,15 @@ const Reviews = () => { //pass product_id as prop from App - DO LATER - use for 
   console.log(currentProductReviews); //delete later
   console.log(metaData); //delete later
   return (
-    <div>
+    <div className="ratings-and-reviews">
+    <div className="left-panel">
     <RatingBreakdown metaData={metaData} handleProgressBarClick={handleProgressBarClick} starFilter={starFilter} removeAllStarFilters={removeAllStarFilters}/>
+    </div>
+    <div className="center-panel">
     <Sort changeSort={changeSort}/>
     <ReviewsList currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList} starFilter={starFilter}/>
+    </div>
+    <div className="right-panel"></div>
     </div>
   )
 };
