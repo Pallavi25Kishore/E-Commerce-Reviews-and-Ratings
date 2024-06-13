@@ -1,18 +1,18 @@
 
-.modalOverlay { /*reviewbody - modal window*/
+.modalOverlay, .formModalOverlay { /*reviewbody - modal window and addreivew - form modal window*/
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   background-color: rgba(0,0,0,0.7);
-  z-index: 1;
+  z-index: 2;
   display:flex;
   justify-content: center;
   align-items: center
 }
 
-.modalContainer { /*reviewbody - modal window*/
+.modalContainer, .formModalContainer { /*reviewbody - modal window and addreivew - form modal window*/
   background-color: #fff;
   padding: 20px;
   position: relative;
@@ -25,33 +25,41 @@
   display:flex;
   align-items: center;
   flex-wrap:wrap;
-
 }
 
-.crossButtonContainer { /*reviewbody - modal window*/
+.crossButtonContainer, .formCrossButtonContainer { /*reviewbody - modal window and addreivew - form modal window*/
   width:100%;
   display: flex;
   justify-content: flex-end;
-
 }
 
-.crossToClose { /*reviewbody - modal window*/
+.crossToClose, .formClose { /*reviewbody - modal window and addreivew - form modal window*/
   margin-top: 5px;
   margin-left: 5px;
   cursor: pointer
 }
 
-.imageContainer { /*reviewbody - modal window*/
+.imageContainer { /*reviewbody - modal window */
   width: 100%;
   display: flex;
   justify-content: center
 }
 
+.formContainer { /*addreivew - form modal window*/
+  width: 100%
+}
+
 .modalImage { /*reviewbody - modal window*/
  max-width: 100%;
- max-height: calc(100% - 20px);
- margin-top: 10px;
+ max-height: calc(100% - 10px);
+ margin-top: 5px;
 }
+
+.modalForm {
+  max-width: 100%;
+  max-height: calc(100% - 10px);
+  margin-top: 5px;
+ }
 
 .avg-rating { /*rating breakdown - avg rating number and stars positioning*/
   display: flex;
@@ -131,30 +139,40 @@
   margin-bottom: 10px
 }
 
-.ratings-and-reviews {
+.ratings-and-reviews { /*overall positioning*/
 display: flex;
 justify-content: space-between;
 }
 
 
-.left-panel {
+.left-panel { /*overall positioning*/
   width: 30%;
 }
 
-.center-panel {
+.center-panel { /*overall positioning*/
   width: 50%;
 }
 
-.right-panel {
-  width: 20%;
+.right-panel { /*overall positioning*/
+  width: 10%;
 }
 
-.rating-breakdown {
+.rating-breakdown { /*overall positioning*/
   margin-left: 10%;
 }
-/* .rating-breakdown
-.reviews-list
-.review-tile */
+
+.review-tile { /*overall positioning*/
+  margin-right: 10%;
+}
+
+.formHead { /*form*/
+  font-weight: bold;
+
+}
+
+.asterix { /*form*/
+  color: red
+}
 
 
 

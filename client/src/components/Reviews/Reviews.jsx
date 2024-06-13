@@ -5,9 +5,12 @@ import {BASE_URL, API_KEY} from "../../env/config.js";
 import ReviewsList from "./ReviewsList.jsx";
 import Sort from "./Sort.jsx";
 import RatingBreakdown from "./RatingBreakdown.jsx";
+import AddReview from "./AddReview.jsx";
 
 
-const Reviews = () => { //pass product_id as prop from App - DO LATER - use for both get requests - reviews and metadata
+const Reviews = () => { //pass product_id and product name as prop from App - DO LATER - use for both get requests - reviews and metadata
+
+  //for now using product name - Camo Onesie - pass name as prop once consolidate code - pass till Form.jsx
 
   const [currentProductReviews, setCurrentProductReviews] = useState([]);
   const [currentSort, setCurrentSort] = useState('relevant');
@@ -21,7 +24,7 @@ const Reviews = () => { //pass product_id as prop from App - DO LATER - use for 
 //Using hard coded example data for now - CHANGE LATER for initial mounting
 
   const fetchReviewsList = (sort = currentSort) => {
-    axios.get(`${BASE_URL}reviews?page=1&count=30&sort=${sort}&product_id=40380`, {headers: {Authorization : API_KEY}})
+    axios.get(`${BASE_URL}reviews?page=1&count=5&sort=${sort}&product_id=40380`, {headers: {Authorization : API_KEY}})
     .then((response) => {
       setCurrentProductReviews(response.data.results);
     })
@@ -76,6 +79,7 @@ const Reviews = () => { //pass product_id as prop from App - DO LATER - use for 
     <div className="center-panel">
     <Sort changeSort={changeSort}/>
     <ReviewsList currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList} starFilter={starFilter}/>
+    <AddReview/>
     </div>
     <div className="right-panel"></div>
     </div>
