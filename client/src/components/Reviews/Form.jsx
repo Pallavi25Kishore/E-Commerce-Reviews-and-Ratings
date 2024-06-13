@@ -20,13 +20,6 @@ const Form = () => {         //To do later: render product name dynamically in f
         <div>WRITE YOUR REVIEW</div>
         <div>About the Camo Onesie</div>
         <div className="formHead">Overall rating<sup className="asterix">&#42;</sup></div>
-        {var arr = [];
-        for (s = 1; s <= 5; s++) {
-          <span>{<StarGenerator fillrating={0} />}</span>}
-
-        }
-
-
 
         <div className="formHead">Do you recommend this product?<sup className="asterix">&#42;</sup></div>
 
