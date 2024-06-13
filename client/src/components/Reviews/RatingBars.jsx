@@ -1,6 +1,7 @@
 import React from 'react';
+import FactorsList from './FactorsList.jsx';
 
-const RatingBars = ({ratings, totalNumberOfRatings, handleProgressBarClick}) => {
+const RatingBars = ({ratings, totalNumberOfRatings, handleProgressBarClick, factors}) => {
 
   const numOfFiveStars = Number(ratings['5']) || 0; // in case no rating has been given, it should be treated as zero
   const Five = (numOfFiveStars / totalNumberOfRatings) * 100;
@@ -23,11 +24,11 @@ const RatingBars = ({ratings, totalNumberOfRatings, handleProgressBarClick}) => 
 
 
   return (
-    <div>
-
+    <div className="rating-bars">
+      <br></br>
       <div className="five"  onClick={(e) => {e.preventDefault(); handleProgressBarClick('5')}}>
         <span >5 stars</span>
-        <div  style={{position: 'relative', backgroundColor: 'lightgrey', height: '10px', width: '200px', border: '1px solid black', margin: '5px'}}>
+        <div  className="five-grey">
           <div style={{height: '100%', width: `${Five}%`, backgroundColor: 'green'}}></div>
         </div>
         <span >{numOfFiveStars}</span>
@@ -35,7 +36,7 @@ const RatingBars = ({ratings, totalNumberOfRatings, handleProgressBarClick}) => 
 
       <div className="four" onClick={(e) => {e.preventDefault(); handleProgressBarClick('4')}}>
         <span>4 stars</span>
-        <div style={{position: 'relative', backgroundColor: 'lightgrey', height: '10px', width: '200px', border: '1px solid black', margin: '5px'}}>
+        <div className="four-grey">
           <div style={{height: '100%', width: `${Four}%`, backgroundColor: 'green'}}></div>
         </div>
         <span>{numOfFourStars}</span>
@@ -43,7 +44,7 @@ const RatingBars = ({ratings, totalNumberOfRatings, handleProgressBarClick}) => 
 
       <div className="three" onClick={(e) => {e.preventDefault(); handleProgressBarClick('3')}}>
         <span>3 stars</span>
-        <div style={{position: 'relative', backgroundColor: 'lightgrey', height: '10px', width: '200px', border: '1px solid black', margin: '5px'}}>
+        <div className="three-grey">
           <div style={{height: '100%', width: `${Three}%`, backgroundColor: 'green'}}></div>
         </div>
         <span>{numOfThreeStars}</span>
@@ -51,7 +52,7 @@ const RatingBars = ({ratings, totalNumberOfRatings, handleProgressBarClick}) => 
 
       <div className="two" onClick={(e) => {e.preventDefault(); handleProgressBarClick('2')}}>
         <span>2 stars</span>
-        <div style={{position: 'relative', backgroundColor: 'lightgrey', height: '10px', width: '200px', border: '1px solid black', margin: '5px'}}>
+        <div className="two-grey">
           <div style={{height: '100%', width: `${Two}%`, backgroundColor: 'green'}}></div>
         </div>
         <span>{numOfTwoStars}</span>
@@ -60,12 +61,15 @@ const RatingBars = ({ratings, totalNumberOfRatings, handleProgressBarClick}) => 
 
       <div className="one" onClick={(e) => {e.preventDefault(); handleProgressBarClick('1')}}>
         <span>1 stars</span>
-        <div style={{position: 'relative', backgroundColor: 'lightgrey', height: '10px', width: '200px', border: '1px solid black', margin: '5px'}}>
+        <div className="one-grey">
           <div style={{height: '100%', width: `${One}%`, backgroundColor: 'green'}}></div>
         </div>
         <span>{numOfOneStars}</span>
       </div>
 
+      <br></br>
+      <br></br>
+      <FactorsList factors={factors}/>
     </div>
 
    );

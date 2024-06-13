@@ -63,7 +63,7 @@ return (
 
   <svg width="20px" height="20px" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" data-testid="three-quarter-fill-star">
 
-    <g id="SVGRepo_bgCarrier" stroke-Width="0"/>
+    <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
 
     <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"/>
 

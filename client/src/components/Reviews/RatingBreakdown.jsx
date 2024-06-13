@@ -17,12 +17,13 @@ const RatingBreakdown = ({metaData, handleProgressBarClick, starFilter, removeAl
 
     const avgRating = (sumOfAllRatings / totalNumberOfRatings);
     roundedAvgRatingNumber = Math.round(avgRating * 10) / 10;
-    roundedAvgRatingString = roundedAvgRatingNumber.toFixed(1); // to render uptil 1 decimal point
+    roundedAvgRatingString = roundedAvgRatingNumber.toFixed(1); // to render uptil 1 decimal point eg. 3 is displayed as "3.0"
+
+    var percentageOfReviewsThatRecommend = (Math.round(((Number(metaData.recommended['true']) / totalNumberOfRatings) * 100) *10)/10).toFixed(1) || 0;
   }
 
-
   return (
-    <div>
+    <div className="rating-breakdown">
         {(roundedAvgRatingString) ?
         <>
         <div className="avg-rating">
@@ -30,8 +31,10 @@ const RatingBreakdown = ({metaData, handleProgressBarClick, starFilter, removeAl
 
         <StarRating rating={roundedAvgRatingNumber}/>
       </div>
-      <div>Total reviews: {totalNumberOfRatings}</div>
-      <div>Rating Breakdown</div>
+      <div>This product has {totalNumberOfRatings} reviews</div>
+      <div>{`${percentageOfReviewsThatRecommend}% of reviews recommended this product`}</div>
+      <br></br>
+      <div>RATING BREAKDOWN</div>
           {
             (Object.keys(starFilter).length !== 0) ?
             <div>
@@ -44,7 +47,7 @@ const RatingBreakdown = ({metaData, handleProgressBarClick, starFilter, removeAl
             :null
           }
 
-      <RatingBars ratings={metaData.ratings} totalNumberOfRatings={totalNumberOfRatings} handleProgressBarClick={handleProgressBarClick}/>
+      <RatingBars ratings={metaData.ratings} totalNumberOfRatings={totalNumberOfRatings} handleProgressBarClick={handleProgressBarClick} factors={metaData.characteristics}/>
       </>
       : null
     }
