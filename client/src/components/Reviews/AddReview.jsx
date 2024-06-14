@@ -16,7 +16,7 @@ const AddReview = () => {
   }
 
   return (
-    <div class="add-review-button">
+    <div className="add-review-button">
     <button onClick={handleAddReviewClick}>Add a Review  &#43;</button>
     {FormOpen ? <FormModal handleCloseForm={handleCloseForm}/> : null}
     </div>
