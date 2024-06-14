@@ -64,6 +64,12 @@ describe('Answer List', () => {
         {name: "Seller"},
         { name:"abc"}
     ]
+    const props = {
+        name: 'John Doe',
+        isoDate: '2021-01-01',
+        answer_id: '123',
+        helpfulness: 5
+    };
     test('should redner in Bold format', () => {
         render(<AnswerList name={mockAnswerList[0].name} />)
         expect(screen.getByRole('strong')).toBeTruthy();
@@ -72,6 +78,30 @@ describe('Answer List', () => {
         render(<AnswerList name={mockAnswerList[1].name} />)
         expect(screen.getByText('abc')).toBeTruthy();
     })
+    test('increments helpfulness correctly when not disabled', () => {
+        render(<AnswerList {...props} />);
+        const yesButton = screen.getByTestId('yes');
+        fireEvent.click(yesButton);
+        const count = screen.getByTestId('count').textContent;
+        expect(count).toBe('(6)'); // Should increment since initially not disabled
+    });
+    test('toggle helfulness up and down on subsequent clicks', () => {
+        render(<AnswerList {...props} />);
+        const yesButton = screen.getByTestId('yes');
+        fireEvent.click(yesButton);
+        fireEvent.click(yesButton);
+        const count = screen.getByTestId('count').textContent;
+        expect(count).toBe('(5)');
+    })
+    test("report show up", ()=> {
+        render(<AnswerList {...props}/>)
+        const reportLink = screen.getByText('Report');
+        fireEvent.click(reportLink);
+        expect(screen.getByText('Reported')).toBeInTheDocument;
+        fireEvent.click(reportLink);
+        expect(screen.getByText('Report')).toBeInTheDocument;  // Check if the text changes back to 'Report'
+    })
+
 })
 describe('Answer Body', () => {
     const mockAnswerBody = {body: "What is your question"}
