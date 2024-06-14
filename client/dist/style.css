@@ -153,6 +153,11 @@ justify-content: space-between;
   width: 50%;
 }
 
+.review-list {
+  height: 500px;
+  overflow: auto
+}
+
 .right-panel { /*overall positioning*/
   width: 10%;
 }
@@ -161,9 +166,9 @@ justify-content: space-between;
   margin-left: 10%;
 }
 
-.review-tile { /*overall positioning*/
+/* .review-tile { /*overall positioning*/
   margin-right: 10%;
-}
+} */
 
 .formHead { /*form*/
   font-weight: bold;
@@ -178,6 +183,10 @@ justify-content: space-between;
   font-size: 30px;
   color: gold;
   cursor: pointer
+}
+
+.add-review-button {
+  margin-top: 30px;
 }
 
 
