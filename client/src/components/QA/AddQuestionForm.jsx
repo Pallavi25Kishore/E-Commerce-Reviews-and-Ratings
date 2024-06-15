@@ -30,8 +30,8 @@ export default function AddQuestionForm(props) {
         axios.post(URL, {
             headers: { "Authorization": API_KEY },
             data: {
-                body: questionForm.question,
-                name: questionForm.nickname,
+                question_body: questionForm.question,
+                asker_name: questionForm.nickname,
                 email: questionForm.email,
                 product_id: 40368
             }
