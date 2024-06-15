@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import StarGenerator from './StarGenerator.jsx';
+import isValidUrl from './validUrlCheck.js';
 
 const Form = ({metaData}) => {         //To do later: render product name dynamically in form - get as prop
 
@@ -8,6 +8,7 @@ const Form = ({metaData}) => {         //To do later: render product name dynami
   const [selectedRating, setSelectedRating] = useState('');
   const [applicableCharacteristics, setApplicableCharacteristics] = useState({}); // eg {size: 2, length : null} - 2 means second radio button selected
   // when working on backend - send all form data including data captured via state first on submit and then re-set state
+  const [uploadedPhotos, setUploadedPhotos] = useState([]);
 
   let ratingMeaning = ['1 star - "Poor"', '2 stars - "Fair"', '3 stars - "Average"', '4 stars - "Good"', '5 stars - "Great"'];
 
@@ -52,11 +53,19 @@ const Form = ({metaData}) => {         //To do later: render product name dynami
     var newObj = {...applicableCharacteristics};
     newObj[factorName] = value;
     setApplicableCharacteristics(newObj);
-    console.log('newobj', newObj);
-   console.log('testing', factorName, value);
   };
 
-  console.log('teststate', applicableCharacteristics);
+  const handlePhotoUploadButton = (e) => {
+    e.preventDefault();
+    var url = prompt('Enter photo url');
+    if (isValidUrl(url)) {
+      var newArray = [...uploadedPhotos, url];
+      setUploadedPhotos(newArray);
+    } else {
+      alert("Enter valid url");
+    }
+
+  };
 
   return (
     <div className="modalForm">
@@ -124,6 +133,12 @@ const Form = ({metaData}) => {         //To do later: render product name dynami
           <br></br>
 
         <div className="formHead">Upload your photos</div>
+        <>{ uploadedPhotos.length < 5 ?
+        <button onClick={handlePhotoUploadButton}>Click to upload photos</button> : null}</>
+        <div>{uploadedPhotos.length !== 0 ? uploadedPhotos.map((url) => {
+            return <img src={url} style={{height: '50px', width: '50px', borderRadius: '10%'}}></img>
+        })
+        : null}</div>
         <br></br>
 
         <label className="formHead" htmlFor="nickname">What is your nickname?<sup className="asterix">&#42;</sup></label>
