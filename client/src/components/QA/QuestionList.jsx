@@ -5,7 +5,6 @@ import Answer from './Answer.jsx';
 import Search from './Search.jsx';
 import Question from './Question.jsx';
 import AddQuestionModal from './AddQuestionModal.jsx';
-
 const QuestionList = function (props) {
     const [questionLists, setQuestionLists] = useState([]);
     const [searchKey, setsearchKey] = useState('');

@@ -1,19 +1,19 @@
 import React, {useState} from "react";
-import axios from 'axios';
+import FormModal from './QuestionFormModal.jsx';
 export default function AddQuestion() {
-    const [modal, setModal] = useState(false);
-    const toggleModal = () => {
-        setModal(!modal);
+    const [FormOpen, setFormOpen] = useState(false);
+
+    const handleAddQuestionClick = ()=> {
+        setFormOpen(!FormOpen);
     }
 
-    return <div>
-        <button onClick={toggleModal} className="btn-modal">ADD A QUESTION</button>
-        <div id = 'QA_Modal' className="modal">
-            <div className="modal-content">
-                <span className="close">&time</span>
-                <p>Some text in the Modal..</p>
-                
-            </div>
-        </div>
+    const handleCloseForm = () => {
+        setFormOpen(!FormOpen);
+    }
+
+    return (<div className="add-Question-button">
+        <button onClick={handleAddQuestionClick}>ADD A QUESIONTION</button>
+        {FormOpen ? <FormModal handleCloseForm = {handleCloseForm}/> : null};
     </div>
+    )
 }
