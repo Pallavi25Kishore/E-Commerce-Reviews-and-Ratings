@@ -142,7 +142,7 @@
 .ratings-and-reviews { /*overall positioning*/
 display: flex;
 justify-content: space-between;
-margin-top: 50px
+margin-top: 80px
 }
 
 
@@ -167,13 +167,9 @@ margin-top: 50px
   margin-left: 10%;
 }
 
-/* .review-tile { /*overall positioning*/
-  margin-right: 10%;
-} */
 
 .formHead { /*form*/
   font-weight: bold;
-
 }
 
 .asterix { /*form*/

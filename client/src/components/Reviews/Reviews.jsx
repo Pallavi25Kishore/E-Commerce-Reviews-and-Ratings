@@ -79,7 +79,7 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
     <div className="center-panel">
     <Sort changeSort={changeSort}/>
     <ReviewsList currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList} starFilter={starFilter}/>
-    <AddReview/>
+    <AddReview metaData={metaData}/>
     </div>
     <div className="right-panel"></div>
     </div>

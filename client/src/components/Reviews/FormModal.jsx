@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from './Form.jsx';
 
-const FormModal = ({handleCloseForm}) => {
+const FormModal = ({handleCloseForm, metaData}) => {
 
   return (
     <div className="formModalOverlay">
@@ -10,7 +10,7 @@ const FormModal = ({handleCloseForm}) => {
           <button aria-label="close-form" onClick={handleCloseForm} className="formClose">&#10005;</button>
         </div>
         <div className="formContainer">
-          <Form />
+          <Form metaData={metaData}/>
           </div>
       </div>
     </div>
