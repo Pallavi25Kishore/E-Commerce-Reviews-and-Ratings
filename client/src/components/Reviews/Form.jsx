@@ -28,17 +28,18 @@ const Form = ({metaData}) => {         //To do later: render product name dynami
     setSelectedRating(position);
   };
 
-  if (metaData) {
 
     useEffect (()=> {
+      if (metaData) {
       var newObj = {}
       for (var key in metaData.characteristics) {
         newObj[key] = null; // current selected value
       }
     setApplicableCharacteristics(newObj);
-    }, []);
+      }
+    }, [metaData]);
 
-  }
+
 
   var factorDetails = {
     Size: ["A size too small", "1/2 a size too small", "Perfect", "1/2 a size too big", "A size too wide"],
