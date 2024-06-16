@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {BASE_URL, API_KEY} from "../../env/config.js";
-import ReviewsList from "./ReviewsList.jsx";
+import CountFilterReviewsList from "./CountFilterReviewsList.jsx";
 import Sort from "./Sort.jsx";
 import RatingBreakdown from "./RatingBreakdown.jsx";
 import AddReview from "./AddReview.jsx";
@@ -16,6 +16,8 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
   const [currentSort, setCurrentSort] = useState('relevant');
   const [metaData, setMetaData] = useState('');
   const [starFilter, setStarFilter] = useState({});
+  const [totalReviews, setTotalReviews] = useState(0);
+  const [showMoreReviews, setShowMoreReviews] = useState(true);
 
 
    // LATER - Move to APP.JS - Combine with Michael's code
@@ -23,8 +25,8 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
 
 //Using hard coded example data for now - CHANGE LATER for initial mounting
 
-  const fetchReviewsList = (sort = currentSort) => {
-    axios.get(`${BASE_URL}reviews?page=1&count=5&sort=${sort}&product_id=40380`, {headers: {Authorization : API_KEY}})
+  const fetchReviewsList = (sort = currentSort, count = totalReviews) => {
+    axios.get(`${BASE_URL}reviews?page=1&count=${count}&sort=${sort}&product_id=40390`, {headers: {Authorization : API_KEY}})
     .then((response) => {
       setCurrentProductReviews(response.data.results);
     })
@@ -34,7 +36,7 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
   };
 
   useEffect(() => {
-    axios.get(`${BASE_URL}reviews/meta?product_id=40380`, {headers: {Authorization : API_KEY}})
+    axios.get(`${BASE_URL}reviews/meta?product_id=40390`, {headers: {Authorization : API_KEY}})
     .then((response) => {
       setMetaData(response.data);
     })
@@ -44,7 +46,21 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
     }, []);
 
   useEffect(() => {
-    fetchReviewsList(currentSort);
+    if (metaData.ratings) {
+      var totalNumberOfRatings = 0;
+      for (var key in metaData.ratings) {
+        totalNumberOfRatings += Number(metaData.ratings[key]);
+      }
+      setTotalReviews(totalNumberOfRatings);
+    }
+  }, [metaData]);
+
+  useEffect(() => {
+    fetchReviewsList(currentSort, totalReviews);
+    }, [totalReviews]);
+
+  useEffect(() => {
+    fetchReviewsList(currentSort, totalReviews);
     }, [currentSort]);
 
     const changeSort = (value) => {
@@ -66,7 +82,12 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
   const removeAllStarFilters = (e) => {
     e.preventDefault();
     setStarFilter({});
-  }
+  };
+
+  const handleShowMoreReviewsClick = (e) => {
+    e.preventDefault();
+    setShowMoreReviews(false);
+  };
 
 
   console.log(currentProductReviews); //delete later
@@ -78,8 +99,13 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
     </div>
     <div className="center-panel">
     <Sort changeSort={changeSort}/>
-    <ReviewsList currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList} starFilter={starFilter}/>
+    <CountFilterReviewsList currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList} starFilter={starFilter} totalReviews={totalReviews} showMoreReviews={showMoreReviews}/>
+    <div className="center-lower-fixed-buttons-panel">
+      {totalReviews > 2 && showMoreReviews ?
+    <button onClick={handleShowMoreReviewsClick}className="more-review-button">More Reviews</button>
+    : null }
     <AddReview metaData={metaData}/>
+    </div>
     </div>
     <div className="right-panel"></div>
     </div>

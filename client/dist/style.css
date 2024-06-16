@@ -154,8 +154,11 @@ margin-top: 80px
   width: 50%;
 }
 
+.review-tile {
+  height: 260px;
+}
 .review-list {
-  height: 500px;
+  height: 520px; /*height of 2 review tiles 260  x 2 px*/
   overflow: auto
 }
 
@@ -176,15 +179,26 @@ margin-top: 80px
   color: red
 }
 
-.form-star {
+.form-star { /*star rating - form*/
   font-size: 30px;
   color: gold;
   cursor: pointer
 }
 
-.add-review-button {
-  margin-top: 30px;
+
+.center-lower-fixed-buttons-panel { /*add review and show more buttons panel*/
+  display: flex;
+  justify-content: flex-start;
 }
+
+
+.add-review-button, .more-review-button { /*add review button*/
+  margin-top: 30px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+
 
 
 
