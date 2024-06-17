@@ -2,11 +2,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {BASE_URL, API_KEY} from "../../env/config.js";
-import CountFilterReviewsList from "./CountFilterReviewsList.jsx";
 import Sort from "./Sort.jsx";
 import RatingBreakdown from "./RatingBreakdown.jsx";
 import AddReview from "./AddReview.jsx";
 import SearchBar from "./SearchBar.jsx";
+//IGNORE FOR NOW - WORK IN PROGRESS FOR SEARCH COMPONENT import SearchFilter from "./SearchFilter.jsx";
+import CountFilterReviewsList from "./CountFilterReviewsList.jsx";
 
 
 const Reviews = () => { //pass product_id and product name as prop from App - DO LATER - use for both get requests - reviews and metadata
@@ -28,7 +29,7 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
 //Using hard coded example data for now - CHANGE LATER for initial mounting
 
   const fetchReviewsList = (sort = currentSort, count = totalReviews) => {
-    axios.get(`${BASE_URL}reviews?page=1&count=${count}&sort=${sort}&product_id=40733`, {headers: {Authorization : API_KEY}})
+    axios.get(`${BASE_URL}reviews?page=1&count=${count}&sort=${sort}&product_id=40380`, {headers: {Authorization : API_KEY}})
     .then((response) => {
       setCurrentProductReviews(response.data.results);
     })
@@ -38,7 +39,7 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
   };
 
   useEffect(() => {
-    axios.get(`${BASE_URL}reviews/meta?product_id=40733`, {headers: {Authorization : API_KEY}})
+    axios.get(`${BASE_URL}reviews/meta?product_id=40380`, {headers: {Authorization : API_KEY}})
     .then((response) => {
       setMetaData(response.data);
     })
@@ -110,6 +111,7 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
                 <Sort changeSort={changeSort}/>
                 <SearchBar handleSearchBarChange={handleSearchBarChange}/>
             </div>
+            {/* IGNORE FOR NOW  - WORK IN PROGRESS - FOR THIS COMMENTED OUT COMPONENT<SearchFilter currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList} starFilter={starFilter} totalReviews={totalReviews} showMoreReviews={showMoreReviews} searchText={searchText}/> */}
             <CountFilterReviewsList currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList} starFilter={starFilter} totalReviews={totalReviews} showMoreReviews={showMoreReviews}/>
             <div className="center-lower-fixed-buttons-panel">
                 {totalReviews > 2 && showMoreReviews ?
