@@ -9,7 +9,6 @@ export default function AddQuestionForm(props) {
         nickname: '',
         email: ''
     })
-    const[errors, setErrors] = useState([]);
     const URL = `${BASE_URL}qa/questions`;
     const handleInputChange = (e)=>{
         e.preventDefault();
@@ -23,18 +22,18 @@ export default function AddQuestionForm(props) {
     }
 
 
-
+    
     const SubmitQuestion = (event)=> {
         event.preventDefault();
         closeForm(false); // Close the modal on successful submission
         axios.post(URL, {
             headers: { "Authorization": API_KEY },
-            data: {
+            body: JSON.stringify({
                 question_body: questionForm.question,
                 asker_name: questionForm.nickname,
                 email: questionForm.email,
                 product_id: 40368
-            }
+            })
         }).then(function(response) {
             alert("successful submit")
         }) .then(function(err) {
@@ -52,7 +51,7 @@ export default function AddQuestionForm(props) {
                     <label>Your Question</label>
                     <textarea required maxLength="1000" placeholder= 'Example: jackson11!' name = "question" value={questionForm.question} style={{ width: '100%', minHeight: '100px' }} onChange={handleInputChange} ></textarea >
                     <label>Your Nickname</label>
-                    <input required type="text" placeholder={questionForm.nickname} name="nickname" maxLength="60" onChange={handleInputChange} ></input>
+                    <input required type="text" placeholder='Example: jackson11!' name="nickname" maxLength="60" onChange={handleInputChange} ></input>
                     <p>For privacy reasons, do not use your full name or email address</p>
                     <label>Your email</label>
                     <input required type='email' placeholder='Why did you like the product or not?' onChange={handleInputChange} name='email' ></input>

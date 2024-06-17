@@ -8,7 +8,7 @@ export default function AddQuestion() {
     }
 
     const handleCloseForm = () => {
-        setFormOpen(!FormOpen);
+        setFormOpen(false);
     }
 
     return (<div className="add-Question-button">

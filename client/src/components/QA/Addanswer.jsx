@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-
+import AnswerModal from './AnswerModal.jsx';
 export default function Addanswer() {
+    const[FormOpen, setFormOpen] = useState(false);
 
-    const handleClick =() => {
-        <AnswerModal/>
+    const handleOpenForm =() => {
+        setFormOpen(!FormOpen);
     }
-
+    const handleCloseForm =()=> {
+        setFormOpen(!FormOpen);
+    }
     return (
-        <a className="QA_helpful" onClick={handleClick}>Add Answer</a>
+        <div className="add-Answer-button">
+        <a className="QA_helpful" onClick={handleOpenForm}>Add Answer</a>
+        {FormOpen ? <AnswerModal handleCloseForm = {handleCloseForm}/> : null}
+        </div>
     )
 }
