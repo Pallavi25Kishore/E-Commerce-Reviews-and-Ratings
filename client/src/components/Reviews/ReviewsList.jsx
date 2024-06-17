@@ -1,33 +1,33 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-import {BASE_URL, API_KEY} from "../../env/config.js";
+import React from 'react';
 import ReviewTile from "./ReviewTile.jsx";
 
-const ReviewsList = () => {
+const ReviewsList = ({currentProductReviews, fetchReviewsList, starFilter}) => {
 
-const [currentProductReviews, setCurrentProductReviews] = useState([]); // LATER - Move to APP.JS - Combine with Michael's code
-//Pass currentProductId from App.js - as a prop and render list for current product based on product id.
-
-//Using hard coded example data for product id 3 for now - CHANGE LATER for initial mounting
-
-useEffect(() => {
-  axios.get(`${BASE_URL}reviews?page=1&count=30&sort="newest"&product_id=40380`, {headers: {Authorization : API_KEY}})
-  .then((response) => {
-    setCurrentProductReviews(response.data.results);
-  })
-  .catch((err) => {
-    console.log('error in fetching reviews list data', err);
+if (Object.keys(starFilter).length === 0) { // if no star rating filter are applied
+  return (
+    <div className="review-list">
+      {currentProductReviews.map((review) => {return <ReviewTile review={review} key={review.review_id} fetchReviewsList={fetchReviewsList}/>})}
+    </div>
+    );
+} else { // if a star rating filter is applied
+  var filteredListOfReviews = currentProductReviews.filter((review) => {
+      if (starFilter[review.rating] !== undefined) {
+          return true;
+      }
   });
-}, []);
+  return (
+    <div className="reviews-list">
+    {(filteredListOfReviews.length !== 0) ?
+    <div className="review-list">
+      {filteredListOfReviews.map((review) => {return <ReviewTile review={review} key={review.review_id} fetchReviewsList={fetchReviewsList}/>})}
+    </div>
+    : null
+     }
+     </div>
+    );
+}
 
 
-console.log(currentProductReviews);
-return (
-
-<div className="review-list">
-  {currentProductReviews.map((review) => {return <ReviewTile review={review} key={review.review_id}/>})}
-</div>
-);
 };
 
 export default ReviewsList;

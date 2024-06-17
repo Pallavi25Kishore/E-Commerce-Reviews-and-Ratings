@@ -7,6 +7,13 @@ import ReviewSummary from '../components/Reviews/ReviewSummary.jsx';
 import ReviewBody from '../components/Reviews/ReviewBody.jsx';
 import Thumbnail from '../components/Reviews/Thumbnail.jsx';
 import Modal from '../components/Reviews/Modal.jsx';
+import Recommend from '../components/Reviews/Recommend.jsx';
+import Response from '../components/Reviews/Response.jsx';
+import Helpfulness from '../components/Reviews/Helpfulness.jsx';
+import Sort from '../components/Reviews/Sort.jsx';
+import RatingBreakdown from '../components/Reviews/RatingBreakdown.jsx';
+import RatingBars from '../components/Reviews/RatingBars.jsx';
+import Factor from '../components/Reviews/Factor.jsx';
 
 describe(StarRating, () => { // to test StarComponent Suite
 
@@ -70,7 +77,7 @@ describe(StarRating, () => { // to test StarComponent Suite
   describe(CreatedAt, () => { // to test CreatedAt component
 
     it('should display created at date for a review in Month DD, YYYY format', () => {
-        const {getByText} = render(<CreatedAt isoDate={"2023-11-27T00:00:00.000Z"}/>); // date in UTC
+        const {getByText} = render(<CreatedAt name={"kitty"} isoDate={"2023-11-27T00:00:00.000Z"}/>); // date in UTC
         expect (getByText("November 26, 2023")).toBeVisible(); //date being displayed in locale time
     });
   });
@@ -163,3 +170,160 @@ describe(StarRating, () => { // to test StarComponent Suite
     });
 
   });
+
+  describe(Recommend, () => { // to test Recommend component
+
+    it('should display tick mark and the text - "i recommend this product" if the product is recommended', () => {
+      const {getByText} = render(<Recommend recommend={true}/>);
+      var text = getByText("✓ I recommend this product");
+      expect(text).toBeVisible();
+    });
+
+    it('should not display tick mark and the text - "i recommend this product" if the product is not recommended', () => {
+      const {queryByText} = render(<Recommend recommend={false}/>);
+      var text = queryByText("✓ I recommend this product");
+      expect(text).not.toBeInTheDocument();
+    });
+  });
+
+  describe(CreatedAt, () => { // to test username display
+
+    it('should display username of reviewer', () => {
+      const {getByText} = render(<CreatedAt name={"kitty"} isoDate={"2023-11-27T00:00:00.000Z"}/>)
+      var text = getByText("kitty", {exact:false});
+      expect(text).toBeVisible();
+    });
+  });
+
+  describe(CreatedAt, () => { // to test response display
+
+    it('should display response to a review by the internal sales team', () => {
+      const {getByText} = render(<Response response={"Hello, thank you for your review"}/>)
+      var head = getByText("Response:", {exact:false});
+      var text = getByText("Hello, thank you for your review", {exact:false});
+      expect(head).toBeVisible();
+      expect(text).toBeVisible();
+    });
+
+    it('should not display response if no response has been provided by sales team', () => {
+      const {queryByText} = render(<Response response={null}/>)
+      expect(queryByText("Response", {exact: false})).not.toBeInTheDocument();
+    });
+  });
+
+  describe(Helpfulness, () => { // to test helpfulness component
+
+    it('should increment helpfulness count when user clicks on yes', () => {
+      const {getByTestId} = render(<Helpfulness responseid={644082}/>);
+      var initialCount = Number(getByTestId("count").textContent);
+      const Yes = getByTestId("yes");
+      fireEvent.click(Yes);
+      var updatedCount = Number(getByTestId("count").textContent);
+      expect(updatedCount).toBe(initialCount +1);
+    });
+
+  });
+
+  describe(Sort, () => { // to test sort options component
+
+    it('should display sort options component', () => {
+      const {getByTestId} = render(<Sort/>);
+      expect(getByTestId("sort-options-selector")).toBeVisible();
+    });
+
+    it('should display the option that has been selected in sort options selector', () => {
+      const {getByText, getByTestId} = render(<Sort changeSort={() => {}}/>);
+      fireEvent.change(getByTestId("select"), {target: {value: "helpful"}});
+      expect(getByTestId("select")).toHaveDisplayValue("Helpfulness");
+      expect(getByTestId("select")).not.toHaveDisplayValue("Newness");
+      expect(getByTestId("select")).not.toHaveDisplayValue("Relevance");
+    });
+
+  });
+
+  describe(RatingBreakdown, () => { // to test rating breakdown component
+
+    const mockMetaData = {
+      product_id: 1,
+      ratings: {
+       1: "1",
+       2: "2",
+       3: "4",
+       4: "3"
+      },
+      recommended: {
+        true: 3,
+        false: 7
+      },
+      characteristics: {}
+    };
+
+    it('should display average rating of the product rounded to nearest single decimal', () => {
+      const {getByText} = render(<RatingBreakdown metaData={mockMetaData} handleProgressBarClick={()=> {}} starFilter={{2: true, 3: true}} removeAllStarFilters={()=> {}}/>);
+      expect(getByText("2.9")).toBeVisible();
+    });
+
+   it('should display total number of reviews', () => {
+    const {getByText} = render(<RatingBreakdown metaData={mockMetaData} handleProgressBarClick={()=> {}} starFilter={{2: true, 3: true}} removeAllStarFilters={()=> {}}/>);
+      expect(getByText("This product has 10 reviews")).toBeVisible();
+   });
+
+   it('should display percentage of reviews that recommended the product', () => {
+    const {getByText} = render(<RatingBreakdown metaData={mockMetaData} handleProgressBarClick={()=> {}} starFilter={{2: true, 3: true}} removeAllStarFilters={()=> {}}/>);
+    expect(getByText("30.0% of reviews recommended this product")).toBeVisible();
+   });
+
+  });
+
+  describe(RatingBars, () => { // to test ratings bar component
+
+    const mockRating= {
+        1: "1",
+        2: "2",
+        3: "4",
+        4: "3"
+    };
+
+    it ('should color the star rating bar green, based on percentage of reviews that provided the relevant star rating', () => {
+      const {getByTestId} = render(<RatingBars ratings={mockRating} totalNumberOfRatings={10} handleProgressBarClick={()=> {}}factors={{}} />);
+
+      expect(getComputedStyle(getByTestId("fivestar")).backgroundColor).toBe("green");
+      expect(getComputedStyle(getByTestId("fivestar")).width).toBe("0%");
+      expect(getComputedStyle(getByTestId("fourstar")).backgroundColor).toBe("green");
+      expect(getComputedStyle(getByTestId("fourstar")).width).toBe("30%");
+      expect(getComputedStyle(getByTestId("threestar")).backgroundColor).toBe("green");
+      expect(getComputedStyle(getByTestId("threestar")).width).toBe("40%");
+      expect(getComputedStyle(getByTestId("twostar")).backgroundColor).toBe("green");
+      expect(getComputedStyle(getByTestId("twostar")).width).toBe("20%");
+      expect(getComputedStyle(getByTestId("onestar")).backgroundColor).toBe("green");
+      expect(getComputedStyle(getByTestId("onestar")).width).toBe("10%");
+    });
+  });
+
+  describe(Factor, () => {
+
+    it('should display the factor provided for the product along with corresponding feedback values', () => {
+      const {getByText} = render(<Factor factor={"Size"} value={"3.0"}/>);
+      expect(getByText("Size")).toBeVisible();
+      expect(getByText("Too small")).toBeVisible();
+      expect(getByText("Too big")).toBeVisible();
+      expect(getByText("Perfect")).toBeVisible();
+    });
+
+    it('should display the factor provided for the product along with corresponding feedback values', () => {
+      const {getByText} = render(<Factor factor={"Quality"} value={"2.0"}/>);
+      expect(getByText("Quality")).toBeVisible();
+      expect(getByText("Poor")).toBeVisible();
+      expect(getByText("Perfect")).toBeVisible();
+    });
+
+    it('should display the average value indicated by inverted triangle', () => {
+      const {getByTestId} = render(<Factor factor={"Quality"} value={"1.0"}/>);
+      expect(getByTestId("pointer")).toBeVisible();
+    });
+
+  });
+
+
+
+
