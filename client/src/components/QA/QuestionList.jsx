@@ -28,12 +28,13 @@ const QuestionList = function (props) {
 
   
     const filterQuestion = (searchKey && searchKey.length>= 3) ? questionLists.filter(question => question.question_body.toLowerCase().includes(searchKey.toLowerCase())) : questionLists
-    console.log(questionLists)
 
     return (
         <div>
+
+            <h3 className='QA_title'>QUESTION & ANSWERS</h3>
             <Search setsearchKey = {setsearchKey} />
-            <div>
+            <div className='Question_Body'>
                 {filterQuestion.slice(0, showAll ? questionLists.length : 2).map((questionList, id) => (
 
                     <div key = {id}>
@@ -46,7 +47,7 @@ const QuestionList = function (props) {
                 )}
             </div>
             <div>
-            {questionLists.length > 2 ? <button onClick={()=>{setshowAll(!showAll)}}> {showAll ? 'Collapse answers' : 'MORE ANSWER QUESTION' }</button> : <></>}
+            {questionLists.length > 2 ? <button data-testid="test-button" onClick={()=>{setshowAll(!showAll)}}> {showAll ? 'Collapse answers' : 'MORE ANSWEREDED QUESTION' }</button> : <></>}
            <AddQuestionModal />
             </div>
         </div>

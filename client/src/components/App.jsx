@@ -7,11 +7,8 @@ import QuestionList from "./QA/QuestionList.jsx";
 const App =() =>{
     return <>
     <ProductView/>
+    <QuestionList/>
     <ReviewsList/>
-    <div className="QA">
-        <h4>QUESTION & ANSWERS</h4>
-        <QuestionList/>
-    </div>
     </>
 }
 

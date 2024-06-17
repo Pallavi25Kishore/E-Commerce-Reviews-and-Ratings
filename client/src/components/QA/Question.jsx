@@ -1,16 +1,16 @@
-import React,{useState}from 'react';
+import React, { useState } from 'react';
 import Addanswer from './Addanswer.jsx';
 
 export default function Question(props) {
-    const{question, helpfulness, id } = props;
+    const { question, helpfulness, id } = props;
     const [helpful, setHelpful] = useState(helpfulness);
     const [disable, setDisable] = useState(false);
     const handleYesClick = (e) => {
         e.preventDefault();
-        if(disable === false) {
-        setHelpful(helpful + 1)
-        setDisable(!disable)
-        }else {
+        if (disable === false) {
+            setHelpful(helpful + 1)
+            setDisable(!disable)
+        } else {
             setHelpfulness(helpfulness - 1);
             setDisable(!disable)
         }
@@ -24,14 +24,17 @@ export default function Question(props) {
                 console.log('Error in updating helpfulness count', err);
             });
     };
-    return(
+    return (
         <div>
-        <strong>Q: {question} </strong>
-        <span>Helpful? </span>
-        &nbsp;
-        <span className= "QA_helpful" data-testid="yes" onClick={handleYesClick} >Yes</span>
-        <span data-testid="count">{`(${helpful})`}</span>
-        <Addanswer />
-       </div>
+            <div className='Single_question'>
+                <strong>Q: {question} </strong>
+                <span>Helpful? </span>
+                &nbsp;
+                <span className="QA_helpful" data-testid="yes" onClick={handleYesClick} >Yes</span>
+                <span data-testid="count">{`(${helpful})`}</span>
+                <Addanswer />
+            </div>
+            
+        </div>
     )
 }

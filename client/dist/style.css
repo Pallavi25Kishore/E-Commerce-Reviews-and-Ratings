@@ -59,20 +59,22 @@
 
 /*Q&A css style*/
 .box {
-  width: 350px;
+  width: 60%;
   height: 50px;
   background-color: white;
-  background-position: 300px;
+  background-position:100%;
   background-image: url('../src/components/QA/icon/search.svg');
   background-repeat: no-repeat;
   background-color: white;
+  position: absolute;
+  text-align: left;
 }
 
-.QA_helpful {
-  cursor:pointer;
-  text-decoration: underline
+::placeholder {
+  padding-left: 1%;
+  color: black;
+  font-weight: bold;
 }
-
 .modal {
   display: inline-block; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -111,3 +113,20 @@
   cursor: pointer;
 }
 
+.QA_title {
+  font-family: "adobe-clean", sans-serif;
+  color: #888;
+}
+.Question_Body {
+  padding: 80px 30px 30px 30px;
+  position: relative;
+}
+.QA_helpful {
+  cursor:pointer;
+  text-decoration: underline
+}
+.Single_question {
+  display: flex;
+  justify-content: flex-start;
+  
+}
