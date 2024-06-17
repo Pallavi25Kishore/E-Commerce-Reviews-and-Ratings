@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MainImage = ({ image, onClick, onHoverZoom, zoomed }) => {
+const BigImage = ({ image, onClick, onHoverZoom, zoomed }) => {
   return (
     <div
       className={`big-image ${zoomed ? 'zoomed' : ''}`}
@@ -13,4 +13,4 @@ const MainImage = ({ image, onClick, onHoverZoom, zoomed }) => {
   );
 };
 
-export default MainImage;
+export default BigImage;

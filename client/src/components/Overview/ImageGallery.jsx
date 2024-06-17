@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import BigImage from './BigImage.jsx';
 import Thumbnails from './Thumbnails.jsx';
 import ArrowButton from './ArrowButton.jsx';
-import ExpandedImage from './ExpandedImage.jsx';
+// import ExpandedImage from './ExpandedImage.jsx';
 
 const ImageGallery = ({ images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

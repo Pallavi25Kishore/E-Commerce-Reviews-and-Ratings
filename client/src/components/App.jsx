@@ -9,7 +9,7 @@ const App =() =>{
     return <>
     <ProductView/>
     <QuestionList/>
-    <ReviewsList/>
+    <Reviews/>
     </>
 }
 

@@ -13,7 +13,7 @@ export default function AddQuestion() {
 
     return (<div className="add-Question-button">
         <button onClick={handleAddQuestionClick}>ADD A QUESIONTION</button>
-        {FormOpen ? <FormModal handleCloseForm = {handleCloseForm}/> : null};
+        {FormOpen ? <FormModal handleCloseForm = {handleCloseForm}/> : null}
     </div>
     )
 }
