@@ -55,7 +55,151 @@
 
 
 
+/*Michael*/
+.product-view {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
 
+.left-column {
+  flex: 1;
+  margin-right: 20px;
+}
 
+.right-column {
+  flex: 1;
+  max-width: 500px;
+}
 
+.image-gallery {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
 
+.big-image {
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.big-image.zoomed {
+  cursor: zoom-out;
+}
+
+.thumbnails {
+  display: flex;
+  overflow-x: scroll;
+  margin-top: 10px;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+  margin-right: 10px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  transition: transform 0.2s;
+}
+
+.thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.thumbnail.selected {
+  border: 2px solid black;
+}
+
+.arrow-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 1;
+}
+
+.arrow-button.left {
+  left: 10px;
+}
+
+.arrow-button.right {
+  right: 10px;
+}
+
+.product-overview {
+  margin-bottom: 20px;
+}
+
+.product-overview h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.product-overview .price {
+  font-size: 20px;
+  color: #b12704;
+  margin-top: 10px;
+}
+
+.selectors {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selectors select {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.add-to-cart {
+  margin-top: 20px;
+}
+
+.add-to-cart button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #f0c14b;
+  border: 1px solid #a88734;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-to-cart button:hover {
+  background-color: #ddb347;
+}
+
+.style-selector {
+  margin-bottom: 20px;
+}
+
+.style-selector h3 {
+  margin-bottom: 10px;
+}
+
+.size-selector {
+  margin-bottom: 20px;
+}
+
+.size-selector h3 {
+  margin-bottom: 10px;
+}
+
+/* Quantity Selector */
+.quantity-selector {
+  margin-bottom: 20px;
+}
+
+.quantity-selector h3 {
+  margin-bottom: 10px;
+}
