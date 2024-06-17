@@ -3,6 +3,7 @@ import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
+import ImageGallery from './ImageGallery.jsx';
 import fetchProduct from './ProductController';
 import fetchProducts from './ProductListController';
 import fetchStyles from './StyleController';
@@ -63,8 +64,13 @@ const ProductView = () => {
   };
 
   return (
-    <div>
+    <div className="product-view">
+     <div className="left-column">
+        {selectedStyle && <ImageGallery images={selectedStyle.photos} />}
+      </div>
+      <div className="right-column">
       {currentProduct && <ProductInfo currentProduct={currentProduct} />}
+      <div className="selectors">
       {styles.length > 0 && (
         <StyleSelector styles={styles} onSelectStyle={handleSelectStyle} />
       )}
@@ -72,7 +78,12 @@ const ProductView = () => {
         <SizeSelector sizes={availableSizes} onSelectSize={handleSelectSize} />
       )}
       <QuantitySelector maxQuantity={maxQuantity} onSelectQuantity={handleSelectQuantity} />
-      <button disabled={!selectedSize || maxQuantity === 0} onClick={() => alert('Added to Cart')}>Add to Cart</button>
+      </div>
+      <div className="add-to-cart">
+          <button disabled={!selectedSize || maxQuantity === 0} onClick={() => alert('Added to Cart')}>Add to Cart</button>
+        </div>
+      </div>
+
     </div>
   );
 };
