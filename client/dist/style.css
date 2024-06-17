@@ -142,7 +142,7 @@
 .ratings-and-reviews { /*overall positioning*/
 display: flex;
 justify-content: space-between;
-margin-top: 80px
+margin-top: 10px
 }
 
 
@@ -154,11 +154,8 @@ margin-top: 80px
   width: 50%;
 }
 
-.review-tile {
-  height: 260px;
-}
 .review-list {
-  height: 520px; /*height of 2 review tiles 260  x 2 px*/
+  height: 600px;
   overflow: auto
 }
 
@@ -191,12 +188,27 @@ margin-top: 80px
   justify-content: flex-start;
 }
 
+.center-upper-sort-and-search-panel { /*sort and search bar upper panel within center panel*/
+  display: flex;
+  justify-content: space-between;
+}
+
 
 .add-review-button, .more-review-button { /*add review button*/
   margin-top: 30px;
   margin-right: 5px;
   margin-left: 5px;
 }
+
+.head { /*reviews & ratings head*/
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.search-bar-input {
+  width: 200px;
+}
+
 
 
 

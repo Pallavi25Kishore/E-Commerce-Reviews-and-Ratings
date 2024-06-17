@@ -10,7 +10,7 @@ const FormModal = ({handleCloseForm, metaData}) => {
           <button aria-label="close-form" onClick={handleCloseForm} className="formClose">&#10005;</button>
         </div>
         <div className="formContainer">
-          <Form metaData={metaData}/>
+          <Form metaData={metaData} handleCloseForm={handleCloseForm}/>
           </div>
       </div>
     </div>

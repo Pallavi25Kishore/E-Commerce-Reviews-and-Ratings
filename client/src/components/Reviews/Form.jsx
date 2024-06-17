@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import isValidUrl from './validUrlCheck.js';
 
-const Form = ({metaData}) => {         //To do later: render product name dynamically in form - get as prop
+const Form = ({handleCloseForm, metaData}) => {         //To do later: render product name dynamically in form - get as prop
 
   const [reviewBodyText, setReviewBodyText] = useState('');
   const [starFill, setStarFill] = useState([false, false, false, false, false]);
@@ -12,8 +12,20 @@ const Form = ({metaData}) => {         //To do later: render product name dynami
 
   let ratingMeaning = ['1 star - "Poor"', '2 stars - "Fair"', '3 stars - "Average"', '4 stars - "Good"', '5 stars - "Great"'];
 
-  const handleFormSubmission = (event) => {
-    event.preventDefault(); // complete rest of function later
+  const handleFormSubmission = (event) => { // to log submitted values
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData (form);
+    const formJson = Object.fromEntries(formData.entries());
+    console.log("overall rating:", selectedRating);
+    console.log("Do you recommend this product?:", formJson.recommend);
+    console.log("characteristics:", selectedRating);
+    console.log("Review Summary:", formJson.summary);
+    console.log("Review Body:", formJson.body);
+    console.log("photos", uploadedPhotos);
+    console.log("Nickname:", formJson.nickname);
+    console.log("Email:", formJson.email);
+    handleCloseForm();
   };
 
   const handleReviewBody = (event) => {
@@ -102,15 +114,15 @@ const Form = ({metaData}) => {         //To do later: render product name dynami
             <div>Current Selection: {(applicableCharacteristics[factor]) !== null ? `${factorDetails[factor][applicableCharacteristics[factor] - 1]}`:"none selected"}</div>
 
             <label htmlFor="1">1</label>
-            <input type="radio" name={factor} id="1" value="1" onChange={(e) => {handleFactorRadioButtonSelection(factor, 1)}} defaultChecked={applicableCharacteristics[factor] === 1 ? true : null}></input>
+            <input type="radio" name={factor} id="1" value="1" onChange={(e) => {handleFactorRadioButtonSelection(factor, 1)}} defaultChecked={applicableCharacteristics[factor] === 1 ? true : null} required></input>
             <label htmlFor="2">2</label>
-            <input type="radio" name={factor} id="2" value="2" onChange={(e) => {handleFactorRadioButtonSelection(factor, 2)}} defaultChecked={applicableCharacteristics[factor] === 2 ? true : null}></input>
+            <input type="radio" name={factor} id="2" value="2" onChange={(e) => {handleFactorRadioButtonSelection(factor, 2)}} defaultChecked={applicableCharacteristics[factor] === 2 ? true : null} required></input>
             <label htmlFor="3">3</label>
-            <input type="radio" name={factor} id="3" value="3" onChange={(e) => {handleFactorRadioButtonSelection(factor, 3)}} defaultChecked={applicableCharacteristics[factor] === 3 ? true : null}></input>
+            <input type="radio" name={factor} id="3" value="3" onChange={(e) => {handleFactorRadioButtonSelection(factor, 3)}} defaultChecked={applicableCharacteristics[factor] === 3 ? true : null} required></input>
             <label htmlFor="4">4</label>
-            <input type="radio" name={factor} id="4" value="4" onChange={(e) => {handleFactorRadioButtonSelection(factor, 4)}} defaultChecked={applicableCharacteristics[factor] === 4 ? true : null}></input>
+            <input type="radio" name={factor} id="4" value="4" onChange={(e) => {handleFactorRadioButtonSelection(factor, 4)}} defaultChecked={applicableCharacteristics[factor] === 4 ? true : null} required></input>
             <label htmlFor="5">5</label>
-            <input type="radio" name={factor} id="5" value="5" onChange={(e) => {handleFactorRadioButtonSelection(factor, 5)}} defaultChecked={applicableCharacteristics[factor] === 5 ? true : null}></input>
+            <input type="radio" name={factor} id="5" value="5" onChange={(e) => {handleFactorRadioButtonSelection(factor, 5)}} defaultChecked={applicableCharacteristics[factor] === 5 ? true : null} required></input>
             <div>1 - {factorDetails[factor][0]}</div><div>5 - {factorDetails[factor][4]}</div>
             <br></br>
             </div>);
