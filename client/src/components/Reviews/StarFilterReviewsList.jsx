@@ -1,7 +1,7 @@
 import React from 'react';
 import ReviewTile from "./ReviewTile.jsx";
 
-const ReviewsList = ({currentProductReviews, fetchReviewsList, starFilter}) => {
+const StarFilterReviewsList = ({currentProductReviews, fetchReviewsList, starFilter}) => {
 
 if (Object.keys(starFilter).length === 0) { // if no star rating filter are applied
   return (
@@ -16,7 +16,7 @@ if (Object.keys(starFilter).length === 0) { // if no star rating filter are appl
       }
   });
   return (
-    <div className="reviews-list">
+    <div>
     {(filteredListOfReviews.length !== 0) ?
     <div className="review-list">
       {filteredListOfReviews.map((review) => {return <ReviewTile review={review} key={review.review_id} fetchReviewsList={fetchReviewsList}/>})}
@@ -30,5 +30,5 @@ if (Object.keys(starFilter).length === 0) { // if no star rating filter are appl
 
 };
 
-export default ReviewsList;
+export default StarFilterReviewsList;
 
