@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import isValidUrl from './validUrlCheck.js';
 
 const Form = ({handleCloseForm, metaData}) => {         //To do later: render product name dynamically in form - get as prop
 
@@ -68,16 +67,15 @@ const Form = ({handleCloseForm, metaData}) => {         //To do later: render pr
     setApplicableCharacteristics(newObj);
   };
 
-  const handlePhotoUploadButton = (e) => {
-    e.preventDefault();
-    var url = prompt('Enter photo url');
-    if (isValidUrl(url)) {
-      var newArray = [...uploadedPhotos, url];
-      setUploadedPhotos(newArray);
-    } else {
-      alert("Enter valid url");
-    }
+  const handleImageUpload = (event) => {
 
+    var filesArray = Array.from(event.target.files);
+    var urls = filesArray.map((file) => {
+      return URL.createObjectURL(file);
+    });
+    console.log("test1", filesArray);
+    console.log("test2", urls);
+    setUploadedPhotos(urls);
   };
 
   return (
@@ -147,7 +145,7 @@ const Form = ({handleCloseForm, metaData}) => {         //To do later: render pr
 
         <div className="formHead">Upload your photos</div>
         <>{ uploadedPhotos.length < 5 ?
-        <button onClick={handlePhotoUploadButton}>Click to upload photos</button> : null}</>
+        <input type="file" id="upload" name="upload" accept="image/png, image/jpeg" multiple onChange={handleImageUpload}></input> : null}</>
         <div>{uploadedPhotos.length !== 0 ? uploadedPhotos.map((url) => {
             return <img src={url} style={{height: '50px', width: '50px', borderRadius: '10%'}}></img>
         })
