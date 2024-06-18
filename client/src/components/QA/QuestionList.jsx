@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { BASE_URL, API_KEY } from "../../env/config.js";
 import axios from 'axios';
 import Answer from './Answer.jsx';
@@ -26,12 +26,27 @@ const QuestionList = function (props) {
             })
     }, []);
 
-  
+    const modalRef = useRef();
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                closeForm(false);
+            }
+        }
+
+        // Bind the event listener
+        document.addEventListener("click", handleClickOutside, true);
+        return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("click", handleClickOutside);
+        };
+    },[])
     const filterQuestion = (searchKey && searchKey.length>= 3) ? questionLists.filter(question => question.question_body.toLowerCase().includes(searchKey.toLowerCase())) : questionLists
     console.log(questionLists)
 
     return (
         <div>
+            <h3 className='QA_TITLE'>Question And Answer</h3>
             <Search setsearchKey = {setsearchKey} />
             <div>
                 {filterQuestion.slice(0, showAll ? questionLists.length : 2).map((questionList, id) => (

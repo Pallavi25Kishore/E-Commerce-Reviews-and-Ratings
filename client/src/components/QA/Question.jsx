@@ -1,5 +1,7 @@
 import React,{useState}from 'react';
 import Addanswer from './Addanswer.jsx';
+import axios from 'axios';
+import { BASE_URL, API_KEY } from "../../env/config.js";
 
 export default function Question(props) {
     const{question, helpfulness, id } = props;
@@ -11,7 +13,7 @@ export default function Question(props) {
         setHelpful(helpful + 1)
         setDisable(!disable)
         }else {
-            setHelpfulness(helpfulness - 1);
+            setHelpful(helpfulness - 1);
             setDisable(!disable)
         }
         axios.put(`${BASE_URL}qa/answers/${props.answer_id}/helpful`, { helpfulness: helpfulness }, {

@@ -111,3 +111,8 @@
   cursor: pointer;
 }
 
+.QA_TITLE {
+  font-family: "adobe-clean", sans-serif;
+  height: 100%;
+  color: #888;
+}
