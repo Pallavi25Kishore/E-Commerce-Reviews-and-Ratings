@@ -6,7 +6,7 @@ import Sort from "./Sort.jsx";
 import RatingBreakdown from "./RatingBreakdown.jsx";
 import AddReview from "./AddReview.jsx";
 import SearchBar from "./SearchBar.jsx";
-//IGNORE FOR NOW - WORK IN PROGRESS FOR SEARCH COMPONENT import SearchFilter from "./SearchFilter.jsx";
+import SearchFilter from "./SearchFilter.jsx";
 import CountFilterReviewsList from "./CountFilterReviewsList.jsx";
 
 
@@ -111,8 +111,7 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
                 <Sort changeSort={changeSort}/>
                 <SearchBar handleSearchBarChange={handleSearchBarChange}/>
             </div>
-            {/* IGNORE FOR NOW  - WORK IN PROGRESS - FOR THIS COMMENTED OUT COMPONENT<SearchFilter currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList} starFilter={starFilter} totalReviews={totalReviews} showMoreReviews={showMoreReviews} searchText={searchText}/> */}
-            <CountFilterReviewsList currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList} starFilter={starFilter} totalReviews={totalReviews} showMoreReviews={showMoreReviews}/>
+            <SearchFilter currentProductReviews={currentProductReviews} fetchReviewsList={fetchReviewsList} starFilter={starFilter} totalReviews={totalReviews} showMoreReviews={showMoreReviews} searchText={searchText}/>
             <div className="center-lower-fixed-buttons-panel">
                 {totalReviews > 2 && showMoreReviews ?
                 <button onClick={handleShowMoreReviewsClick}className="more-review-button">More Reviews</button>
