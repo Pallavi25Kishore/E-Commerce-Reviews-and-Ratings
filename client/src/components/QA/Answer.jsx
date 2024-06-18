@@ -7,6 +7,7 @@ import AnswerList from './AnswerList.jsx';
 
 export default function Answer(props) {
     const question_id = props.id;
+
     const URL = `${BASE_URL}qa/questions/${question_id}/answers`;
     const [answerLists, setanswerLists] = useState([]);
     const [showMore, setShowMore] = useState(false);

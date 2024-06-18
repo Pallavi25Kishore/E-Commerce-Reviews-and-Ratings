@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CreatedAt = ({isoDate}) => {
+const CreatedAt = ({name, isoDate}) => {
   var monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var date = new Date(isoDate); // iso date is in UTC, date will be displayed in locale time
   var monthNumber = date.getMonth();
@@ -9,7 +9,10 @@ const CreatedAt = ({isoDate}) => {
   var yyyy = date.getFullYear();
 
 return (
+  <div>
+  <span>{`${name}, `}</span>
   <span>{`${month} ${dd}, ${yyyy}`}</span>
+  </div>
 );
 
 };

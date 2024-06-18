@@ -1,10 +1,10 @@
-import React,{useState}from 'react';
+import React, { useState } from 'react';
 import Addanswer from './Addanswer.jsx';
 import axios from 'axios';
 import { BASE_URL, API_KEY } from "../../env/config.js";
 
 export default function Question(props) {
-    const{question, helpfulness, id } = props;
+    const { question, helpfulness, id } = props;
     const [helpful, setHelpful] = useState(helpfulness);
     const [disable, setDisable] = useState(false);
     const handleYesClick = (e) => {
@@ -26,14 +26,17 @@ export default function Question(props) {
                 console.log('Error in updating helpfulness count', err);
             });
     };
-    return(
+    return (
         <div>
-        <strong>Q: {question} </strong>
-        <span>Helpful? </span>
-        &nbsp;
-        <span className= "QA_helpful" data-testid="yes" onClick={handleYesClick} >Yes</span>
-        <span data-testid="count">{`(${helpful})`}</span>
-        <Addanswer />
-       </div>
+            <div className='Single_question'>
+                <strong>Q: {question} </strong>
+                <span>Helpful? </span>
+                &nbsp;
+                <span className="QA_helpful" data-testid="yes" onClick={handleYesClick} >Yes</span>
+                <span data-testid="count">{`(${helpful})`}</span>
+                <Addanswer />
+            </div>
+            
+        </div>
     )
 }

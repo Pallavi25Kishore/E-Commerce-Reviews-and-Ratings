@@ -34,7 +34,7 @@ export default function AnswerForm(props) {
                 <h3>Product Name : Question Body</h3>
                 <form className='AnswerForm' onSubmit={submitAnswer} aria-required>
                     <label>Your Answer</label>
-                    <textarea required maxLength="1000" placeholder='Example: jackson11!' name="asnwer_body" value={answerForm.asnwer_body} style={{ width: '100%', minHeight: '100px' }} onChange={handleInputChange} ></textarea >
+                    <textarea required maxLength="1000" placeholder='Example: jackson11!' name="question" value={answerForm.asnwer_body} style={{ width: '100%', minHeight: '100px' }} onChange={handleInputChange} ></textarea >
                     <label>Your Nickname</label>
                     <input required type="text" placeholder={answerForm.nickname} name="nickname" maxLength="60" onChange={handleInputChange} ></input>
                     <p>For privacy reasons, do not use your full name or email address</p>
