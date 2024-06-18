@@ -11,10 +11,10 @@ export default function AnswerList(props) {
     const isSeller = props.name.toLowerCase() === "seller";
     const [disable, setDisable] = useState(false)
     const handleYesClick = (e) => {
-        if(disable === false) {
-        setHelpfulness(helpfulness + 1)
-        setDisable(!disable)
-        }else {
+        if (disable === false) {
+            setHelpfulness(helpfulness + 1)
+            setDisable(!disable)
+        } else {
             setHelpfulness(helpfulness - 1);
             setDisable(!disable)
         }
@@ -29,7 +29,7 @@ export default function AnswerList(props) {
             });
     };
     console.log(props.name)
-     const handleReportClick = () => {
+    const handleReportClick = () => {
         setReport(!report);
 
         // axios.put(`${BASE_URL}qa/answers/${props.answer_id}/report`, {}, { headers: { "Authorization": API_KEY } })
@@ -43,15 +43,15 @@ export default function AnswerList(props) {
 
 
     return <>
-        <span>{isSeller ? <strong>{props.name}</strong> : props.name}</span>
-        <IsoConvert isoDate={props.isoDate} />
-        <span>  |  </span>
-        <span>Helpful? </span>
-        &nbsp;
-        <span className= "QA_helpful" data-testid="yes" onClick={handleYesClick} >Yes</span>
-        
-        <span data-testid="count">{`(${helpfulness})`}</span>
-        <span>  |  </span>
-        <a className= "QA_helpful" onClick={handleReportClick}> {report ? <>Reported</> : <>Report</> }</a>
+        <div className="single_answer">
+            <span className="Helpfuless">by {isSeller ? <strong>{props.name}</strong> : props.name}</span>
+            <IsoConvert isoDate={props.isoDate} />
+            <span className="Helpfuless">  |  </span>
+            <span className="Helpfuless">Helpful? </span>
+            <span  data-testid="yes" onClick={handleYesClick} >Yes</span>
+            <span data-testid="count">{`(${helpfulness})`}</span>
+            <span className="Helpfuless">  |  </span>
+            <a className="Helpfuless" onClick={handleReportClick}> {report ? <>Reported</> : <>Report</>}</a>
+        </div>
     </>
 }

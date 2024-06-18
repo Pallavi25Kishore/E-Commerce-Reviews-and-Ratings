@@ -28,7 +28,7 @@ export default function Answer(props) {
     }
     return (
         <>
-            <div>
+            <div className='Answer_body'>
                 {answerLists.slice(0, showMore ? answerLists.length : 2).map((answerList, id) => (
 
                     <div key={id}
@@ -42,9 +42,9 @@ export default function Answer(props) {
                         <ul>
                             <li data-testid="test-list">
                                 <AnswerBody body={answerList.body} />
-                                <span data-testid="test-single-answer">by&nbsp;<AnswerList name={answerList.answerer_name} answer_id={answerList.answer_id} helpfulness={answerList.helpfulness} isoDate={answerList.date}
-                                />
-                                    &nbsp; </span>
+                                <span data-testid="test-single-answer">
+                                <AnswerList name={answerList.answerer_name} answer_id={answerList.answer_id} helpfulness={answerList.helpfulness} isoDate={answerList.date}/>
+                                </span>
                                 <Photo data-testid="test-photo-list" photo={answerList.photos} />
                             </li>
                         </ul>
