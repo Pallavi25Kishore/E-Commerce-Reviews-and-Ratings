@@ -73,8 +73,6 @@ const Form = ({handleCloseForm, metaData}) => {         //To do later: render pr
     var urls = filesArray.map((file) => {
       return URL.createObjectURL(file);
     });
-    console.log("test1", filesArray);
-    console.log("test2", urls);
     setUploadedPhotos(urls);
   };
 
@@ -144,10 +142,15 @@ const Form = ({handleCloseForm, metaData}) => {         //To do later: render pr
           <br></br>
 
         <div className="formHead">Upload your photos</div>
-        <>{ uploadedPhotos.length < 5 ?
+        <>{uploadedPhotos.length < 5 ?
         <input type="file" id="upload" name="upload" accept="image/png, image/jpeg" multiple onChange={handleImageUpload}></input> : null}</>
-        <div>{uploadedPhotos.length !== 0 ? uploadedPhotos.map((url) => {
+        <div>{uploadedPhotos.length !== 0 ? uploadedPhotos.map((url, index) => {
+          if (index < 5) {
             return <img src={url} style={{height: '50px', width: '50px', borderRadius: '10%'}}></img>
+          } else {
+            return <></>
+          }
+
         })
         : null}</div>
         <br></br>
