@@ -424,7 +424,7 @@ margin-top: 10px
   color: #888;
 }
 .Question_Body {
-  padding: 80px 30px 30px 30px;
+  padding: 80px 0 30px 30px;
   position: relative;
 }
 .QA_helpful {
@@ -433,20 +433,14 @@ margin-top: 10px
 }
 .Single_question {
   display: flex;
-  justify-content: flex-start;
-
+  justify-content: space-between;
+  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.right-help {
+  display: flex;
+  float: right; 
+  padding-right: 5%;
+}
+.Helpfuless {
+  padding-left: 5px;
+}
