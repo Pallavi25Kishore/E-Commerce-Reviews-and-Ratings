@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import CreateAt from "../Reviews/CreatedAt.jsx";
+import CreateAt from "./IsoConvert.jsx";
 import { BASE_URL, API_KEY } from "../../env/config.js";
+import IsoConvert from "./IsoConvert.jsx";
 
 
 export default function AnswerList(props) {
@@ -27,7 +28,7 @@ export default function AnswerList(props) {
                 console.log('Error in updating helpfulness count', err);
             });
     };
-
+    console.log(props.name)
      const handleReportClick = () => {
         setReport(!report);
 
@@ -43,8 +44,7 @@ export default function AnswerList(props) {
 
     return <>
         <span>{isSeller ? <strong>{props.name}</strong> : props.name}</span>
-        &nbsp;&nbsp;
-        <CreateAt isoDate={props.isoDate} />
+        <IsoConvert isoDate={props.isoDate} />
         <span>  |  </span>
         <span>Helpful? </span>
         &nbsp;
