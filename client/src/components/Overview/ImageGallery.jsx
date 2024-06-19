@@ -30,14 +30,15 @@ const ImageGallery = ({ images }) => {
   };
 
   return (
-    <div className="image-gallery">
-      {/* {!expandedView ? ( */}
+    <div className="image-gallery" data-testid="image-gallery">
+      {!expandedView ? (
         <>
           <BigImage
             image={images[currentImageIndex].url}
             onClick={toggleExpandedView}
-            // onHoverZoom={toggleZoom}
-            // zoomed={zoomed}
+            onHoverZoom={toggleZoom}
+            zoomed={zoomed}
+            data-testid="big-image"
           />
           <Thumbnails
             images={images}
@@ -47,14 +48,17 @@ const ImageGallery = ({ images }) => {
           {currentImageIndex > 0 && <ArrowButton direction="left" onClick={() => handleArrowClick('left')} />}
           {currentImageIndex < images.length - 1 && <ArrowButton direction="right" onClick={() => handleArrowClick('right')} />}
         </>
-      {/* ) : ( */}
-        {/* <ExpandedImage
-          image={images[currentImageIndex].url}
+      ) : (
+        <ExpandedImage
+          images={images}
+          currentImageIndex={currentImageIndex}
+          onArrowClick={handleArrowClick}
+          onThumbnailClick={handleThumbnailClick}
           onClick={toggleZoom}
           zoomed={zoomed}
           onExit={toggleExpandedView}
-        /> */}
-
+        />
+      )}
     </div>
   );
 };

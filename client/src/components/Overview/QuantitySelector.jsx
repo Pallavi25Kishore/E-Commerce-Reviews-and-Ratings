@@ -6,8 +6,7 @@ const QuantitySelector = ({ maxQuantity, onSelectQuantity }) => {
   };
 
   return (
-    <div className="quantity-selector">
-      <h3>Select Quantity</h3>
+    <div className="quantity-selector" data-testid="quantity-selector">
       <select onChange={handleChange} defaultValue="" disabled={maxQuantity === 0}>
         <option value="">{maxQuantity === 0 ? '-' : 'Select Quantity'}</option>
         {Array.from({ length: Math.min(maxQuantity, 15) }, (_, i) => i + 1).map((quantity) => (

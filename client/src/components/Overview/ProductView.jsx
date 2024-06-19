@@ -11,7 +11,7 @@ import fetchStyles from './StyleController';
 const ProductView = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
   const [styles, setStyles] = useState([]);
-  const [selectedStyle, setSelectedStyle] = useState(null);
+  const [selectedStyle, setSelectedStyle] = useState("");
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [availableSizes, setAvailableSizes] = useState([]);
@@ -49,6 +49,7 @@ const ProductView = () => {
 
   const handleSelectStyle = (style) => {
     setSelectedStyle(style);
+    console.log(selectedStyle.name);
   };
 
   const handleSelectSize = (size) => {
@@ -70,18 +71,23 @@ const ProductView = () => {
       </div>
       <div className="right-column">
       {currentProduct && <ProductInfo currentProduct={currentProduct} />}
+
       <div className="selectors">
+      <h3>{selectedStyle.name}</h3>
       {styles.length > 0 && (
-        <StyleSelector styles={styles} onSelectStyle={handleSelectStyle} />
+        <StyleSelector styles={styles} selectedStyleId={selectedStyle?.style_id} onSelectStyle={handleSelectStyle} />
       )}
-      {availableSizes.length > 0 && (
-        <SizeSelector sizes={availableSizes} onSelectSize={handleSelectSize} />
-      )}
-      <QuantitySelector maxQuantity={maxQuantity} onSelectQuantity={handleSelectQuantity} />
+      <div className="selectors-row">
+            {availableSizes.length > 0 && (
+              <SizeSelector data-testid="size-selector" sizes={availableSizes} onSelectSize={handleSelectSize} />
+            )}
+            <QuantitySelector data-testid="quantity-selector" maxQuantity={maxQuantity} onSelectQuantity={handleSelectQuantity} />
+            <div className="add-to-cart">
+              <button disabled={!selectedSize || maxQuantity === 0} onClick={() => alert('Added to Cart')}>Add to Cart</button>
+            </div>
+          </div>
       </div>
-      <div className="add-to-cart">
-          <button disabled={!selectedSize || maxQuantity === 0} onClick={() => alert('Added to Cart')}>Add to Cart</button>
-        </div>
+
       </div>
 
     </div>

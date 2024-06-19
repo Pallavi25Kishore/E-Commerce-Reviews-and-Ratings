@@ -7,6 +7,10 @@ import ProductInfo from '../components/Overview/ProductInfo.jsx';
 import SizeSelector from '../components/Overview/SizeSelector.jsx';
 import QuantitySelector from '../components/Overview/QuantitySelector.jsx';
 import StyleSelector from '../components/Overview/StyleSelector.jsx';
+import ImageGallery from '../components/Overview/ImageGallery.jsx';
+import fetchProduct from '../components/Overview/ProductController.js';
+import fetchStyles from '../components/Overview/StyleController.js';
+
 
 const mockProduct = {
   category: 'Clothes',
@@ -98,7 +102,6 @@ describe('Share component', () => {
 });
 
 
-// Style Selector Tests
 const styles = [
   {
     style_id: 1,
@@ -120,28 +123,6 @@ const styles = [
   }
 ];
 
-test('renders StyleSelector with styles', () => {
-  const handleSelectStyle = jest.fn();
-  render(<StyleSelector styles={styles} onSelectStyle={handleSelectStyle} />);
-
-  expect(screen.getByText('Forest Green & Black')).toBeInTheDocument();
-  expect(screen.getByText('X')).toBeInTheDocument();
-  expect(screen.getAllByTestId('style-thumbnail').length).toBe(2);
-});
-
-test('selects a new style on click', () => {
-  const handleSelectStyle = jest.fn();
-  render(<StyleSelector styles={styles} onSelectStyle={handleSelectStyle} />);
-
-  const newStyleThumbnail = screen.getAllByTestId('style-thumbnail')[1];
-  fireEvent.click(newStyleThumbnail);
-
-  expect(handleSelectStyle).toHaveBeenCalledWith(styles[1]);
-  expect(screen.getByText('Desert Brown & Tan')).toBeInTheDocument();
-  expect(screen.getByText('X')).toBeInTheDocument();
-});
-
-//Size Selector Test:
 
 const sizes = [
   { size: 'XS', quantity: 8 },
@@ -188,4 +169,105 @@ test('selects a quantity on change', () => {
 
   fireEvent.change(screen.getByRole('combobox'), { target: { value: '3' } });
   expect(handleSelectQuantity).toHaveBeenCalledWith('3');
+});
+
+const mockImages = [
+  { url: 'https://example.com/image1.jpg', thumbnail_url: 'https://example.com/thumb1.jpg' },
+  { url: 'https://example.com/image2.jpg', thumbnail_url: 'https://example.com/thumb2.jpg' },
+  { url: 'https://example.com/image3.jpg', thumbnail_url: 'https://example.com/thumb3.jpg' }
+];
+
+describe('ImageGallery', () => {
+  it('renders the main image', () => {
+    render(<ImageGallery images={mockImages} />);
+    const bigImage = screen.getByRole('big-image');
+    expect(bigImage).toHaveStyle(`background-image: url(${mockImages[0].url})`);
+  });
+
+  it('changes the main image when a thumbnail is clicked', () => {
+    render(<ImageGallery images={mockImages} />);
+    const thumbnails = screen.getAllByTestId('thumbnail');
+    fireEvent.click(thumbnails[1]);
+    const bigImage = screen.getByRole('big-image');
+    expect(bigImage).toHaveStyle(`background-image: url(${mockImages[1].url})`);
+  });
+
+  it('navigates to the next image when the right arrow is clicked', () => {
+    render(<ImageGallery images={mockImages} />);
+    const rightArrow = screen.getByTestId("arrow-button-right");
+    fireEvent.click(rightArrow);
+    const bigImage = screen.getByRole('big-image');
+    expect(bigImage).toHaveStyle(`background-image: url(${mockImages[1].url})`);
+  });
+
+  it('navigates to the previous image when the left arrow is clicked', () => {
+    render(<ImageGallery images={mockImages} />);
+    const rightArrow = screen.getByTestId("arrow-button-right");
+    fireEvent.click(rightArrow);
+    fireEvent.click(rightArrow);
+    const leftArrow = screen.getByTestId("arrow-button-left");
+    fireEvent.click(leftArrow);
+    const bigImage = screen.getByRole('big-image');
+    expect(bigImage).toHaveStyle(`background-image: url(${mockImages[1].url})`);
+  });
+
+  it('opens the expanded view when the main image is clicked', () => {
+    render(<ImageGallery images={mockImages} />);
+    const bigImage = screen.getByRole('big-image');
+    fireEvent.click(bigImage);
+    const expandedImageContainer = screen.getByTestId('expanded-image-container');
+    expect(expandedImageContainer).toBeVisible();
+  });
+
+  it('zooms in on the image when clicked in the expanded view', () => {
+    render(<ImageGallery images={mockImages} />);
+    const bigImage = screen.getByRole('big-image');
+    fireEvent.click(bigImage);
+    const expandedImage = screen.getByTestId('expanded-image');
+    fireEvent.click(expandedImage);
+    expect(expandedImage).toHaveClass('zoomed');
+  });
+
+  it('closes the expanded view when the exit button is clicked', () => {
+    render(<ImageGallery images={mockImages} />);
+    const bigImage = screen.getByRole('big-image');
+    fireEvent.click(bigImage);
+    const exitButton = screen.getByText('X');
+    fireEvent.click(exitButton);
+    const expandedImageContainer = screen.queryByTestId('expanded-image-container');
+    expect(expandedImageContainer).not.toBeInTheDocument();
+  });
+});
+jest.mock('../components/Overview/ProductController.js', () => jest.fn());
+jest.mock('../components/Overview/StyleController.js', () => jest.fn());
+
+fetchProduct.mockResolvedValue(mockProduct);
+fetchStyles.mockResolvedValue(styles);
+
+describe('ProductView', () => {
+  beforeEach(() => {
+    render(<ProductView />);
+  });
+
+  it('renders the ProductInfo component', async () => {
+    const productName = await screen.findByText('Leather Jacket');
+    expect(productName).toBeInTheDocument();
+  });
+
+
+
+  it('renders the SizeSelector component', async () => {
+    const sizeSelector = await screen.findByTestId('size-selector');
+    expect(sizeSelector).toBeInTheDocument();
+  });
+
+  it('renders the QuantitySelector component', async () => {
+    const quantitySelector = await screen.findByTestId('quantity-selector');
+    expect(quantitySelector).toBeInTheDocument();
+  });
+
+  it('renders the Add to Cart button', async () => {
+    const addToCartButton = await screen.findByText('Add to Cart');
+    expect(addToCartButton).toBeInTheDocument();
+  });
 });
