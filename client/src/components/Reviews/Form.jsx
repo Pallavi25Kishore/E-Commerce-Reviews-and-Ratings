@@ -13,18 +13,18 @@ const Form = ({handleCloseForm, metaData}) => {         //To do later: render pr
 
   const handleFormSubmission = (event) => { // to log submitted values
     event.preventDefault();
-    const form = event.target;
-    const formData = new FormData (form);
-    const formJson = Object.fromEntries(formData.entries());
-    console.log("overall rating:", selectedRating);
-    console.log("Do you recommend this product?:", formJson.recommend);
-    console.log("characteristics:", selectedRating);
-    console.log("Review Summary:", formJson.summary);
-    console.log("Review Body:", formJson.body);
-    console.log("photos", uploadedPhotos);
-    console.log("Nickname:", formJson.nickname);
-    console.log("Email:", formJson.email);
-    handleCloseForm();
+    // const form = event.target; - TO ACCESS FORM DATA
+    // const formData = new FormData (form);
+    // const formJson = Object.fromEntries(formData.entries());
+    // console.log("overall rating:", selectedRating);
+    // console.log("Do you recommend this product?:", formJson.recommend);
+    // console.log("characteristics:", selectedRating);
+    // console.log("Review Summary:", formJson.summary);
+    // console.log("Review Body:", formJson.body);
+    // console.log("photos", uploadedPhotos);
+    // console.log("Nickname:", formJson.nickname);
+    // console.log("Email:", formJson.email);
+    // handleCloseForm();
   };
 
   const handleReviewBody = (event) => {
@@ -73,32 +73,30 @@ const Form = ({handleCloseForm, metaData}) => {         //To do later: render pr
     var urls = filesArray.map((file) => {
       return URL.createObjectURL(file);
     });
-    console.log("test1", filesArray);
-    console.log("test2", urls);
     setUploadedPhotos(urls);
   };
 
   return (
-    <div className="modalForm">
+    <div className="modalForm" data-testid="add-review-form">
       <form onSubmit={handleFormSubmission}>
         <div>WRITE YOUR REVIEW</div>
         <div>About the Camo Onesie</div>
         <br></br>
         <div className="formHead">Overall rating<sup className="asterix">&#42;</sup></div>
         <div>
-        <span className="form-star" onClick={(e) => {e.preventDefault(); handleStarClick(1)}}>{starFill[0] ? '★' : '☆'}</span>
-        <span className="form-star" onClick={(e) => {e.preventDefault(); handleStarClick(2)}}>{starFill[1] ? '★' : '☆'}</span>
-        <span className="form-star" onClick={(e) => {e.preventDefault(); handleStarClick(3)}}>{starFill[2] ? '★' : '☆'}</span>
-        <span className="form-star" onClick={(e) => {e.preventDefault(); handleStarClick(4)}}>{starFill[3] ? '★' : '☆'}</span>
-        <span className="form-star" onClick={(e) => {e.preventDefault(); handleStarClick(5)}}>{starFill[4] ? '★' : '☆'}</span>
+        <span data-testid="star1" className="form-star" onClick={(e) => {e.preventDefault(); handleStarClick(1)}}>{starFill[0] ? '★' : '☆'}</span>
+        <span data-testid="star2" className="form-star" onClick={(e) => {e.preventDefault(); handleStarClick(2)}}>{starFill[1] ? '★' : '☆'}</span>
+        <span data-testid="star3" className="form-star" onClick={(e) => {e.preventDefault(); handleStarClick(3)}}>{starFill[2] ? '★' : '☆'}</span>
+        <span data-testid="star4" className="form-star" onClick={(e) => {e.preventDefault(); handleStarClick(4)}}>{starFill[3] ? '★' : '☆'}</span>
+        <span data-testid="star5" className="form-star" onClick={(e) => {e.preventDefault(); handleStarClick(5)}}>{starFill[4] ? '★' : '☆'}</span>
         <span style={{fontStyle: 'italic'}}>   {selectedRating ? ratingMeaning[selectedRating - 1] : null}</span>
           </div>
         <br></br>
         <div className="formHead">Do you recommend this product?<sup className="asterix">&#42;</sup></div>
         <div>
-          <input type="radio" name="recommend" id="yes" value="true" defaultChecked></input>
+          <input data-testid="radio-yes" type="radio" name="recommend" id="yes" value="true" defaultChecked></input>
           <label htmlFor="yes">Yes</label>
-          <input type="radio" name="recommend" id="no" value="false"></input>
+          <input data-testid="radio-no" type="radio" name="recommend" id="no" value="false"></input>
           <label htmlFor="no">No</label>
         </div>
         <br></br>
@@ -112,15 +110,15 @@ const Form = ({handleCloseForm, metaData}) => {         //To do later: render pr
             <div>Current Selection: {(applicableCharacteristics[factor]) !== null ? `${factorDetails[factor][applicableCharacteristics[factor] - 1]}`:"none selected"}</div>
 
             <label htmlFor="1">1</label>
-            <input type="radio" name={factor} id="1" value="1" onChange={(e) => {handleFactorRadioButtonSelection(factor, 1)}} defaultChecked={applicableCharacteristics[factor] === 1 ? true : null} required></input>
+            <input data-testid="radio1" type="radio" name={factor} id="1" value="1" onChange={(e) => {handleFactorRadioButtonSelection(factor, 1)}} defaultChecked={applicableCharacteristics[factor] === 1 ? true : null} required></input>
             <label htmlFor="2">2</label>
-            <input type="radio" name={factor} id="2" value="2" onChange={(e) => {handleFactorRadioButtonSelection(factor, 2)}} defaultChecked={applicableCharacteristics[factor] === 2 ? true : null} required></input>
+            <input data-testid="radio2" type="radio" name={factor} id="2" value="2" onChange={(e) => {handleFactorRadioButtonSelection(factor, 2)}} defaultChecked={applicableCharacteristics[factor] === 2 ? true : null} required></input>
             <label htmlFor="3">3</label>
-            <input type="radio" name={factor} id="3" value="3" onChange={(e) => {handleFactorRadioButtonSelection(factor, 3)}} defaultChecked={applicableCharacteristics[factor] === 3 ? true : null} required></input>
+            <input data-testid="radio3" type="radio" name={factor} id="3" value="3" onChange={(e) => {handleFactorRadioButtonSelection(factor, 3)}} defaultChecked={applicableCharacteristics[factor] === 3 ? true : null} required></input>
             <label htmlFor="4">4</label>
-            <input type="radio" name={factor} id="4" value="4" onChange={(e) => {handleFactorRadioButtonSelection(factor, 4)}} defaultChecked={applicableCharacteristics[factor] === 4 ? true : null} required></input>
+            <input data-testid="radio4" type="radio" name={factor} id="4" value="4" onChange={(e) => {handleFactorRadioButtonSelection(factor, 4)}} defaultChecked={applicableCharacteristics[factor] === 4 ? true : null} required></input>
             <label htmlFor="5">5</label>
-            <input type="radio" name={factor} id="5" value="5" onChange={(e) => {handleFactorRadioButtonSelection(factor, 5)}} defaultChecked={applicableCharacteristics[factor] === 5 ? true : null} required></input>
+            <input data-testid="radio5" type="radio" name={factor} id="5" value="5" onChange={(e) => {handleFactorRadioButtonSelection(factor, 5)}} defaultChecked={applicableCharacteristics[factor] === 5 ? true : null} required></input>
             <div>1 - {factorDetails[factor][0]}</div><div>5 - {factorDetails[factor][4]}</div>
             <br></br>
             </div>);
@@ -144,10 +142,15 @@ const Form = ({handleCloseForm, metaData}) => {         //To do later: render pr
           <br></br>
 
         <div className="formHead">Upload your photos</div>
-        <>{ uploadedPhotos.length < 5 ?
+        <>{uploadedPhotos.length < 5 ?
         <input type="file" id="upload" name="upload" accept="image/png, image/jpeg" multiple onChange={handleImageUpload}></input> : null}</>
-        <div>{uploadedPhotos.length !== 0 ? uploadedPhotos.map((url) => {
+        <div>{uploadedPhotos.length !== 0 ? uploadedPhotos.map((url, index) => {
+          if (index < 5) {
             return <img src={url} style={{height: '50px', width: '50px', borderRadius: '10%'}}></img>
+          } else {
+            return <></>
+          }
+
         })
         : null}</div>
         <br></br>
