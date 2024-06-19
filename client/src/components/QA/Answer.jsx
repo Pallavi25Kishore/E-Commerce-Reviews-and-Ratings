@@ -26,6 +26,7 @@ export default function Answer(props) {
         e.preventDefault();
         setShowMore(!showMore)
     }
+    console.log(answerLists)
     return (
         <>
             <div>
@@ -42,15 +43,15 @@ export default function Answer(props) {
                         <ul>
                             <li data-testid="test-list">
                                 <AnswerBody body={answerList.body} />
-                                <span data-testid="test-single-answer">by&nbsp;<AnswerList name={answerList.answerer_name} answer_id={answerList.answer_id} helpfulness={answerList.helpfulness} isoDate={answerList.date}
-                                />
-                                    &nbsp; </span>
+                                <span data-testid="test-single-answer">
+                                    <AnswerList name={answerList.answerer_name} answer_id={answerList.answer_id} helpfulness={answerList.helpfulness} isoDate={answerList.date}/>
+                                    </span>
                                 <Photo data-testid="test-photo-list" photo={answerList.photos} />
                             </li>
                         </ul>
                     </div>
                 ))}
-                {answerLists.length > 2 && (<strong className="QA_helpful" onClick={handleClick}>{showMore ? 'Collapse answers' : 'LOAD MORE ANSWERS '}</strong>)}
+                {answerLists.length > 2 && (<span className="Load_more" onClick={handleClick}>{showMore ? 'Collapse answers' : 'LOAD MORE ANSWERS '}</span>)}
 
             </div>
             

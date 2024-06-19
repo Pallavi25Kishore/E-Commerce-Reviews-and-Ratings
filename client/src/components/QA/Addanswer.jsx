@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import AnswerModal from './AnswerModal.jsx';
-export default function Addanswer() {
+import AnswerMoodal from './AnswerModal.jsx';
+export default function Addanswer({id}) {
     const[FormOpen, setFormOpen] = useState(false);
 
     const handleOpenForm =() => {
@@ -10,9 +10,9 @@ export default function Addanswer() {
         setFormOpen(!FormOpen);
     }
     return (
-        <div className="add-Answer-button">
+        <div className="add-Answer-button Helpfuless">
         <a className="QA_helpful" onClick={handleOpenForm}>Add Answer</a>
-        {FormOpen ? <AnswerModal handleCloseForm = {handleCloseForm}/> : null}
+        {FormOpen ? <AnswerMoodal handleCloseForm = {handleCloseForm} id = {id}/> : null}
         </div>
     )
 }

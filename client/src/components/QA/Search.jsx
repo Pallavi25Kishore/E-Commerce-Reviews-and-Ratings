@@ -1,9 +1,7 @@
 import React, {useState} from "react";
 
 export default function Search(props) {
-    const [key, setKey] = useState('');
     function handleChange(event) {
-        event.preventDefault();
         props.setsearchKey(event.target.value);
     }
     
