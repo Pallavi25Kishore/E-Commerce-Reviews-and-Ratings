@@ -9,9 +9,9 @@ const CreatedAt = ({name, isoDate}) => {
   var yyyy = date.getFullYear();
 
 return (
-  <div>
+  <div className="name-and-date">
   <span>{`${name}, `}</span>
-  <span>{`${month} ${dd}, ${yyyy}`}</span>
+  <span style={{marginLeft: '5px'}}>{`${month} ${dd}, ${yyyy}`}</span>
   </div>
 );
 

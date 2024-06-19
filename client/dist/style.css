@@ -1,6 +1,4 @@
-
-
-
+/*Pallavi*/
 .modalOverlay, .formModalOverlay { /*reviewbody - modal window and addreivew - form modal window*/
   position: fixed;
   top: 0;
@@ -144,6 +142,7 @@
 .ratings-and-reviews { /*overall positioning*/
 display: flex;
 justify-content: space-between;
+margin-top: 10px
 }
 
 
@@ -155,6 +154,11 @@ justify-content: space-between;
   width: 50%;
 }
 
+.review-list {
+  height: 600px;
+  overflow: auto
+}
+
 .right-panel { /*overall positioning*/
   width: 10%;
 }
@@ -163,17 +167,52 @@ justify-content: space-between;
   margin-left: 10%;
 }
 
-.review-tile { /*overall positioning*/
-  margin-right: 10%;
-}
 
 .formHead { /*form*/
   font-weight: bold;
-
 }
 
 .asterix { /*form*/
   color: red
+}
+
+.form-star { /*star rating - form*/
+  font-size: 30px;
+  color: gold;
+  cursor: pointer
+}
+
+
+.center-lower-fixed-buttons-panel { /*add review and show more buttons panel*/
+  display: flex;
+  justify-content: flex-start;
+}
+
+.center-upper-sort-and-search-panel { /*sort and search bar upper panel within center panel*/
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.add-review-button, .more-review-button { /*add review button*/
+  margin-top: 30px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.head { /*reviews & ratings head*/
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.search-bar-input {
+  width: 200px;
+}
+
+.name-and-date {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 /*Michael*/
@@ -428,6 +467,149 @@ justify-content: space-between;
 }
 
 
+
+
+
+/*Q&A css style*/
+.box {
+  width: 60%;
+  height: 50px;
+  background-color: white;
+  background-position:100%;
+  background-image: url('../src/components/QA/icon/search.svg');
+  background-repeat: no-repeat;
+  background-color: white;
+  position: relative;
+  text-align: left;
+}
+
+::placeholder {
+  padding-left: 1%;
+  color: black;
+  font-weight: bold;
+}
+.modal {
+
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow-y: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.QA_title {
+  font-family: "adobe-clean", sans-serif;
+  color: #888;
+}
+.Question_Body {
+  padding: 30px 0 30px 30px;
+  position: relative;
+}
+.QA_helpful {
+  cursor:pointer;
+  text-decoration: underline
+}
+.Single_question {
+  display: flex;
+  justify-content: flex-start;
+  justify-content: space-between;;
+
+}
+.right-help {
+  display: flex;
+  float: right;
+  padding-right: 5%;
+}
+.Helpfuless {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.Answer {
+  display: flex;
+  font-family: "adobe-clean", sans-serif;
+  color: #888;
+}
+.Answer_Helpfuless {
+  padding-left: 5px;
+  padding-right: 15px;
+}
+.photo_layout {
+  display: flex;
+  justify-content: flex-start;
+}
+.QA_photo {
+  padding: 0, 15px 0 20px;
+  border-radius: 3%;
+  padding-right: 20px;
+}
+
+.Load_more {
+  cursor:pointer;
+  font-size: 13px;
+  justify-content: flex-start;
+  font-weight: lighter;
+}
+
+.button_layout {
+  display: flex;
+  justify-content: flex-start;
+}
+.button1 {
+  font-size: 20px;
+  padding: 15px 30px;
+  border: 2px solid white;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+}
+.button2 {
+  font-size: 20px;
+  padding: 15px 30px;
+  border: 2px solid white;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+}
+
+
+.button1:hover  {
+  background-color: #0056b3;
+}
+
+.button2:hover  {
+  background-color: #0056b3;
+}
 
 
 

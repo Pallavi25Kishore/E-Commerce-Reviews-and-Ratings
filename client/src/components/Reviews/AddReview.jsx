@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import FormModal from './FormModal.jsx';
 
-const AddReview = () => {
+const AddReview = ({metaData}) => {
 
   const [FormOpen, setFormOpen] = useState(false);
 
@@ -16,9 +16,9 @@ const AddReview = () => {
   }
 
   return (
-    <div>
-    <button onClick={handleAddReviewClick}>Add a Review  &#43;</button>
-    {FormOpen ? <FormModal handleCloseForm={handleCloseForm}/> : null}
+    <div className="add-review-button">
+    <button data-testid="add-review-btn" onClick={handleAddReviewClick}>Add a Review  &#43;</button>
+    {FormOpen ? <FormModal handleCloseForm={handleCloseForm} metaData={metaData}/> : null}
     </div>
   )
 

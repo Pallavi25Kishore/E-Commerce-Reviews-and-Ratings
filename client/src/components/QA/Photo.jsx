@@ -1,18 +1,24 @@
 import React from "react";
+import Thumbnail from "../Reviews/Thumbnail.jsx";
+export default function Photo(props) {
 
-export default function Phooto(props) {
+    const handleCrossClick = ()=> {
+
+    }
+
     return (
         props.photo ? (
             <>
-                <p>Yes, as you can see in these photo</p>
-
+                <p >Yes, as you can see in these photo</p>
+                <div className="photo_layout">
                 {props.photo.map((photo ,id) => (
                     (
-                        <div key = {id}>
-                            <img data-testid="photo" src={photo.url}></img>
+                        <div key = {id} className="QA_photo">
+                            <Thumbnail data-testid= 'photo' photo = {photo} />
                         </div>
                     )
                 ))}
+                </div>
             </>
         ) : (
             <></>

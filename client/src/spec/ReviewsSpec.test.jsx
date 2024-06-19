@@ -14,6 +14,8 @@ import Sort from '../components/Reviews/Sort.jsx';
 import RatingBreakdown from '../components/Reviews/RatingBreakdown.jsx';
 import RatingBars from '../components/Reviews/RatingBars.jsx';
 import Factor from '../components/Reviews/Factor.jsx';
+import Form from '../components/Reviews/Form.jsx';
+import AddReview from '../components/Reviews/AddReview.jsx';
 
 describe(StarRating, () => { // to test StarComponent Suite
 
@@ -320,6 +322,98 @@ describe(StarRating, () => { // to test StarComponent Suite
     it('should display the average value indicated by inverted triangle', () => {
       const {getByTestId} = render(<Factor factor={"Quality"} value={"1.0"}/>);
       expect(getByTestId("pointer")).toBeVisible();
+    });
+
+  });
+
+  describe(Form, () => {
+
+    const mockMetaData = {
+      product_id: 1,
+      ratings: {
+       1: "1",
+       2: "2",
+       3: "4",
+       4: "3"
+      },
+      recommended: {
+        true: 3,
+        false: 7
+      },
+      characteristics: {}
+    };
+
+    it('should display form when add a review button is clicked', () => {
+      const {getByText, getByTestId} = render(<AddReview metaData={mockMetaData}/>);
+      const addreviewbutton = getByTestId("add-review-btn");
+      fireEvent.click(addreviewbutton);
+      expect(getByTestId("add-review-form")).toBeVisible();
+    });
+
+    it('should display form-fields when form modal window opens', () => {
+      const {getByText} = render(<Form handleCloseForm={() => {}} metaData={mockMetaData}/>);
+      expect(getByText("WRITE YOUR REVIEW")).toBeVisible();
+      expect(getByText("About the Camo Onesie")).toBeVisible();
+      expect(getByText("Overall rating")).toBeVisible();
+      expect(getByText("Do you recommend this product?")).toBeVisible();
+      expect(getByText("Characteristics")).toBeVisible();
+      expect(getByText("Review Summary")).toBeVisible();
+      expect(getByText("Review Body")).toBeVisible();
+      expect(getByText("Upload your photos")).toBeVisible();
+      expect(getByText("What is your nickname?")).toBeVisible();
+      expect(getByText("Your email")).toBeVisible();
+    });
+
+    it('should display stars in form to select rating', () => {
+      const {getByTestId} = render(<Form handleCloseForm={() => {}} metaData={mockMetaData}/>);
+      expect(getByTestId("star1")).toBeVisible();
+      expect(getByTestId("star2")).toBeVisible();
+      expect(getByTestId("star3")).toBeVisible();
+      expect(getByTestId("star4")).toBeVisible();
+      expect(getByTestId("star5")).toBeVisible();
+    });
+
+    it('should display yes and no radio buttons for recommendations', () => {
+      const {getByTestId} = render(<Form handleCloseForm={() => {}} metaData={mockMetaData}/>);
+      expect(getByTestId("radio-yes")).toBeVisible();
+      expect(getByTestId("radio-no")).toBeVisible();
+    });
+
+    it('should display five radio buttons for characteristics', () => {
+      const {getByTestId} = render(<Form handleCloseForm={() => {}} metaData={mockMetaData}/>);
+      expect(getByTestId("radio1")).toBeVisible();
+      expect(getByTestId("radio2")).toBeVisible();
+      expect(getByTestId("radio3")).toBeVisible();
+      expect(getByTestId("radio4")).toBeVisible();
+      expect(getByTestId("radio5")).toBeVisible();
+    });
+
+    it('should update form review body when review body input is typed by user' , () => {
+      const {getByPlaceholderText} = render(<Form handleCloseForm={() => {}} metaData={mockMetaData}/>);
+      const input = getByPlaceholderText("Why did you like the product or not?");
+      fireEvent.change(input, {target: {value: 'testing review body content'}});
+      expect(input.value).toBe('testing review body content');
+    });
+
+    it('should update form review summary when review summary input is typed by user' , () => {
+      const {getByPlaceholderText} = render(<Form handleCloseForm={() => {}} metaData={mockMetaData}/>);
+      const input = getByPlaceholderText("Example: Best purchase ever!");
+      fireEvent.change(input, {target: {value: 'testing review summary content'}});
+      expect(input.value).toBe('testing review summary content');
+    });
+
+    it('should update nickname when nickname input is typed by user' , () => {
+      const {getByPlaceholderText} = render(<Form handleCloseForm={() => {}} metaData={mockMetaData}/>);
+      const input = getByPlaceholderText("Example: jackson11!");
+      fireEvent.change(input, {target: {value: 'testing nickname content'}});
+      expect(input.value).toBe('testing nickname content');
+    });
+
+    it('should update email when email input is typed by user' , () => {
+      const {getByPlaceholderText} = render(<Form handleCloseForm={() => {}} metaData={mockMetaData}/>);
+      const input = getByPlaceholderText("Example: jackson11@email.com");
+      fireEvent.change(input, {target: {value: 'testing email content'}});
+      expect(input.value).toBe('testing email content');
     });
 
   });
