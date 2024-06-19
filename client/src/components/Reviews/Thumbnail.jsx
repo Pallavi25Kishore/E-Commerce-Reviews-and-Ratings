@@ -17,7 +17,7 @@ const Thumbnail = ({photo}) => {
 
   return (
     <>
-    <img src={photo.url} style={{height: '50px', width: '50px', borderRadius: '10%'}} onClick={handleThumbnailClick} data-testid="photo-thumbnail" alt="review photo in thumbnail"></img>
+    <img src={photo.url} style={{height: '50px', width: '50px', borderRadius: '10%', margin: '5px'}} onClick={handleThumbnailClick} data-testid="photo-thumbnail" alt="review photo in thumbnail"></img>
     {modalOpen? <Modal photo={photo} handleCrossClick={handleCrossClick}/> : null}
     </>
   );
