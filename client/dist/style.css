@@ -209,6 +209,12 @@ margin-top: 10px
   width: 200px;
 }
 
+.name-and-date {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 /*Michael*/
 .product-view {
   display: flex;
