@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>7/9</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>7/9</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -100,9 +100,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -110,14 +110,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,10 +132,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {useState, useRef, useEffect} from 'react';
 import AddQuestionForm from './AddQuestionForm.jsx';
 &nbsp;
-export default function <span class="fstat-no" title="function not covered" >QuestionFormModal(</span>props) {
-    const handleCloseForm = <span class="cstat-no" title="statement not covered" >props.handleCloseForm;</span>
-    const modalRef = <span class="cstat-no" title="statement not covered" >useRef(null);</span>
-<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+export default function QuestionFormModal(props) {
+    const handleCloseForm = props.handleCloseForm;
+    const modalRef = useRef(null);
+    useEffect(() =&gt; {
         function <span class="fstat-no" title="function not covered" >handleClickOutside(</span>event) {
 <span class="cstat-no" title="statement not covered" >            if (modalRef.current &amp;&amp; !modalRef.current.contains(event.target)) {</span>
 <span class="cstat-no" title="statement not covered" >                handleCloseForm();</span>
@@ -143,14 +143,14 @@ export default function <span class="fstat-no" title="function not covered" >Que
         }
 &nbsp;
         // Bind the event listener
-<span class="cstat-no" title="statement not covered" >        document.addEventListener("mousedown", handleClickOutside);</span>
-<span class="cstat-no" title="statement not covered" >        return <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+        document.addEventListener("mousedown", handleClickOutside);
+        return () =&gt; {
             // Unbind the event listener on clean up
-<span class="cstat-no" title="statement not covered" >            document.removeEventListener("mousedown", handleClickOutside);</span>
+            document.removeEventListener("mousedown", handleClickOutside);
         };
     },[])
     
-<span class="cstat-no" title="statement not covered" >    return (</span>
+    return (
     &lt;div className='modal'&gt;
         &lt;div className='modal-content' data-testid = "form-modal-container"&gt;
             &lt;div className='formCrossButtonContainer'&gt;
@@ -169,7 +169,7 @@ export default function <span class="fstat-no" title="function not covered" >Que
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-17T23:21:37.018Z
+                at 2024-06-19T00:24:39.383Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

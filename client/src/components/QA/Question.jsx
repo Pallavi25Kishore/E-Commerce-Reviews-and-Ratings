@@ -30,12 +30,12 @@ export default function Question(props) {
             <div className='Single_question'>
                 <strong className='left-qeustion'>Q: {question} </strong>
                 <div className='right-help'>
-                <span className='Helpfuless'> Helpful? </span>
+                <span className='Helpfuless'>Helpful?</span>
                 &nbsp;
-                <span className="QA_helpful Helpfuless" data-testid="yes" onClick={handleYesClick} >Yes</span>
-                <span className="QA_helpful Helpfuless">|</span>
-                <span data-testid="count" className='Helpfuless'>{`(${helpful})`}</span>
-                <Addanswer/>
+                <span className="QA_helpful" data-testid="yes" onClick={handleYesClick} >Yes</span>
+                <span data-testid="count">{`(${helpful})`}</span>
+                <span className="QA_helpful ">|</span>
+                <Addanswer id = {id}/>
                 </div>
             </div>
             

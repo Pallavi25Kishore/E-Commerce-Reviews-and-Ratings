@@ -28,30 +28,32 @@ export default function AnswerList(props) {
                 console.log('Error in updating helpfulness count', err);
             });
     };
-    console.log(props.name)
      const handleReportClick = () => {
         setReport(!report);
 
-        // axios.put(`${BASE_URL}qa/answers/${props.answer_id}/report`, {}, { headers: { "Authorization": API_KEY } })
-        //     .then((response) => {
-        //         console.log('Report success');
-        //     })
-        //     .catch((err) => {
-        //         console.log('Error in reporting an answer', err);
-        //     });
+        axios.put(`${BASE_URL}qa/answers/${props.answer_id}/report`, {}, { headers: { "Authorization": API_KEY } })
+            .then((response) => {
+                console.log('Report success');
+            })
+            .catch((err) => {
+                console.log('Error in reporting an answer', err);
+            });
     };
 
 
-    return <>
-        <span>{isSeller ? <strong>{props.name}</strong> : props.name}</span>
+    return <div className="Answer">
+       
+        <span className="Answer_Helpfuless">by {isSeller ? <strong>{props.name}</strong> : props.name}</span>
         <IsoConvert isoDate={props.isoDate} />
+
         <span>  |  </span>
+        <div className="Answer_Helpfuless">
         <span>Helpful? </span>
-        &nbsp;
         <span className= "QA_helpful" data-testid="yes" onClick={handleYesClick} >Yes</span>
         
         <span data-testid="count">{`(${helpfulness})`}</span>
+        </div>
         <span>  |  </span>
-        <a className= "QA_helpful" onClick={handleReportClick}> {report ? <>Reported</> : <>Report</> }</a>
-    </>
+        <a className= "QA_helpful Answer_Helpfuless" onClick={handleReportClick}> {report ? <>Reported</> : <>Report</> }</a>
+    </div>
 }

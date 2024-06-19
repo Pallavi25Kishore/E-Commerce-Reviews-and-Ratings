@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">64.28% </span>
+                <span class="strong">86.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/14</span>
+                <span class='fraction'>13/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">58.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/12</span>
+                <span class='fraction'>7/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/7</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.23% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/13</span>
+                <span class='fraction'>12/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -124,40 +124,42 @@
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -203,8 +205,8 @@ export default function Answer(props) {
             {
                 headers: { "Authorization": API_KEY }
             }
-        ).then(<span class="fstat-no" title="function not covered" >fu</span>nction (respoonse) {
-<span class="cstat-no" title="statement not covered" >            setanswerLists(respoonse.data.results.sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; <span class="cstat-no" title="statement not covered" >b.helpfulness - a.helpfulness)</span>);</span>
+        ).then(function (respoonse) {
+            setanswerLists(respoonse.data.results.sort((a, b) =&gt; b.helpfulness - a.helpfulness));
         }).catch(function (err) {
             console.log(err);
         })
@@ -213,31 +215,32 @@ export default function Answer(props) {
 <span class="cstat-no" title="statement not covered" >        e.preventDefault();</span>
 <span class="cstat-no" title="statement not covered" >        setShowMore(!showMore)</span>
     }
+    console.log(answerLists)
     return (
         &lt;&gt;
             &lt;div&gt;
-                {answerLists.slice(0, showMore ? <span class="branch-0 cbranch-no" title="branch not covered" >answerLists.length </span>: 2).map(<span class="fstat-no" title="function not covered" >(a</span>nswerList, id) =&gt; (
+                {answerLists.slice(0, showMore ? <span class="branch-0 cbranch-no" title="branch not covered" >answerLists.length </span>: 2).map((answerList, id) =&gt; (
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                    &lt;div key={id}</span>
+                    &lt;div key={id}
                     style={{
-                        maxHeight: showMore ? '50vh' : 'auto',
-                        overflowY: showMore ? 'scroll' : 'hidden',
-                        border: showMore ? '1px solid #ccc' : 'none'
+                        maxHeight: showMore ? <span class="branch-0 cbranch-no" title="branch not covered" >'50vh' </span>: 'auto',
+                        overflowY: showMore ? <span class="branch-0 cbranch-no" title="branch not covered" >'scroll' </span>: 'hidden',
+                        border: showMore ? <span class="branch-0 cbranch-no" title="branch not covered" >'1px solid #ccc' </span>: 'none'
                     }}
                     &gt;
 &nbsp;
                         &lt;ul&gt;
                             &lt;li data-testid="test-list"&gt;
                                 &lt;AnswerBody body={answerList.body} /&gt;
-                                &lt;span data-testid="test-single-answer"&gt;by&amp;nbsp;&lt;AnswerList name={answerList.answerer_name} answer_id={answerList.answer_id} helpfulness={answerList.helpfulness} isoDate={answerList.date}
-                                /&gt;
-                                    &amp;nbsp; &lt;/span&gt;
+                                &lt;span data-testid="test-single-answer"&gt;
+                                    &lt;AnswerList name={answerList.answerer_name} answer_id={answerList.answer_id} helpfulness={answerList.helpfulness} isoDate={answerList.date}/&gt;
+                                    &lt;/span&gt;
                                 &lt;Photo data-testid="test-photo-list" photo={answerList.photos} /&gt;
                             &lt;/li&gt;
                         &lt;/ul&gt;
                     &lt;/div&gt;
                 ))}
-                {answerLists.length &gt; 2 &amp;&amp; (<span class="branch-1 cbranch-no" title="branch not covered" >&lt;strong className="QA_helpful" onClick={handleClick}&gt;{showMore ? 'Collapse answers' : 'LOAD MORE ANSWERS '}&lt;/strong&gt;)</span>}
+                {answerLists.length &gt; 2 &amp;&amp; (&lt;span className="Load_more" onClick={handleClick}&gt;{showMore ? <span class="branch-0 cbranch-no" title="branch not covered" >'Collapse answers' </span>: 'LOAD MORE ANSWERS '}&lt;/span&gt;)}
 &nbsp;
             &lt;/div&gt;
             
@@ -253,7 +256,7 @@ export default function Answer(props) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-17T23:21:37.018Z
+                at 2024-06-19T00:24:39.383Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
