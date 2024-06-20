@@ -1,7 +1,6 @@
 import React from "react";
 import AnswerForm from "./AnswerForm.jsx";
-export default function AnswerModal(props) {
-    const handleCloseForm = props.handleCloseForm
+export default function AnswerModal({handleCloseForm, id}) {
     return (
         <div className='modal'>
         <div className='modal-content' data-testid = "form-modal-container">
@@ -9,7 +8,7 @@ export default function AnswerModal(props) {
                 <button aria-label="close-form" onClick={handleCloseForm} className="close">&#10005;</button>
             </div>
             <div className='modal-content'>
-                <AnswerForm closeForm = {handleCloseForm}/>
+                <AnswerForm closeForm = {handleCloseForm}  id = {id}/>
             </div>
         </div>
     </div>

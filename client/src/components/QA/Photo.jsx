@@ -9,15 +9,16 @@ export default function Photo(props) {
     return (
         props.photo ? (
             <>
-                <p>Yes, as you can see in these photo</p>
-
+                <p >Yes, as you can see in these photo</p>
+                <div className="photo_layout">
                 {props.photo.map((photo ,id) => (
                     (
-                        <div key = {id}>
+                        <div key = {id} className="QA_photo">
                             <Thumbnail data-testid= 'photo' photo = {photo} />
                         </div>
                     )
                 ))}
+                </div>
             </>
         ) : (
             <></>

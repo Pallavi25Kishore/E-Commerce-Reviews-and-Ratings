@@ -25,22 +25,8 @@ const QuestionList = function (props) {
                 console.log(err);
             })
     }, []);
-
-    const modalRef = useRef();
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (modalRef.current && !modalRef.current.contains(event.target)) {
-                closeForm(false);
-            }
-        }
-
-        // Bind the event listener
-        document.addEventListener("click", handleClickOutside, true);
-        return () => {
-            // Unbind the event listener on clean up
-            document.removeEventListener("click", handleClickOutside);
-        };
-    },[])
+    console.log(questionLists)
+  
     const filterQuestion = (searchKey && searchKey.length>= 3) ? questionLists.filter(question => question.question_body.toLowerCase().includes(searchKey.toLowerCase())) : questionLists
 
     return (
@@ -59,8 +45,8 @@ const QuestionList = function (props) {
                 )
                 )}
             </div>
-            <div>
-            {questionLists.length > 2 ? <button data-testid="test-button" onClick={()=>{setshowAll(!showAll)}}> {showAll ? 'Collapse answers' : 'MORE ANSWEREDED QUESTION' }</button> : <></>}
+            <div className='button_layout'>
+            {questionLists.length > 2 ? <button className='button1' data-testid="test-button" onClick={()=>{setshowAll(!showAll)}}> {showAll ? 'Collapse answers' : 'MORE ANSWEREDED QUESTION' }</button> : <></>}
            <AddQuestionModal />
             </div>
         </div>

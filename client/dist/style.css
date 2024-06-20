@@ -423,7 +423,7 @@ margin-top: 10px
   color: #888;
 }
 .Question_Body {
-  padding: 30px 0 0px 20px;
+  padding: 30px 0 0px 30px;
   position: relative;
 }
 .QA_helpful {
@@ -433,7 +433,6 @@ margin-top: 10px
 .Single_question {
   display: flex;
   justify-content: space-between;
-  
 }
 .right-help {
   display: flex;
@@ -441,12 +440,60 @@ margin-top: 10px
   padding-right: 5%;
 }
 .Helpfuless {
-  padding-left: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
-.Answer_body {
-  padding-top: 15px;
-}
-.single_answer {
+.Answer {
   display: flex;
-  justify-content:flex-start;
+  font-family: "adobe-clean", sans-serif;
+  color: #888;
+}
+.Answer_Helpfuless {
+  padding-left: 5px;
+  padding-right: 15px;
+}
+.photo_layout {
+  display: flex;
+  justify-content: flex-start;
+}
+.QA_photo {
+  padding: 0, 15px 0 20px;
+  border-radius: 3%;
+  padding-right: 20px;
+}
+
+.Load_more {
+  cursor:pointer;
+  font-size: 13px;
+  justify-content: flex-start;
+  font-weight: lighter;
+}
+
+.button_layout {
+  display: flex;
+  justify-content: flex-start;
+}
+.button1 {
+  font-size: 20px;
+  padding: 15px 30px;
+  border: 2px solid white;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+}
+.button2 {
+  font-size: 20px;
+  padding: 15px 30px;
+  border: 2px solid white;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+}
+.button1:hover  {
+  background-color: #0056b3;
+}
+.button2:hover  {
+  background-color: #0056b3;
 }

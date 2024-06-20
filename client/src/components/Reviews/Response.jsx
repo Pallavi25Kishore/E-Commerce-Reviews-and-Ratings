@@ -6,7 +6,7 @@ const Response = ({response}) => {
     <div>
     {
       (response) ?
-      <div>Response: <br></br> {response}</div>
+      <div className="review-response-from-seller">Response: <br></br> {response}</div>
       : null
     }
     </div>

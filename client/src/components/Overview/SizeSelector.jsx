@@ -6,8 +6,7 @@ const SizeSelector = ({ sizes, onSelectSize }) => {
   };
 
   return (
-    <div className="size-selector">
-      <h3>Select Size</h3>
+    <div className="size-selector" data-testid="size-selector">
       <select onChange={handleChange} defaultValue="">
         <option value="" disabled>Select Size</option>
         {sizes.map((size) => (

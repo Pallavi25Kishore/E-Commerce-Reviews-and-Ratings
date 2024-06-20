@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">75% </span>
-                <span class="quiet">Lines</span>
+                <span class="quiet">Functions</span>
                 <span class='fraction'>3/4</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">87.5% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>7/8</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -86,15 +86,29 @@
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -109,24 +123,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 &nbsp;
-const StyleSelector = ({ styles, onSelectStyle }) =&gt; {
+const StyleSelector = ({ styles, selectedStyleId, onSelectStyle }) =&gt; {
+  // Split styles into rows of 3
+  const rows = [];
+  for (let i = 0; i &lt; styles.length; i += 5) {
+    rows.push(styles.slice(i, i + 5));
+  }
+&nbsp;
   return (
     &lt;div className="style-selector"&gt;
-      &lt;h3&gt;Select Style&lt;/h3&gt;
-      &lt;div className="thumbnails"&gt;
-        {styles.map((style) =&gt; (
-          &lt;div
-            key={style.style_id}
-            className={`thumbnail ${style['default?'] ? 'selected' : ''}`}
-            onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >onSelectStyle(style)}</span>
-            style={{ backgroundImage: `url(${style.photos[0].thumbnail_url})` }}
-          &gt;
-            {style['default?'] &amp;&amp; &lt;span className="checkmark"&gt;✔&lt;/span&gt;}
-          &lt;/div&gt;
-        ))}
-      &lt;/div&gt;
+      {rows.map((row, rowIndex) =&gt; (
+        &lt;div className="thumbnail-row" key={rowIndex} role="row"&gt;
+          {row.map((style) =&gt; (
+            &lt;div
+              key={style.style_id}
+              className={`style-thumbnail ${style.style_id === selectedStyleId ? 'selected' : ''}`}
+              onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >onSelectStyle(style)}</span>
+              style={{ backgroundImage: `url(${style.photos[0].thumbnail_url})` }}
+              data-testid={`style-thumbnail-${style.style_id}-${rowIndex}`}
+            &gt;
+              {style.style_id === selectedStyleId}
+            &lt;/div&gt;
+          ))}
+        &lt;/div&gt;
+      ))}
     &lt;/div&gt;
   );
 };
@@ -139,7 +163,7 @@ export default StyleSelector;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-17T23:21:37.018Z
+                at 2024-06-19T03:51:06.347Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

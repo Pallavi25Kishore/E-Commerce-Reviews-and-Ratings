@@ -29,29 +29,31 @@ export default function AnswerList(props) {
             });
     };
     console.log(props.name)
-    const handleReportClick = () => {
+     const handleReportClick = () => { 
         setReport(!report);
 
-        // axios.put(`${BASE_URL}qa/answers/${props.answer_id}/report`, {}, { headers: { "Authorization": API_KEY } })
-        //     .then((response) => {
-        //         console.log('Report success');
-        //     })
-        //     .catch((err) => {
-        //         console.log('Error in reporting an answer', err);
-        //     });
+        axios.put(`${BASE_URL}qa/answers/${props.answer_id}/report`, {}, { headers: { "Authorization": API_KEY } })
+            .then((response) => {
+                console.log('Report success');
+            })
+            .catch((err) => {
+                console.log('Error in reporting an answer', err);
+            });
     };
 
 
-    return <>
-        <div className="single_answer">
-            <span className="Helpfuless">by {isSeller ? <strong>{props.name}</strong> : props.name}</span>
-            <IsoConvert isoDate={props.isoDate} />
-            <span className="Helpfuless">  |  </span>
-            <span className="Helpfuless">Helpful? </span>
-            <span  data-testid="yes" onClick={handleYesClick} >Yes</span>
-            <span data-testid="count">{`(${helpfulness})`}</span>
-            <span className="Helpfuless">  |  </span>
-            <a className="Helpfuless" onClick={handleReportClick}> {report ? <>Reported</> : <>Report</>}</a>
+    return <div className="Answer">
+        <span className="Answer_Helpfuless">by {isSeller ? <strong>{props.name}</strong> : props.name}</span>
+        <IsoConvert isoDate={props.isoDate} />
+
+        <span>  |  </span>
+        <div className="Answer_Helpfuless">
+        <span>Helpful? </span>
+        <span className= "QA_helpful" data-testid="yes" onClick={handleYesClick} >Yes</span>
+        
+        <span data-testid="count">{`(${helpfulness})`}</span>
         </div>
-    </>
+        <span>  |  </span>
+        <a className= "QA_helpful Answer_Helpfuless" onClick={handleReportClick}> {report ? <>Reported</> : <>Report</> }</a>
+    </div>
 }
