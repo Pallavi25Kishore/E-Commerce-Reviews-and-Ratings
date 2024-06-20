@@ -40,8 +40,8 @@ const ProductInfo = ({ currentProduct }) => {
 
   return (
     <div className="product-info">
-      <h2>{category}</h2>
-      <h1>{name}</h1>
+      <p className="product-category">{category}</p>
+      <p className="product-name">{name}</p>
       <StarRating rating={roundedAvgRatingNumber}/>
       <h3>{slogan}</h3>
       {/*If sale price is defined, display it in red and cross out original price and set*/}

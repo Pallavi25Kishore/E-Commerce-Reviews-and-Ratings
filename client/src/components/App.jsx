@@ -17,7 +17,7 @@ const App = () => {
     const loadProduct = async () => {
       const products = await fetchProducts();
       if (products.length > 0) {
-        setProductId(40380);
+        setProductId(products[2].id);
       }
     };
     loadProduct();

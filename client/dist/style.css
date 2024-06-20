@@ -1,3 +1,6 @@
+body {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 /*Pallavi*/
 .modalOverlay, .formModalOverlay { /*reviewbody - modal window and addreivew - form modal window*/
   position: fixed;
@@ -67,8 +70,9 @@
 
 .one, .two, .three, .four, .five { /*rating breakdown bars */
   display: flex;
-  width: 290px;
-  justify-content: space-evenly
+  width: 300px;
+  justify-content: space-evenly;
+
 
 }
 
@@ -514,6 +518,16 @@ ul {
   cursor: pointer;
   margin: 15px;
 }
+.product-category {
+  font-size:25px;
+}
+.product-name {
+  font-size:50px;
+}
+.share-logo {
+  margin: 20px;
+}
+
 
 /*Q&A css style*/
 .box {
