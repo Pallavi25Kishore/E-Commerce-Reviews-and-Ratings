@@ -7,16 +7,12 @@ import Reviews from "./Reviews/Reviews.jsx";
 
 
 const App =() =>{
-const [getProduct, setgetProduct] = useState(null);
-console.log(getProduct)
+const id = 40347;
 return <>
-    <ProductView setgetProduct = {setgetProduct}/>
-    { getProduct ? (
-        <>
-    <QuestionList id = {getProduct.id}/>
-    <Reviews id = {getProduct.id}/>
-    </>) : null
-    }
+    <ProductView />
+    
+    <QuestionList id = {id}/>
+    <Reviews/>
     </>
 }
 

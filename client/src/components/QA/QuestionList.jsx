@@ -47,7 +47,7 @@ const QuestionList = function ({id}) {
                 )}
             </div>
             <div className='button_layout'>
-            {questionLists.length > 2 ? <button className='button1' data-testid="test-button" onClick={()=>{setshowAll(!showAll)}}> {showAll ? 'Collapse answers' : 'MORE ANSWEREDED QUESTION' }</button> : <></>}
+            {questionLists.length > 2 ? <button className='button1' data-testid="test-button" onClick={()=>{setshowAll(!showAll)}}> {showAll ? 'Collapse answers' : 'MORE ANSWERED QUESTION' }</button> : <></>}
            <AddQuestionModal id={id}/>
             </div>
         </div>

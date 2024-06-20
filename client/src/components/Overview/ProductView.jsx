@@ -8,7 +8,7 @@ import fetchProduct from './ProductController';
 import fetchProducts from './ProductListController';
 import fetchStyles from './StyleController';
 
-const ProductView = ({setgetProduct}) => {
+const ProductView = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState("");
@@ -23,9 +23,9 @@ const ProductView = ({setgetProduct}) => {
       console.log(products);
       if (products.length > 0) {
         const firstProductId = products[3].id;
+        console.log(firstProductId)
         const fetchedProduct = await fetchProduct(firstProductId);
         setCurrentProduct(fetchedProduct);
-        setgetProduct(fetchedProduct);
         const fetchedStyles = await fetchStyles(firstProductId);
         setStyles(fetchedStyles);
         setSelectedStyle(fetchedStyles[0]);
