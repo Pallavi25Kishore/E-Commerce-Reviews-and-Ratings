@@ -9,7 +9,7 @@ const QuestionList = function ({productId}) {
     const [questionLists, setQuestionLists] = useState([]);
     const [searchKey, setsearchKey] = useState('');
     const [showAll, setshowAll] = useState(false);
-    
+
     const URL = `${BASE_URL}qa/questions/`
     console.log("this is in questionlist", productId)
     useEffect(() => {
@@ -27,7 +27,7 @@ const QuestionList = function ({productId}) {
             })
     }, [productId]);
     console.log(questionLists)
-  
+
     const filterQuestion = (searchKey && searchKey.length>= 3) ? questionLists.filter(question => question.question_body.toLowerCase().includes(searchKey.toLowerCase())) : questionLists
 
     return (
@@ -39,7 +39,7 @@ const QuestionList = function ({productId}) {
 
                     <div key = {id}>
                         <Question  data-testid="test-question" question={questionList.question_body} helpfulness = {questionList.question_helpfulness} id = {questionList.question_id}
-                        /> 
+                        />
                         <Answer data-testid = "test-answer" id = {questionList.question_id}/>
                     </div>
 
