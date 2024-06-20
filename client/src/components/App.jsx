@@ -17,8 +17,9 @@ const App = () => {
   useEffect(() => {
     const loadProduct = async () => {
       const products = await fetchProducts();
+      console.log(products);
       if (products.length > 0) {
-        setProductId(products[2].id);
+        setProductId(40351);
       }
     };
     loadProduct();
