@@ -1,5 +1,4 @@
 import React from 'react';
-import Share from './Share.jsx';
 import StarRating from "../Reviews/StarRating.jsx";
 import axios from 'axios';
 import {useState, useEffect} from 'react';
@@ -11,11 +10,7 @@ const ProductInfo = ({ currentProduct }) => {
     name,
     default_price,
     sale_price,
-    description,
     slogan,
-    features,
-    rating,
-    reviewCount,
   } = currentProduct;
   const [metaData, setMetaData] = useState('');
 
@@ -56,21 +51,8 @@ const ProductInfo = ({ currentProduct }) => {
           <span style={{ textDecoration: 'line-through' }}>${default_price}</span>
         </p>
       ) : (
-
         <p>${default_price}</p>
       )}
-      <strong></strong>{description && <p>{description}</p>}
-      <strong></strong>
-      {features && (
-        <ul>
-          {features.map((feature, index) => (
-            <div key={index}>
-              <div><strong>{feature.feature}:</strong></div><div>{feature.value}</div>
-            </div>
-          ))}
-        </ul>
-      )}
-      <Share />
     </div>
   );
 };

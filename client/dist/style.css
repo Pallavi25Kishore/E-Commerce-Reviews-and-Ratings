@@ -233,10 +233,25 @@ input::placeholder {
 }
 
 /*Michael*/
+ul {
+  list-style-type: none;
+}
+
+img {
+  max-width: 200px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .product-view {
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  background-color: #fff;
+
+  margin: 20px auto;
+  border-radius: 5px;
 }
 
 .left-column {
@@ -263,6 +278,7 @@ input::placeholder {
   cursor: pointer;
   border: 1px solid #ddd;
   margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 .big-image.zoomed {
@@ -284,7 +300,23 @@ input::placeholder {
   cursor: pointer;
   border: 1px solid #ddd;
   transition: transform 0.2s;
+  border-radius: 5px;
 }
+
+.thumbnail-row {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 10px;
+}
+
+.thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.thumbnail.selected {
+  border: 2px solid #000;
+}
+
 .style-thumbnail {
   width: 80px;
   height: 80px;
@@ -296,24 +328,13 @@ input::placeholder {
   transition: transform 0.2s;
   border-radius: 50%;
 }
-.thumbnail-row {
-  display: flex;
-  justify-content: start;
-  margin-bottom: 10px;
-}
 
-.thumbnail:hover {
-  transform: scale(1.05);
-}
 .style-thumbnail:hover {
   transform: scale(1.05);
 }
 
-.thumbnail.selected {
-  border: 1px solid black;
-}
 .style-thumbnail.selected {
-  border: 1px solid black;
+  border: 2px solid #000;
 }
 
 .arrow-button {
@@ -325,6 +346,8 @@ input::placeholder {
   cursor: pointer;
   font-size: 24px;
   z-index: 1;
+  padding: 10px;
+  border-radius: 50%;
 }
 
 .arrow-button.left {
@@ -392,25 +415,22 @@ input::placeholder {
 }
 
 .expanded-thumbnail.selected {
-  border: 1px solid black;
+  border: 2px solid #000;
 }
 
 .product-info {
   margin-bottom: 20px;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .product-info h1 {
   margin: 0;
   font-size: 24px;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .product-info .price {
   font-size: 20px;
   color: #b12704;
   margin-top: 10px;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Selectors and Add to Cart */
@@ -418,6 +438,7 @@ input::placeholder {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-size: 24px;
 }
 
 .selectors-row {
@@ -429,6 +450,9 @@ input::placeholder {
 .selectors select {
   padding: 10px;
   font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  cursor: pointer;
 }
 
 .add-to-cart {
@@ -438,15 +462,16 @@ input::placeholder {
 .add-to-cart button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #f0c14b;
+  background-color: #ffd700;
   border: 1px solid #a88734;
   cursor: pointer;
   transition: background-color 0.3s;
   margin-bottom: 40px;
+  border-radius: 5px;
 }
 
 .add-to-cart button:hover {
-  background-color: #ddb347;
+  background-color: #f0c14b;
 }
 
 /* Style Selector */
@@ -456,12 +481,6 @@ input::placeholder {
 }
 
 .style-selector h3 {
-  margin-bottom: 10px;
-}
-
-.thumbnail-row {
-  display: flex;
-  justify-content: start;
   margin-bottom: 10px;
 }
 
@@ -482,10 +501,19 @@ input::placeholder {
 .quantity-selector h3 {
   margin-bottom: 10px;
 }
-
-
-
-
+.product-description {
+  text-align: center;
+  font-size: 18px;
+}
+.next-button{
+  font-size: 14px;
+  padding: 8px 16px;
+  border: 2px solid white;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+}
 
 /*Q&A css style*/
 .box {
