@@ -28,7 +28,6 @@ export default function AnswerList(props) {
                 console.log('Error in updating helpfulness count', err);
             });
     };
-    console.log(props.name)
      const handleReportClick = () => { 
         setReport(!report);
 

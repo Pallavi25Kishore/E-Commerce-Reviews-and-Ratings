@@ -26,7 +26,6 @@ export default function Answer(props) {
         e.preventDefault();
         setShowMore(!showMore)
     }
-    console.log(answerLists)
     return (
         <>
             <div className='Answer_body'>
