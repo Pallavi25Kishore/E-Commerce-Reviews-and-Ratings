@@ -12,7 +12,7 @@ export default function AddQuestion({id}) {
     }
 
     return (<div className="add-Question-button">
-        <button className= 'button2' onClick={handleAddQuestionClick}>ADD A QUESIONTION +</button>
+        <button className= 'button2' onClick={handleAddQuestionClick}>ADD A QUESTION +</button>
         {FormOpen ? <FormModal handleCloseForm = {handleCloseForm} id = {id}/> : null}
     </div>
     )
