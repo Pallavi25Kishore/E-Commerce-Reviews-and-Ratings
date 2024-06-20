@@ -12,7 +12,7 @@ export default function QuestionFormModal(props) {
                 <button aria-label="close-form" onClick={handleCloseForm} className="close">&#10005;</button>
             </div>
             <div className='modal-content'>
-                <AddQuestionForm closeForm = {handleCloseForm}/>
+                <AddQuestionForm closeForm = {handleCloseForm} id = {props.id}/>
             </div>
         </div>
     </div>
