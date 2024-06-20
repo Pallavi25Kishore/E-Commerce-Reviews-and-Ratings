@@ -5,17 +5,18 @@ import Answer from './Answer.jsx';
 import Search from './Search.jsx';
 import Question from './Question.jsx';
 import AddQuestionModal from './AddQuestionModal.jsx';
-const QuestionList = function (props) {
+const QuestionList = function ({id}) {
     const [questionLists, setQuestionLists] = useState([]);
     const [searchKey, setsearchKey] = useState('');
     const [showAll, setshowAll] = useState(false);
     const [openModal, setopenModal] = useState(false);
     const URL = `${BASE_URL}qa/questions`;
+    console.log(id)
     useEffect(() => {
         axios.get(URL, {
             headers: { "Authorization": API_KEY },
             params: {
-                product_id: 40368
+                product_id: id
             }
         })
             .then(function (response) {

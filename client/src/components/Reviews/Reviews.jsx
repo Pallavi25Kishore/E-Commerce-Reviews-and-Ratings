@@ -10,7 +10,7 @@ import SearchFilter from "./SearchFilter.jsx";
 import CountFilterReviewsList from "./CountFilterReviewsList.jsx";
 
 
-const Reviews = () => { //pass product_id and product name as prop from App - DO LATER - use for both get requests - reviews and metadata
+const Reviews = ({id}) => { //pass product_id and product name as prop from App - DO LATER - use for both get requests - reviews and metadata
 
   //for now using product name - Camo Onesie - pass name as prop once consolidate code - pass till Form.jsx
 
@@ -29,7 +29,7 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
 //Using hard coded example data for now - CHANGE LATER for initial mounting
 
   const fetchReviewsList = (sort = currentSort, count = totalReviews) => {
-    axios.get(`${BASE_URL}reviews?page=1&count=${count}&sort=${sort}&product_id=40380`, {headers: {Authorization : API_KEY}})
+    axios.get(`${BASE_URL}reviews?page=1&count=${count}&sort=${sort}&product_id=${id}`, {headers: {Authorization : API_KEY}})
     .then((response) => {
       setCurrentProductReviews(response.data.results);
     })

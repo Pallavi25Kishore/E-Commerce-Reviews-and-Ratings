@@ -8,7 +8,7 @@ import fetchProduct from './ProductController';
 import fetchProducts from './ProductListController';
 import fetchStyles from './StyleController';
 
-const ProductView = () => {
+const ProductView = ({setgetProduct}) => {
   const [currentProduct, setCurrentProduct] = useState(null);
   const [styles, setStyles] = useState([]);
   const [selectedStyle, setSelectedStyle] = useState("");
@@ -16,16 +16,16 @@ const ProductView = () => {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [availableSizes, setAvailableSizes] = useState([]);
   const [maxQuantity, setMaxQuantity] = useState(0);
-
   useEffect(() => {
     const loadProduct = async () => {
 
       const products = await fetchProducts();
+      console.log(products);
       if (products.length > 0) {
-        const firstProductId = products[0].id;
+        const firstProductId = products[3].id;
         const fetchedProduct = await fetchProduct(firstProductId);
         setCurrentProduct(fetchedProduct);
-
+        setgetProduct(fetchedProduct);
         const fetchedStyles = await fetchStyles(firstProductId);
         setStyles(fetchedStyles);
         setSelectedStyle(fetchedStyles[0]);
