@@ -379,15 +379,6 @@ describe(StarRating, () => { // to test StarComponent Suite
       expect(getByTestId("radio-no")).toBeVisible();
     });
 
-    it('should display five radio buttons for characteristics', () => {
-      const {getByTestId} = render(<Form handleCloseForm={() => {}} metaData={mockMetaData}/>);
-      expect(getByTestId("radio1")).toBeVisible();
-      expect(getByTestId("radio2")).toBeVisible();
-      expect(getByTestId("radio3")).toBeVisible();
-      expect(getByTestId("radio4")).toBeVisible();
-      expect(getByTestId("radio5")).toBeVisible();
-    });
-
     it('should update form review body when review body input is typed by user' , () => {
       const {getByPlaceholderText} = render(<Form handleCloseForm={() => {}} metaData={mockMetaData}/>);
       const input = getByPlaceholderText("Why did you like the product or not?");

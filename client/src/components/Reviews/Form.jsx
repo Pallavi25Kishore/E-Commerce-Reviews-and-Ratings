@@ -1,30 +1,56 @@
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import {BASE_URL, API_KEY} from "../../env/config.js";
 
-const Form = ({handleCloseForm, metaData}) => {         //To do later: render product name dynamically in form - get as prop
+const Form = ({handleCloseForm, metaData, fetchReviewsList}) => {         //To do later: render product name dynamically in form - get as prop
 
   const [reviewBodyText, setReviewBodyText] = useState('');
   const [starFill, setStarFill] = useState([false, false, false, false, false]);
   const [selectedRating, setSelectedRating] = useState('');
   const [applicableCharacteristics, setApplicableCharacteristics] = useState({}); // eg {size: 2, length : null} - 2 means second radio button selected
-  // when working on backend - send all form data including data captured via state first on submit and then re-set state
   const [uploadedPhotos, setUploadedPhotos] = useState([]);
 
   let ratingMeaning = ['1 star - "Poor"', '2 stars - "Fair"', '3 stars - "Average"', '4 stars - "Good"', '5 stars - "Great"'];
 
-  const handleFormSubmission = (event) => { // to log submitted values
+  const handleFormSubmission = (event) => {
     event.preventDefault();
-    // const form = event.target; - TO ACCESS FORM DATA
-    // const formData = new FormData (form);
-    // const formJson = Object.fromEntries(formData.entries());
-    // console.log("overall rating:", selectedRating);
-    // console.log("Do you recommend this product?:", formJson.recommend);
-    // console.log("characteristics:", selectedRating);
-    // console.log("Review Summary:", formJson.summary);
-    // console.log("Review Body:", formJson.body);
-    // console.log("photos", uploadedPhotos);
-    // console.log("Nickname:", formJson.nickname);
-    // console.log("Email:", formJson.email);
-    // handleCloseForm();
+    const form = event.target;
+    const formData = new FormData (form);
+    const formJson = Object.fromEntries(formData.entries());
+
+    var photos;
+    if (uploadedPhotos.length > 5) {
+      photos = uploadedPhotos.slice(0,5);
+    } else {
+      photos = uploadedPhotos;
+    }
+
+    var char = {};
+    for (var key in applicableCharacteristics) {
+      char[metaData['characteristics'][key]['id']] = applicableCharacteristics[key];
+    }
+
+    var data = {
+      product_id: 40380,
+      rating: selectedRating,
+      summary: formJson.summary,
+      body: formJson.body,
+      recommend: Boolean(formJson.recommend),
+      name: formJson.nickname,
+      email: formJson.email,
+      photos: photos,
+      characteristics: char
+    };
+
+    axios.post(`${BASE_URL}reviews`, data, {headers: {Authorization : API_KEY}})
+    .then((response) => {
+      console.log('form data posted');
+      fetchReviewsList();
+      handleCloseForm();
+    })
+    .catch((err) => {
+      console.log('error in posting form data', err);
+    });
   };
 
   const handleReviewBody = (event) => {
@@ -76,11 +102,12 @@ const Form = ({handleCloseForm, metaData}) => {         //To do later: render pr
     setUploadedPhotos(urls);
   };
 
+
   return (
     <div className="modalForm" data-testid="add-review-form">
       <form onSubmit={handleFormSubmission}>
         <div>WRITE YOUR REVIEW</div>
-        <div>About the Camo Onesie</div>
+        <div>About the Product</div>
         <br></br>
         <div className="formHead">Overall rating<sup className="asterix">&#42;</sup></div>
         <div>
