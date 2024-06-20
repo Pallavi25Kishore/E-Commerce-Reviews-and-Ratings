@@ -249,7 +249,7 @@ img {
   justify-content: space-between;
   padding: 20px;
   background-color: #fff;
-
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin: 20px auto;
   border-radius: 5px;
 }
@@ -514,6 +514,16 @@ img {
   cursor: pointer;
   margin: 15px;
 }
+.product-category {
+  font-size:25px;
+}
+.product-name {
+  font-size:50px;
+}
+.share-logo {
+  margin: 20px;
+}
+
 
 /*Q&A css style*/
 .box {
