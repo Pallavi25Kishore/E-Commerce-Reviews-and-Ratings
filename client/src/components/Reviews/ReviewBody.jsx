@@ -19,10 +19,10 @@ const ReviewBody = ({body, photos}) => {
     <>
       {
         (body.length <= 250) ?
-          <div>{body}</div> :
+          <div className="review-body">{body}</div> :
           (showMore) ?
             <>
-              <div>{body}</div>
+              <div className="review-body">{body}</div>
               <span onClick={handleShowLessClick}>...Show Less</span>
             </> :
             <>

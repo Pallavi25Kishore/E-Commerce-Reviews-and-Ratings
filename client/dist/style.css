@@ -135,31 +135,31 @@
 .factor-label { /*factors breakdown component*/
   width: 290px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-bottom: 10px
 }
 
 .ratings-and-reviews { /*overall positioning*/
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
 margin-top: 10px
 }
 
 
-.left-panel { /*overall positioning*/
+.left-panel-reviews { /*overall positioning*/
   width: 30%;
 }
 
-.center-panel { /*overall positioning*/
-  width: 50%;
+.center-panel-reviews { /*overall positioning*/
+  width: 40%;
 }
 
-.review-list {
+.review-list { /*overall positioning*/
   height: 600px;
   overflow: auto
 }
 
-.right-panel { /*overall positioning*/
+.right-panel-reviews { /*overall positioning*/
   width: 10%;
 }
 
@@ -213,6 +213,23 @@ margin-top: 10px
   width: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+.review-response-from-seller {
+  background-color: lightgray;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.review-body {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input::placeholder {
+  color: lightgray;
+  font-style: italic;
 }
 
 /*Michael*/

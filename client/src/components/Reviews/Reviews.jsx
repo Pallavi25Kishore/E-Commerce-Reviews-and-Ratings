@@ -12,7 +12,7 @@ import CountFilterReviewsList from "./CountFilterReviewsList.jsx";
 
 const Reviews = () => { //pass product_id and product name as prop from App - DO LATER - use for both get requests - reviews and metadata
 
-  //for now using product name - Camo Onesie - pass name as prop once consolidate code - pass till Form.jsx
+  //for now using product name - Camo Onesie - pass name as prop once consolidate code - pass till Form.jsx - also pass product id in post request in form
 
   const [currentProductReviews, setCurrentProductReviews] = useState([]);
   const [currentSort, setCurrentSort] = useState('relevant');
@@ -103,10 +103,10 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
     <div>
       <div className="head">REVIEWS & RATINGS</div>
     <div className="ratings-and-reviews">
-        <div className="left-panel">
+        <div className="left-panel-reviews">
             <RatingBreakdown metaData={metaData} handleProgressBarClick={handleProgressBarClick} starFilter={starFilter} removeAllStarFilters={removeAllStarFilters}/>
         </div>
-        <div className="center-panel">
+        <div className="center-panel-reviews">
             <div className="center-upper-sort-and-search-panel">
                 <Sort changeSort={changeSort}/>
                 <SearchBar handleSearchBarChange={handleSearchBarChange}/>
@@ -116,10 +116,10 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
                 {totalReviews > 2 && showMoreReviews ?
                 <button onClick={handleShowMoreReviewsClick}className="more-review-button">More Reviews</button>
                 : null }
-                <AddReview metaData={metaData}/>
+                <AddReview metaData={metaData} fetchReviewsList={fetchReviewsList}/>
             </div>
         </div>
-          <div className="right-panel"></div>
+          <div className="right-panel-reviews"></div>
     </div>
     </div>
   )
