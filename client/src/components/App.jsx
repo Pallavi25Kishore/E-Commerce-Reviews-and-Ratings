@@ -57,7 +57,7 @@ const App = () => {
       <button className="next-button" onClick={handleNextProduct}>Next Product</button>
 
       <QuestionList />
-      <Reviews />
+      {currentProduct ? <Reviews currentProduct={currentProduct}/> : null }
 
     </>
   );
