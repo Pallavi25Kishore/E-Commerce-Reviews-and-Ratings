@@ -1,21 +1,29 @@
 import React from 'react';
 
-const StyleSelector = ({ styles, onSelectStyle }) => {
+const StyleSelector = ({ styles, selectedStyleId, onSelectStyle }) => {
+  // Split styles into rows of 3
+  const rows = [];
+  for (let i = 0; i < styles.length; i += 5) {
+    rows.push(styles.slice(i, i + 5));
+  }
+
   return (
     <div className="style-selector">
-      <h3>Select Style</h3>
-      <div className="thumbnails">
-        {styles.map((style) => (
-          <div
-            key={style.style_id}
-            className={`thumbnail ${style['default?'] ? 'selected' : ''}`}
-            onClick={() => onSelectStyle(style)}
-            style={{ backgroundImage: `url(${style.photos[0].thumbnail_url})` }}
-          >
-            {style['default?'] && <span className="checkmark">✔</span>}
-          </div>
-        ))}
-      </div>
+      {rows.map((row, rowIndex) => (
+        <div className="thumbnail-row" key={rowIndex} role="row">
+          {row.map((style) => (
+            <div
+              key={style.style_id}
+              className={`style-thumbnail ${style.style_id === selectedStyleId ? 'selected' : ''}`}
+              onClick={() => onSelectStyle(style)}
+              style={{ backgroundImage: `url(${style.photos[0].thumbnail_url})` }}
+              data-testid={`style-thumbnail-${style.style_id}-${rowIndex}`}
+            >
+              {style.style_id === selectedStyleId}
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 };

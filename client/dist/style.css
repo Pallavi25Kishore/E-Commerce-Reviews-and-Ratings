@@ -285,13 +285,35 @@ input::placeholder {
   border: 1px solid #ddd;
   transition: transform 0.2s;
 }
+.style-thumbnail {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+  margin-right: 10px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  transition: transform 0.2s;
+  border-radius: 50%;
+}
+.thumbnail-row {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 10px;
+}
 
 .thumbnail:hover {
   transform: scale(1.05);
 }
+.style-thumbnail:hover {
+  transform: scale(1.05);
+}
 
 .thumbnail.selected {
-  border: 2px solid black;
+  border: 1px solid black;
+}
+.style-thumbnail.selected {
+  border: 1px solid black;
 }
 
 .arrow-button {
@@ -313,24 +335,94 @@ input::placeholder {
   right: 10px;
 }
 
-.product-overview {
-  margin-bottom: 20px;
+.expanded-image-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-.product-overview h1 {
+.expanded-image {
+  width: 80%;
+  height: 80%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: zoom-in;
+}
+
+.expanded-image.zoomed {
+  background-size: 250%;
+  cursor: zoom-out;
+}
+
+.exit-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.expanded-thumbnails {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.expanded-thumbnail {
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  background-position: center;
+  margin: 0 5px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+.expanded-thumbnail.selected {
+  border: 1px solid black;
+}
+
+.product-info {
+  margin-bottom: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.product-info h1 {
   margin: 0;
   font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.product-overview .price {
+.product-info .price {
   font-size: 20px;
   color: #b12704;
   margin-top: 10px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Selectors and Add to Cart */
 .selectors {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+
+.selectors-row {
+  display: flex;
+  align-items: center;
   gap: 10px;
 }
 
@@ -350,20 +442,30 @@ input::placeholder {
   border: 1px solid #a88734;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin-bottom: 40px;
 }
 
 .add-to-cart button:hover {
   background-color: #ddb347;
 }
 
+/* Style Selector */
 .style-selector {
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .style-selector h3 {
   margin-bottom: 10px;
 }
 
+.thumbnail-row {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 10px;
+}
+
+/* Size Selector */
 .size-selector {
   margin-bottom: 20px;
 }
@@ -385,7 +487,6 @@ input::placeholder {
 
 
 
-
 /*Q&A css style*/
 .box {
   width: 60%;
@@ -395,7 +496,7 @@ input::placeholder {
   background-image: url('../src/components/QA/icon/search.svg');
   background-repeat: no-repeat;
   background-color: white;
-  position: absolute;
+  position: relative;
   text-align: left;
 }
 
@@ -405,7 +506,7 @@ input::placeholder {
   font-weight: bold;
 }
 .modal {
-  display: inline-block; /* Hidden by default */
+
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding-top: 100px; /* Location of the box */
@@ -413,7 +514,7 @@ input::placeholder {
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
+  overflow-y: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
@@ -447,7 +548,7 @@ input::placeholder {
   color: #888;
 }
 .Question_Body {
-  padding: 80px 30px 30px 30px;
+  padding: 30px 0 30px 30px;
   position: relative;
 }
 .QA_helpful {
@@ -457,19 +558,75 @@ input::placeholder {
 .Single_question {
   display: flex;
   justify-content: flex-start;
+  justify-content: space-between;;
 
+}
+.right-help {
+  display: flex;
+  float: right;
+  padding-right: 5%;
+}
+.Helpfuless {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.Answer {
+  display: flex;
+  font-family: "adobe-clean", sans-serif;
+  color: #888;
+}
+.Answer_Helpfuless {
+  padding-left: 5px;
+  padding-right: 15px;
+}
+.photo_layout {
+  display: flex;
+  justify-content: flex-start;
+}
+.QA_photo {
+  padding: 0, 15px 0 20px;
+  border-radius: 3%;
+  padding-right: 20px;
+}
+
+.Load_more {
+  cursor:pointer;
+  font-size: 13px;
+  justify-content: flex-start;
+  font-weight: lighter;
+}
+
+.button_layout {
+  display: flex;
+  justify-content: flex-start;
+}
+.button1 {
+  font-size: 20px;
+  padding: 15px 30px;
+  border: 2px solid white;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+}
+.button2 {
+  font-size: 20px;
+  padding: 15px 30px;
+  border: 2px solid white;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
 }
 
 
+.button1:hover  {
+  background-color: #0056b3;
+}
 
-
-
-
-
-
-
-
-
+.button2:hover  {
+  background-color: #0056b3;
+}
 
 
 

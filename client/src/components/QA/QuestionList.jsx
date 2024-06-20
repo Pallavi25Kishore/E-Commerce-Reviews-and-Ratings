@@ -25,7 +25,7 @@ const QuestionList = function (props) {
                 console.log(err);
             })
     }, []);
-
+    console.log(questionLists)
   
     const filterQuestion = (searchKey && searchKey.length>= 3) ? questionLists.filter(question => question.question_body.toLowerCase().includes(searchKey.toLowerCase())) : questionLists
 
@@ -46,8 +46,8 @@ const QuestionList = function (props) {
                 )
                 )}
             </div>
-            <div>
-            {questionLists.length > 2 ? <button data-testid="test-button" onClick={()=>{setshowAll(!showAll)}}> {showAll ? 'Collapse answers' : 'MORE ANSWEREDED QUESTION' }</button> : <></>}
+            <div className='button_layout'>
+            {questionLists.length > 2 ? <button className='button1' data-testid="test-button" onClick={()=>{setshowAll(!showAll)}}> {showAll ? 'Collapse answers' : 'MORE ANSWEREDED QUESTION' }</button> : <></>}
            <AddQuestionModal />
             </div>
         </div>
