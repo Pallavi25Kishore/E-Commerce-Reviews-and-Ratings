@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect, useRef } from 'react'
 import axios from 'axios';
 import { BASE_URL, API_KEY } from "../../env/config.js";
 
 export default function AddQuestionForm(props) {
     const closeForm = props.closeForm;
+    const id = props.id;
     const [questionForm, setQuestionForm] = useState({
         body: " ",
         name: " ",
@@ -25,12 +26,12 @@ export default function AddQuestionForm(props) {
             "Authorization": API_KEY
         }
     };
-
+    console.log(id)
     var postData = {
         "body": questionForm.body,
         "name": questionForm.name,
         "email": questionForm.email,
-        "product_id": 40368
+        "product_id": id
     };
 
     const SubmitQuestion = (event) => {
@@ -38,7 +39,7 @@ export default function AddQuestionForm(props) {
         console.log(questionForm)
         closeForm(false); // Close the modal on successful submission
         axios.post(URL, postData, axiosConfig).then(function (response) {
-            alert("successful submit")
+            alert(response)
         }).catch(function (err) {
             alert(err);
         })

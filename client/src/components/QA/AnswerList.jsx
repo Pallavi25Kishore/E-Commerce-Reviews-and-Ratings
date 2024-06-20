@@ -11,10 +11,10 @@ export default function AnswerList(props) {
     const isSeller = props.name.toLowerCase() === "seller";
     const [disable, setDisable] = useState(false)
     const handleYesClick = (e) => {
-        if(disable === false) {
-        setHelpfulness(helpfulness + 1)
-        setDisable(!disable)
-        }else {
+        if (disable === false) {
+            setHelpfulness(helpfulness + 1)
+            setDisable(!disable)
+        } else {
             setHelpfulness(helpfulness - 1);
             setDisable(!disable)
         }
@@ -28,7 +28,7 @@ export default function AnswerList(props) {
                 console.log('Error in updating helpfulness count', err);
             });
     };
-     const handleReportClick = () => {
+     const handleReportClick = () => { 
         setReport(!report);
 
         axios.put(`${BASE_URL}qa/answers/${props.answer_id}/report`, {}, { headers: { "Authorization": API_KEY } })
@@ -42,7 +42,6 @@ export default function AnswerList(props) {
 
 
     return <div className="Answer">
-       
         <span className="Answer_Helpfuless">by {isSeller ? <strong>{props.name}</strong> : props.name}</span>
         <IsoConvert isoDate={props.isoDate} />
 

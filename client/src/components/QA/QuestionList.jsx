@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { BASE_URL, API_KEY } from "../../env/config.js";
 import axios from 'axios';
 import Answer from './Answer.jsx';
 import Search from './Search.jsx';
 import Question from './Question.jsx';
 import AddQuestionModal from './AddQuestionModal.jsx';
-const QuestionList = function (props) {
+const QuestionList = function ({productId}) {
     const [questionLists, setQuestionLists] = useState([]);
     const [searchKey, setsearchKey] = useState('');
     const [showAll, setshowAll] = useState(false);
-    const [openModal, setopenModal] = useState(false);
-    const URL = `${BASE_URL}qa/questions`;
+    
+    const URL = `${BASE_URL}qa/questions/`
+    console.log("this is in questionlist", productId)
     useEffect(() => {
         axios.get(URL, {
             headers: { "Authorization": API_KEY },
             params: {
-                product_id: 40368
+                product_id: productId
             }
         })
             .then(function (response) {
@@ -24,14 +25,13 @@ const QuestionList = function (props) {
             .catch(function (err) {
                 console.log(err);
             })
-    }, []);
+    }, [productId]);
     console.log(questionLists)
   
     const filterQuestion = (searchKey && searchKey.length>= 3) ? questionLists.filter(question => question.question_body.toLowerCase().includes(searchKey.toLowerCase())) : questionLists
 
     return (
         <div>
-
             <h3 className='QA_title'>QUESTION & ANSWERS</h3>
             <Search setsearchKey = {setsearchKey} />
             <div className='Question_Body'>
@@ -47,8 +47,8 @@ const QuestionList = function (props) {
                 )}
             </div>
             <div className='button_layout'>
-            {questionLists.length > 2 ? <button className='button1' data-testid="test-button" onClick={()=>{setshowAll(!showAll)}}> {showAll ? 'Collapse answers' : 'MORE ANSWEREDED QUESTION' }</button> : <></>}
-           <AddQuestionModal />
+            {questionLists.length > 2 ? <button className='button1' data-testid="test-button" onClick={()=>{setshowAll(!showAll)}}> {showAll ? 'Collapse answers' : 'MORE ANSWERED QUESTION' }</button> : <></>}
+           <AddQuestionModal id={productId}/>
             </div>
         </div>
     )

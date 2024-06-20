@@ -9,7 +9,7 @@ export default function Search(props) {
 
 
     return(
-        <div>
+        <div className="search-bar">
                 <input className="box" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS" onChange={handleChange} 
                 aria-label="search-input" >
                 </input>

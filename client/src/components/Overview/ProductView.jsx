@@ -12,6 +12,7 @@ const ProductView = ({ currentProduct, styles, selectedStyle, setSelectedStyle }
   const [availableSizes, setAvailableSizes] = useState([]);
   const [maxQuantity, setMaxQuantity] = useState(0);
 
+
   useEffect(() => {
     if (selectedStyle) {
       const sizes = Object.keys(selectedStyle.skus).map((skuId) => ({

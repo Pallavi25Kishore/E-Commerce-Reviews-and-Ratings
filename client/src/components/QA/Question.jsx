@@ -12,7 +12,7 @@ export default function Question(props) {
             setHelpful(helpful + 1)
             setDisable(!disable)
         } else {
-            setHelpful(helpful - 1);
+            setHelpful(helpfulness - 1);
             setDisable(!disable)
         }
         axios.put(`${BASE_URL}qa/answers/${id}/helpful`, { helpfulness: helpfulness }, {
@@ -30,7 +30,7 @@ export default function Question(props) {
             <div className='Single_question'>
                 <strong className='left-qeustion'>Q: {question} </strong>
                 <div className='right-help'>
-                <span className='Helpfuless'>Helpful?</span>
+                <span className='Helpfuless'>Helpful?</span> 
                 &nbsp;
                 <span className="QA_helpful" data-testid="yes" onClick={handleYesClick} >Yes</span>
                 <span data-testid="count">{`(${helpful})`}</span>
