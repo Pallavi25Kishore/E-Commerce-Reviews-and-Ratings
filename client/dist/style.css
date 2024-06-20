@@ -237,7 +237,7 @@ ul {
   list-style-type: none;
 }
 
-img {
+.logo {
   max-width: 200px;
   display: flex;
   margin-left: auto;
