@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {BASE_URL, API_KEY} from "../../env/config.js";
 
-const Form = ({handleCloseForm, metaData, fetchReviewsList}) => {         //To do later: render product name dynamically in form - get as prop
+const Form = ({handleCloseForm, metaData, fetchReviewsList, currentProduct}) => {         //To do later: render product name dynamically in form - get as prop
 
   const [reviewBodyText, setReviewBodyText] = useState('');
   const [starFill, setStarFill] = useState([false, false, false, false, false]);
@@ -31,7 +31,7 @@ const Form = ({handleCloseForm, metaData, fetchReviewsList}) => {         //To d
     }
 
     var data = {
-      product_id: 40380,
+      product_id: currentProduct.id,
       rating: selectedRating,
       summary: formJson.summary,
       body: formJson.body,
@@ -107,7 +107,7 @@ const Form = ({handleCloseForm, metaData, fetchReviewsList}) => {         //To d
     <div className="modalForm" data-testid="add-review-form">
       <form onSubmit={handleFormSubmission}>
         <div>WRITE YOUR REVIEW</div>
-        <div>About the Product</div>
+        <div>About the {currentProduct.name}</div>
         <br></br>
         <div className="formHead">Overall rating<sup className="asterix">&#42;</sup></div>
         <div>

@@ -10,7 +10,7 @@ import SearchFilter from "./SearchFilter.jsx";
 import CountFilterReviewsList from "./CountFilterReviewsList.jsx";
 
 
-const Reviews = () => { //pass product_id and product name as prop from App - DO LATER - use for both get requests - reviews and metadata
+const Reviews = ({currentProduct}) => { //pass product_id and product name as prop from App - DO LATER - use for both get requests - reviews and metadata
 
   //for now using product name - Camo Onesie - pass name as prop once consolidate code - pass till Form.jsx - also pass product id in post request in form
 
@@ -29,7 +29,7 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
 //Using hard coded example data for now - CHANGE LATER for initial mounting
 
   const fetchReviewsList = (sort = currentSort, count = totalReviews) => {
-    axios.get(`${BASE_URL}reviews?page=1&count=${count}&sort=${sort}&product_id=40347`, {headers: {Authorization : API_KEY}})
+    axios.get(`${BASE_URL}reviews?page=1&count=${count}&sort=${sort}&product_id=${currentProduct.id}`, {headers: {Authorization : API_KEY}})
     .then((response) => {
       setCurrentProductReviews(response.data.results);
     })
@@ -39,14 +39,14 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
   };
 
   useEffect(() => {
-    axios.get(`${BASE_URL}reviews/meta?product_id=40380`, {headers: {Authorization : API_KEY}})
+    axios.get(`${BASE_URL}reviews/meta?product_id=${currentProduct.id}`, {headers: {Authorization : API_KEY}})
     .then((response) => {
       setMetaData(response.data);
     })
     .catch((err) => {
       console.log('error in fetching meta data', err);
     });
-    }, []);
+    }, [currentProduct]);
 
   useEffect(() => {
     if (metaData.ratings) {
@@ -116,7 +116,7 @@ const Reviews = () => { //pass product_id and product name as prop from App - DO
                 {totalReviews > 2 && showMoreReviews ?
                 <button onClick={handleShowMoreReviewsClick}className="more-review-button">More Reviews</button>
                 : null }
-                <AddReview metaData={metaData} fetchReviewsList={fetchReviewsList}/>
+                <AddReview metaData={metaData} fetchReviewsList={fetchReviewsList} currentProduct={currentProduct}/>
             </div>
         </div>
           <div className="right-panel-reviews"></div>

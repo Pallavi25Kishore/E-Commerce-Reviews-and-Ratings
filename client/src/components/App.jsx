@@ -14,16 +14,15 @@ const App = () => {
     const [styles, setStyles] = useState([]);
     const [selectedStyle, setSelectedStyle] = useState(null);
 
-    useEffect(() => {
-        const loadProduct = async () => {
-            const products = await fetchProducts();
-            console.log(products)
-            if (products.length > 0) {
-                setProductId(40380);
-            }
-        };
-        loadProduct();
-    }, []);
+  useEffect(() => {
+    const loadProduct = async () => {
+      const products = await fetchProducts();
+      if (products.length > 0) {
+        setProductId(products[2].id);
+      }
+    };
+    loadProduct();
+  }, []);
 
     useEffect(() => {
         const loadProductDetails = async () => {
@@ -56,14 +55,11 @@ const App = () => {
             <button className="next-button" onClick={handlePreviousProduct}>Previous Product</button>
             <button className="next-button" onClick={handleNextProduct}>Next Product</button>
 
-
             <QuestionList productId={productId} />
+      {currentProduct ? <Reviews currentProduct={currentProduct}/> : null }
 
-
-            <Reviews />
-        </>
-    );
-}
-
+    </>
+  );
+};
 
 export default App;
