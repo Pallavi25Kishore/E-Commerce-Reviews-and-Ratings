@@ -139,31 +139,31 @@
   margin-bottom: 10px
 }
 
-.ratings-and-reviews {
+.ratings-and-reviews { /*overall positioning*/
 display: flex;
 justify-content: space-around;
 margin-top: 10px
 }
 
 
-.left-panel-reviews {
+.left-panel-reviews { /*overall positioning*/
   width: 30%;
 }
 
-.center-panel-reviews {
+.center-panel-reviews { /*overall positioning*/
   width: 40%;
 }
 
-.review-list {
+.review-list { /*overall positioning*/
   height: 600px;
   overflow: auto
 }
 
-.right-panel-reviews {
+.right-panel-reviews { /*overall positioning*/
   width: 10%;
 }
 
-.rating-breakdown {
+.rating-breakdown { /*overall positioning*/
   margin-left: 10%;
 }
 
