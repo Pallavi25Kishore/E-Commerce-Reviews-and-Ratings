@@ -135,31 +135,31 @@
 .factor-label { /*factors breakdown component*/
   width: 290px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-bottom: 10px
 }
 
 .ratings-and-reviews { /*overall positioning*/
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
 margin-top: 10px
 }
 
 
-.left-panel { /*overall positioning*/
+.left-panel-reviews { /*overall positioning*/
   width: 30%;
 }
 
-.center-panel { /*overall positioning*/
-  width: 50%;
+.center-panel-reviews { /*overall positioning*/
+  width: 40%;
 }
 
-.review-list {
+.review-list { /*overall positioning*/
   height: 600px;
   overflow: auto
 }
 
-.right-panel { /*overall positioning*/
+.right-panel-reviews { /*overall positioning*/
   width: 10%;
 }
 
@@ -209,11 +209,49 @@ margin-top: 10px
   width: 200px;
 }
 
+.name-and-date {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.review-response-from-seller {
+  background-color: lightgray;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.review-body {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input::placeholder {
+  color: lightgray;
+  font-style: italic;
+}
+
 /*Michael*/
+ul {
+  list-style-type: none;
+}
+
+img {
+  max-width: 200px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .product-view {
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  background-color: #fff;
+
+  margin: 20px auto;
+  border-radius: 5px;
 }
 
 .left-column {
@@ -240,6 +278,7 @@ margin-top: 10px
   cursor: pointer;
   border: 1px solid #ddd;
   margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 .big-image.zoomed {
@@ -260,7 +299,13 @@ margin-top: 10px
   margin-right: 10px;
   cursor: pointer;
   border: 1px solid #ddd;
-  transition: transform 0.2s;
+  transition: transform 0.2s;border-radius: 5px;
+}
+
+.thumbnail-row {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 10px;
 }
 
 .thumbnail:hover {
@@ -268,7 +313,35 @@ margin-top: 10px
 }
 
 .thumbnail.selected {
-  border: 2px solid black;
+  border: 2px solid #000;
+}
+.style-thumbnail {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+  margin-right: 10px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  transition: transform 0.2s;
+  border-radius: 50%;
+}
+.thumbnail-row {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 10px;
+}
+
+
+.style-thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.thumbnail.selected {
+  border: 1px solid black;
+}
+.style-thumbnail.selected {
+  border: 2px solid #000;
 }
 
 .arrow-button {
@@ -280,6 +353,8 @@ margin-top: 10px
   cursor: pointer;
   font-size: 24px;
   z-index: 1;
+  padding: 10px;
+  border-radius: 50%;
 }
 
 .arrow-button.left {
@@ -290,7 +365,66 @@ margin-top: 10px
   right: 10px;
 }
 
-.product-overview {
+.expanded-image-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.expanded-image {
+  width: 80%;
+  height: 80%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: zoom-in;
+}
+
+.expanded-image.zoomed {
+  background-size: 250%;
+  cursor: zoom-out;
+}
+
+.exit-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.expanded-thumbnails {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.expanded-thumbnail {
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  background-position: center;
+  margin: 0 5px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+.expanded-thumbnail.selected {
+  border: 1px solid black;
+}
+
+.product-info {
   margin-bottom: 20px;
 }
 
@@ -309,11 +443,15 @@ margin-top: 10px
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-size: 24px;
 }
 
 .selectors select {
   padding: 10px;
   font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  cursor: pointer;
 }
 
 .add-to-cart {
@@ -323,14 +461,16 @@ margin-top: 10px
 .add-to-cart button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #f0c14b;
+  background-color: #ffd700;
   border: 1px solid #a88734;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin-bottom: 40px;
+  border-radius: 5px;
 }
 
 .add-to-cart button:hover {
-  background-color: #ddb347;
+  background-color: #f0c14b;
 }
 
 .style-selector {
@@ -340,7 +480,7 @@ margin-top: 10px
 .style-selector h3 {
   margin-bottom: 10px;
 }
-
+/* Size Selector */
 .size-selector {
   margin-bottom: 20px;
 }
@@ -357,8 +497,19 @@ margin-top: 10px
 .quantity-selector h3 {
   margin-bottom: 10px;
 }
-
-
+.product-description {
+  text-align: center;
+  font-size: 18px;
+} 
+.next-button{
+  font-size: 14px;
+  padding: 8px 16px;
+  border: 2px solid white;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px;
+}
 
 
 
