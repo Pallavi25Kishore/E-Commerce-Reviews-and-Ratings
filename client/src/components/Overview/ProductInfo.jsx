@@ -24,7 +24,7 @@ const ProductInfo = ({ currentProduct }) => {
     .catch((err) => {
       console.log('error in fetching meta data', err);
     });
-    }, []);
+    }, [currentProduct]);
 
   if (metaData) {
     var totalNumberOfRatings = 0;
