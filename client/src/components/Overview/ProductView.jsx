@@ -4,35 +4,13 @@ import StyleSelector from './StyleSelector.jsx';
 import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
 import ImageGallery from './ImageGallery.jsx';
-import fetchProduct from './ProductController';
-import fetchProducts from './ProductListController';
-import fetchStyles from './StyleController';
+import Share from './Share.jsx';
 
-const ProductView = () => {
-  const [currentProduct, setCurrentProduct] = useState(null);
-  const [styles, setStyles] = useState([]);
-  const [selectedStyle, setSelectedStyle] = useState("");
+const ProductView = ({ currentProduct, styles, selectedStyle, setSelectedStyle }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [availableSizes, setAvailableSizes] = useState([]);
   const [maxQuantity, setMaxQuantity] = useState(0);
-
-  useEffect(() => {
-    const loadProduct = async () => {
-
-      const products = await fetchProducts();
-      if (products.length > 0) {
-        const firstProductId = products[0].id;
-        const fetchedProduct = await fetchProduct(firstProductId);
-        setCurrentProduct(fetchedProduct);
-
-        const fetchedStyles = await fetchStyles(firstProductId);
-        setStyles(fetchedStyles);
-        setSelectedStyle(fetchedStyles[0]);
-    }
-    };
-    loadProduct();
-  }, []);
 
   useEffect(() => {
     if (selectedStyle) {
@@ -49,7 +27,7 @@ const ProductView = () => {
 
   const handleSelectStyle = (style) => {
     setSelectedStyle(style);
-    console.log(selectedStyle.name);
+    console.log(style.name);
   };
 
   const handleSelectSize = (size) => {
@@ -66,18 +44,32 @@ const ProductView = () => {
 
   return (
     <div className="product-view">
-     <div className="left-column">
+      <div className="left-column">
         {selectedStyle && <ImageGallery images={selectedStyle.photos} />}
+        {currentProduct && (
+          <div className="product-description">
+            {currentProduct.description && <p>{currentProduct.description}</p>}
+            {currentProduct.features && (
+              <ul>
+                {currentProduct.features.map((feature, index) => (
+                  <li key={index}>
+                    <strong>{feature.feature}:</strong> {feature.value}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <Share />
+          </div>
+        )}
       </div>
       <div className="right-column">
-      {currentProduct && <ProductInfo currentProduct={currentProduct} />}
-
-      <div className="selectors">
-      <h3>{selectedStyle.name}</h3>
-      {styles.length > 0 && (
-        <StyleSelector styles={styles} selectedStyleId={selectedStyle?.style_id} onSelectStyle={handleSelectStyle} />
-      )}
-      <div className="selectors-row">
+        {currentProduct && <ProductInfo currentProduct={currentProduct} />}
+        <div className="selectors">
+          {selectedStyle && <h3>{selectedStyle.name}</h3>}
+          {styles.length > 0 && (
+            <StyleSelector styles={styles} selectedStyleId={selectedStyle?.style_id} onSelectStyle={handleSelectStyle} />
+          )}
+          <div className="selectors-row">
             {availableSizes.length > 0 && (
               <SizeSelector data-testid="size-selector" sizes={availableSizes} onSelectSize={handleSelectSize} />
             )}
@@ -86,10 +78,8 @@ const ProductView = () => {
               <button disabled={!selectedSize || maxQuantity === 0} onClick={() => alert('Added to Cart')}>Add to Cart</button>
             </div>
           </div>
+        </div>
       </div>
-
-      </div>
-
     </div>
   );
 };
