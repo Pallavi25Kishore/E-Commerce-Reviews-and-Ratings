@@ -3,8 +3,8 @@ import React from 'react';
 const StyleSelector = ({ styles, selectedStyleId, onSelectStyle }) => {
   // Split styles into rows of 3
   const rows = [];
-  for (let i = 0; i < styles.length; i += 5) {
-    rows.push(styles.slice(i, i + 5));
+  for (let i = 0; i < styles.length; i += 4) {
+    rows.push(styles.slice(i, i + 4));
   }
 
   return (
