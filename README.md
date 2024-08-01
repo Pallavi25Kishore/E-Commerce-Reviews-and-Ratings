@@ -77,7 +77,7 @@ The front-end of the e-commerce platform was a collaborative project, with 3 mai
 3. **Reviews and Ratings** which contains functionality to write new reviews, view exisitng review tiles, filter reviews, sort reviews and view rating and product breakdowns.
 
 ## Acknowledgments
-I am grateful to the following developers:
+I am grateful to the following developers for their contribution towards this project.
 <br>
 -Michael Trofimov https://github.com/mictro97 - for implementing the front-end for the product overview component 
 <br>
