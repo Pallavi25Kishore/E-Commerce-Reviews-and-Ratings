@@ -1,4 +1,4 @@
-# Ratings and Reviews Feature for an e-commerce platform 
+# Ratings and Reviews feature for an e-commerce platform 
 
 ## About
 The Ratings and Reviews feature is designed to allow users to easily view, add, and filter reviews by rating, relevance, newness, and helpfulness. This feature enhances the user experience by providing detailed review tiles, dynamic filters, and a streamlined design.
@@ -6,7 +6,7 @@ The Ratings and Reviews feature is designed to allow users to easily view, add, 
 ## Demo
 <div align="center">
   <a href="https://youtu.be/Yy85ctGMjbo">
-    <img src="https://img.youtube.com/vi/Yy85ctGMjbo/0.jpg" alt="Watch the demo video" width="600px"/>
+    <img src="https://img.youtube.com/vi/Yy85ctGMjbo/0.jpg" alt="Watch the demo video" width="800px"/>
   </a>
 </div>
 
@@ -70,16 +70,16 @@ const BASE_URL = `https://app-hrsei-api.herokuapp.com/api/fec2/:${CAMPUS_CODE}/`
   npm run react-dev
 ```
 
-**Collaboration Details** 
+## Collaboration Details
 The front-end of the e-commerce platform was a collaborative project, with 3 main components:
-1. **Product Overview** which contains the image gallery, product information, style selector and add to cart feature
-2. **Questions and Answers** which contains features for question viewing, searching, asking a question and answering questions
-3. **Reviews and Ratings** which contains functionality to write new reviews, view exisitng review tiles, filter reviews, sort reviews and view rating and product breakdowns.
+-1. **Product Overview** which contains the image gallery, product information, style selector and add to cart feature
+-2. **Questions and Answers** which contains features for question viewing, searching, asking a question and answering questions
+-3. **Reviews and Ratings** which contains functionality to write new reviews, view exisitng review tiles, filter reviews, sort reviews and view rating and product breakdowns.
 
-## Acknowledgments
+## Acknowledgments**
 I am grateful to the following developers:
-Michael Trofimov https://github.com/mictro97 - for implementing the front-end for the product overview component 
-Shaoyu Chen https://github.com/shaoyuchen3213 - for implementing the front-end for the questions and answers component 
+-Michael Trofimov https://github.com/mictro97 - for implementing the front-end for the product overview component 
+-Shaoyu Chen https://github.com/shaoyuchen3213 - for implementing the front-end for the questions and answers component 
 
 
 
