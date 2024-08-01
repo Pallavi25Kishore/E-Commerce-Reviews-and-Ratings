@@ -72,11 +72,8 @@ const BASE_URL = `https://app-hrsei-api.herokuapp.com/api/fec2/:${CAMPUS_CODE}/`
 
 ## Collaboration Details
 The front-end of the e-commerce platform was a collaborative project, with 3 main components:
-<br>
 1. **Product Overview** which contains the image gallery, product information, style selector and add to cart feature
-<br>
 2. **Questions and Answers** which contains features for question viewing, searching, asking a question and answering questions
-<br>
 3. **Reviews and Ratings** which contains functionality to write new reviews, view exisitng review tiles, filter reviews, sort reviews and view rating and product breakdowns.
 
 ## Acknowledgments
